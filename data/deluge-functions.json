@@ -1,0 +1,2893 @@
+{
+  "functions": {
+    "info": {
+      "signature": "info message",
+      "description": "Outputs a message to the info log. Useful for debugging and tracking script execution.",
+      "params": [],
+      "returns": "",
+      "category": "common",
+      "example": "info \"Script started\";"
+    },
+    "alert": {
+      "signature": "alert message",
+      "description": "Shows an alert dialog to the user with the specified message.",
+      "params": [],
+      "returns": "",
+      "category": "common",
+      "example": "alert \"Please accept the terms\";"
+    },
+    "isNull": {
+      "signature": "isNull(expression)",
+      "description": "Returns true if the expression evaluates to null, otherwise returns false.",
+      "params": [],
+      "returns": "",
+      "category": "common",
+      "example": "if(isNull(name)) { info \"Name is null\"; }"
+    },
+    "isEmpty": {
+      "signature": "isEmpty(expression)",
+      "description": "Returns true if the expression is empty (empty string, empty list, or null).",
+      "params": [],
+      "returns": "",
+      "category": "common",
+      "example": "if(isEmpty(email)) { alert \"Email is required\"; }"
+    },
+    "ifNull": {
+      "signature": "ifNull(expression1, expression2)",
+      "description": "Evaluates expression1. If it is null, returns expression2. Otherwise returns expression1.",
+      "params": [],
+      "returns": "",
+      "category": "common",
+      "example": "name = ifNull(input.Name, \"Unknown\");"
+    },
+    "List": {
+      "signature": "List()",
+      "description": "Initializes an empty list that can hold multiple values of different types.",
+      "params": [],
+      "returns": "",
+      "category": "common",
+      "example": "myList = List();\nmyList.add(\"item\");"
+    },
+    "Map": {
+      "signature": "Map()",
+      "description": "Initializes an empty map for storing key-value pairs.",
+      "params": [],
+      "returns": "",
+      "category": "common",
+      "example": "myMap = Map();\nmyMap.put(\"key\", \"value\");"
+    },
+    "Collection": {
+      "signature": "Collection()",
+      "description": "Initializes an empty collection that can function as either a list or map.",
+      "params": [],
+      "returns": "",
+      "category": "common",
+      "example": "myCollection = Collection();"
+    },
+    "add": {
+      "signature": "list.add(element)",
+      "description": "Appends the specified element to the end of the list.",
+      "params": [],
+      "returns": "",
+      "category": "list",
+      "example": "employees.add(\"John\");"
+    },
+    "remove": {
+      "signature": "string.remove(searchString)",
+      "description": "Removes all occurrences of the search string from the text.",
+      "params": [],
+      "returns": "",
+      "category": "common",
+      "example": "cleaned = \"hello world\".remove(\"l\"); // returns \"heo word\""
+    },
+    "get": {
+      "signature": "list.get(index) or map.get(key)",
+      "description": "Returns the element at the specified index from a list, or the value for the specified key from a map.",
+      "params": [],
+      "returns": "",
+      "category": "common",
+      "example": "value = myMap.get(\"name\");"
+    },
+    "put": {
+      "signature": "map.put(key, value)",
+      "description": "Inserts or updates the specified key-value pair in the map.",
+      "params": [],
+      "returns": "",
+      "category": "map",
+      "example": "userData.put(\"email\", \"user@example.com\");"
+    },
+    "size": {
+      "signature": "collection.size()",
+      "description": "Returns the number of elements in the list or map.",
+      "params": [],
+      "returns": "",
+      "category": "common",
+      "example": "count = myList.size();"
+    },
+    "count": {
+      "signature": "collection.count()",
+      "description": "Returns the number of elements in the collection.",
+      "params": [],
+      "returns": "",
+      "category": "common",
+      "example": "total = records.count();"
+    },
+    "clear": {
+      "signature": "collection.clear()",
+      "description": "Clears all elements from the list or map.",
+      "params": [],
+      "returns": "",
+      "category": "common",
+      "example": "myList.clear();"
+    },
+    "containsKey": {
+      "signature": "map.containsKey(key)",
+      "description": "Returns true if the map contains the specified key.",
+      "params": [],
+      "returns": "",
+      "category": "map",
+      "example": "if(userData.containsKey(\"email\")) { }"
+    },
+    "containsValue": {
+      "signature": "map.containsValue(value)",
+      "description": "Returns true if the map contains the specified value.",
+      "params": [],
+      "returns": "",
+      "category": "map",
+      "example": "if(statusMap.containsValue(\"active\")) { }"
+    },
+    "keys": {
+      "signature": "map.keys()",
+      "description": "Returns a list containing all keys in the map.",
+      "params": [],
+      "returns": "",
+      "category": "map",
+      "example": "allKeys = myMap.keys();"
+    },
+    "values": {
+      "signature": "map.values()",
+      "description": "Returns a list containing all values in the map.",
+      "params": [],
+      "returns": "",
+      "category": "map",
+      "example": "allValues = myMap.values();"
+    },
+    "toString": {
+      "signature": "value.toString()",
+      "description": "Converts the value to its string representation.",
+      "params": [],
+      "returns": "",
+      "category": "string",
+      "example": "strValue = numValue.toString();"
+    },
+    "toList": {
+      "signature": "collection.toList()",
+      "description": "Converts the collection to a list.",
+      "params": [],
+      "returns": "",
+      "category": "list",
+      "example": "myList = myCollection.toList();"
+    },
+    "toNumber": {
+      "signature": "string.toNumber()",
+      "description": "Parses the string and returns a number.",
+      "params": [],
+      "returns": "",
+      "category": "number",
+      "example": "num = \"123\".toNumber();"
+    },
+    "toDecimal": {
+      "signature": "value.toDecimal()",
+      "description": "Converts the value to a decimal number.",
+      "params": [],
+      "returns": "",
+      "category": "number",
+      "example": "price = \"99.99\".toDecimal();"
+    },
+    "length": {
+      "signature": "string.length()",
+      "description": "Returns the number of characters in the string.",
+      "params": [],
+      "returns": "",
+      "category": "string",
+      "example": "len = name.length();"
+    },
+    "substring": {
+      "signature": "string.substring(start, end)",
+      "description": "Returns a substring from the start index to the end index.",
+      "params": [],
+      "returns": "",
+      "category": "string",
+      "example": "sub = text.substring(0, 5);"
+    },
+    "indexOf": {
+      "signature": "string.indexOf(searchString)",
+      "description": "Returns the index of the first occurrence of the search string, or -1 if not found.",
+      "params": [],
+      "returns": "",
+      "category": "string",
+      "example": "pos = email.indexOf(\"@\");"
+    },
+    "contains": {
+      "signature": "string.contains(searchString)",
+      "description": "Returns true if the string contains the search string.",
+      "params": [],
+      "returns": "",
+      "category": "string",
+      "example": "if(message.contains(\"error\")) { }"
+    },
+    "startsWith": {
+      "signature": "string.startsWith(prefix)",
+      "description": "Returns true if the string starts with the specified prefix.",
+      "params": [],
+      "returns": "",
+      "category": "string",
+      "example": "if(name.startsWith(\"Mr\")) { }"
+    },
+    "endsWith": {
+      "signature": "string.endsWith(suffix)",
+      "description": "Returns true if the string ends with the specified suffix.",
+      "params": [],
+      "returns": "",
+      "category": "string",
+      "example": "if(filename.endsWith(\".txt\")) { }"
+    },
+    "replace": {
+      "signature": "string.replace(oldString, newString)",
+      "description": "Replaces the first occurrence of oldString with newString.",
+      "params": [],
+      "returns": "",
+      "category": "string",
+      "example": "newText = text.replace(\"old\", \"new\");"
+    },
+    "replaceAll": {
+      "signature": "string.replaceAll(oldString, newString)",
+      "description": "Replaces all occurrences of oldString with newString.",
+      "params": [],
+      "returns": "",
+      "category": "string",
+      "example": "cleaned = text.replaceAll(\" \", \"_\");"
+    },
+    "toLowerCase": {
+      "signature": "string.toLowerCase()",
+      "description": "Returns the string with all characters converted to lowercase.",
+      "params": [],
+      "returns": "",
+      "category": "string",
+      "example": "lower = name.toLowerCase();"
+    },
+    "toUpperCase": {
+      "signature": "string.toUpperCase()",
+      "description": "Returns the string with all characters converted to uppercase.",
+      "params": [],
+      "returns": "",
+      "category": "string",
+      "example": "upper = name.toUpperCase();"
+    },
+    "trim": {
+      "signature": "string.trim()",
+      "description": "Returns the string with leading and trailing whitespace removed.",
+      "params": [],
+      "returns": "",
+      "category": "string",
+      "example": "cleaned = input.trim();"
+    },
+    "split": {
+      "signature": "string.split(delimiter)",
+      "description": "Splits the string into a list of substrings using the delimiter.",
+      "params": [],
+      "returns": "",
+      "category": "string",
+      "example": "parts = csv.split(\",\");"
+    },
+    "equalsIgnoreCase": {
+      "signature": "string.equalsIgnoreCase(otherString)",
+      "description": "Returns true if the strings are equal, ignoring case differences.",
+      "params": [],
+      "returns": "",
+      "category": "string",
+      "example": "if(status.equalsIgnoreCase(\"active\")) { }"
+    },
+    "matches": {
+      "signature": "string.matches(pattern)",
+      "description": "Returns true if the string matches the regular expression pattern.",
+      "params": [],
+      "returns": "",
+      "category": "string",
+      "example": "if(email.matches(\".*@.*\\\\.com\")) { }"
+    },
+    "floor": {
+      "signature": "floor(number)",
+      "description": "Returns the largest integer less than or equal to the number.",
+      "params": [],
+      "returns": "",
+      "category": "number",
+      "example": "rounded = floor(9.7); // returns 9"
+    },
+    "ceil": {
+      "signature": "ceil(number)",
+      "description": "Returns the smallest integer greater than or equal to the number.",
+      "params": [],
+      "returns": "",
+      "category": "number",
+      "example": "rounded = ceil(9.1); // returns 10"
+    },
+    "round": {
+      "signature": "round(number, decimals)",
+      "description": "Rounds the number to the specified number of decimal places.",
+      "params": [],
+      "returns": "",
+      "category": "number",
+      "example": "price = round(99.999, 2); // returns 100.00"
+    },
+    "abs": {
+      "signature": "abs(number)",
+      "description": "Returns the absolute (positive) value of the number.",
+      "params": [],
+      "returns": "",
+      "category": "number",
+      "example": "positive = abs(-5); // returns 5"
+    },
+    "sqrt": {
+      "signature": "sqrt(number)",
+      "description": "Returns the square root of the number.",
+      "params": [],
+      "returns": "",
+      "category": "number",
+      "example": "result = sqrt(16); // returns 4"
+    },
+    "pow": {
+      "signature": "pow(base, exponent)",
+      "description": "Returns the base raised to the power of the exponent.",
+      "params": [],
+      "returns": "",
+      "category": "number",
+      "example": "result = pow(2, 3); // returns 8"
+    },
+    "weekday": {
+      "signature": "date.weekday()",
+      "description": "Returns the day of the week as a number, where 1 is Sunday and 7 is Saturday.",
+      "params": [],
+      "returns": "",
+      "category": "datetime",
+      "example": "day = zoho.currentdate.weekday();"
+    },
+    "zoho.crm.createRecord": {
+      "signature": "zoho.crm.createRecord(module_name, record_details, options_map, connection)",
+      "description": "Creates a new record in the specified Zoho CRM module with the provided field values. Returns a map containing the new record ID and creation details.",
+      "params": [],
+      "returns": "",
+      "category": "integration",
+      "example": "leadinfo = {\n  \"Company\": \"Zylker\",\n  \"Last_Name\": \"Williams\",\n  \"Email\": \"will@zylker.com\"\n};\nresponse = zoho.crm.createRecord(\"Leads\", leadinfo);\nrecordId = response.get(\"id\");"
+    },
+    "zoho.crm.updateRecord": {
+      "signature": "zoho.crm.updateRecord(module_name, record_ID, record_value, options_map, connection)",
+      "description": "Updates the specified record in Zoho CRM module. Returns a map with modification details including Modified_Time, Modified_By, Created_Time, and record ID.",
+      "params": [],
+      "returns": "",
+      "category": "integration",
+      "example": "leadinfo = {\n  \"Company\": \"Zylker\",\n  \"Last_Name\": \"Stewart\",\n  \"Email\": \"stewart@zylker.com\"\n};\nresponse = zoho.crm.updateRecord(\"Leads\", 230330000001234567, leadinfo);"
+    },
+    "zoho.crm.getRecords": {
+      "signature": "zoho.crm.getRecords(module_name, page, per_page, query_value, connection)",
+      "description": "Retrieves records from the specified Zoho CRM module. Supports pagination, sorting, and filtering through query parameters.",
+      "params": [],
+      "returns": "",
+      "category": "integration",
+      "example": "query_map = Map();\nquery_map.put(\"sort_order\", \"asc\");\nquery_map.put(\"sort_by\", \"First_Name\");\nresponse = zoho.crm.getRecords(\"Contacts\", 1, 10, query_map);"
+    },
+    "zoho.crm.getRecordById": {
+      "signature": "zoho.crm.getRecordById(module_name, record_ID, query_value, connection)",
+      "description": "Retrieves a single record from the specified Zoho CRM module using its unique record ID.",
+      "params": [],
+      "returns": "",
+      "category": "integration",
+      "example": "response = zoho.crm.getRecordById(\"Leads\", 230330000001234567);\nleadName = response.get(\"Last_Name\");"
+    },
+    "zoho.crm.searchRecords": {
+      "signature": "zoho.crm.searchRecords(module_name, criteria, page, per_page, search_value, connection)",
+      "description": "Searches for records matching the specified criteria. Criteria uses field API names with operators like equals, starts_with, contains, etc.",
+      "params": [],
+      "returns": "",
+      "category": "integration",
+      "example": "criteria = \"(Email:equals:john@zylker.com)\";\nresponse = zoho.crm.searchRecords(\"Contacts\", criteria);"
+    },
+    "zoho.crm.deleteRecord": {
+      "signature": "zoho.crm.deleteRecord(module_name, record_ID, connection)",
+      "description": "Permanently deletes the specified record from Zoho CRM module.",
+      "params": [],
+      "returns": "",
+      "category": "integration",
+      "example": "response = zoho.crm.deleteRecord(\"Leads\", 230330000001234567);"
+    },
+    "zoho.creator.createRecord": {
+      "signature": "zoho.creator.createRecord(owner_name, app_link_name, form_link_name, input_values, configuration, connection)",
+      "description": "Creates a new record in the specified Zoho Creator form with the given field values.",
+      "params": [],
+      "returns": "",
+      "category": "integration",
+      "example": "values = Map();\nvalues.put(\"Name\", \"John Doe\");\nvalues.put(\"Email\", \"john@example.com\");\nresponse = zoho.creator.createRecord(\"owner\", \"app_name\", \"form_name\", values);"
+    },
+    "zoho.creator.updateRecord": {
+      "signature": "zoho.creator.updateRecord(owner_name, app_link_name, form_link_name, record_ID, input_values, connection)",
+      "description": "Updates an existing record in Zoho Creator using its record ID.",
+      "params": [],
+      "returns": "",
+      "category": "integration",
+      "example": "values = Map();\nvalues.put(\"Status\", \"Completed\");\nresponse = zoho.creator.updateRecord(\"owner\", \"app_name\", \"form_name\", 12345, values);"
+    },
+    "zoho.currentdate": {
+      "signature": "zoho.currentdate",
+      "description": "Built-in constant that returns the current date.",
+      "params": [],
+      "returns": "",
+      "category": "integration",
+      "example": "today = zoho.currentdate;"
+    },
+    "zoho.currenttime": {
+      "signature": "zoho.currenttime",
+      "description": "Built-in constant that returns the current time.",
+      "params": [],
+      "returns": "",
+      "category": "integration",
+      "example": "now = zoho.currenttime;"
+    },
+    "zoho.loginuser": {
+      "signature": "zoho.loginuser",
+      "description": "Built-in constant that returns information about the currently logged-in user.",
+      "params": [],
+      "returns": "",
+      "category": "integration",
+      "example": "user = zoho.loginuser;"
+    },
+    "zoho.books.createRecord": {
+      "signature": "zoho.books.createRecord(organization_id, module_name, record_details, connection)",
+      "description": "Creates a new record in the specified Zoho Books module (Invoices, Contacts, Items, etc.). Requires organization ID.",
+      "params": [],
+      "returns": "",
+      "category": "integration",
+      "example": "contact = {\n  \"contact_name\": \"ABC Corp\",\n  \"company_name\": \"ABC Corporation\"\n};\nresponse = zoho.books.createRecord(\"12345\", \"contacts\", contact);"
+    },
+    "zoho.books.updateRecord": {
+      "signature": "zoho.books.updateRecord(organization_id, module_name, record_id, record_details, connection)",
+      "description": "Updates an existing record in Zoho Books using its record ID.",
+      "params": [],
+      "returns": "",
+      "category": "integration",
+      "example": "updateData = {\n  \"contact_name\": \"XYZ Corp\"\n};\nresponse = zoho.books.updateRecord(\"12345\", \"contacts\", \"67890\", updateData);"
+    },
+    "zoho.books.getRecords": {
+      "signature": "zoho.books.getRecords(organization_id, module_name, query_params, connection)",
+      "description": "Retrieves records from the specified Zoho Books module with optional filtering.",
+      "params": [],
+      "returns": "",
+      "category": "integration",
+      "example": "records = zoho.books.getRecords(\"12345\", \"invoices\");"
+    },
+    "zoho.desk.create": {
+      "signature": "zoho.desk.create(org_id, module_name, record_details, connection)",
+      "description": "Creates a new ticket, contact, or account in Zoho Desk.",
+      "params": [],
+      "returns": "",
+      "category": "integration",
+      "example": "ticket = {\n  \"subject\": \"Cannot login\",\n  \"departmentId\": \"123\",\n  \"contactId\": \"456\"\n};\nresponse = zoho.desk.create(\"org123\", \"tickets\", ticket);"
+    },
+    "zoho.desk.update": {
+      "signature": "zoho.desk.update(org_id, module_name, record_id, record_details, connection)",
+      "description": "Updates an existing ticket, contact, or account in Zoho Desk.",
+      "params": [],
+      "returns": "",
+      "category": "integration",
+      "example": "updateData = {\n  \"status\": \"Closed\"\n};\nresponse = zoho.desk.update(\"org123\", \"tickets\", \"789\", updateData);"
+    },
+    "zoho.desk.getRecordById": {
+      "signature": "zoho.desk.getRecordById(org_id, module_name, record_id, connection)",
+      "description": "Retrieves a single record by ID from Zoho Desk.",
+      "params": [],
+      "returns": "",
+      "category": "integration",
+      "example": "ticket = zoho.desk.getRecordById(\"org123\", \"tickets\", \"789\");"
+    },
+    "zoho.desk.searchRecords": {
+      "signature": "zoho.desk.searchRecords(org_id, module_name, search_criteria, connection)",
+      "description": "Searches for tickets, contacts, or accounts matching the specified criteria.",
+      "params": [],
+      "returns": "",
+      "category": "integration",
+      "example": "results = zoho.desk.searchRecords(\"org123\", \"tickets\", \"status:Open\");"
+    },
+    "zoho.mail.getMessage": {
+      "signature": "zoho.mail.getMessage(account_id, folder_name, message_id, connection)",
+      "description": "Retrieves a specific email message by ID from a folder.",
+      "params": [],
+      "returns": "",
+      "category": "integration",
+      "example": "message = zoho.mail.getMessage(\"123\", \"Inbox\", \"456\");"
+    },
+    "zoho.mail.moveToFolder": {
+      "signature": "zoho.mail.moveToFolder(account_id, message_id, folder_name, connection)",
+      "description": "Moves the specified email message to another folder in Zoho Mail.",
+      "params": [],
+      "returns": "",
+      "category": "integration",
+      "example": "zoho.mail.moveToFolder(\"123\", \"456\", \"Archive\");"
+    },
+    "zoho.mail.getFolders": {
+      "signature": "zoho.mail.getFolders(account_id, connection)",
+      "description": "Retrieves a list of all folders in the specified Zoho Mail account.",
+      "params": [],
+      "returns": "",
+      "category": "integration",
+      "example": "folders = zoho.mail.getFolders(\"123\");"
+    },
+    "zoho.mail.createFolder": {
+      "signature": "zoho.mail.createFolder(account_id, folder_name, connection)",
+      "description": "Creates a new folder with the specified name in Zoho Mail.",
+      "params": [],
+      "returns": "",
+      "category": "integration",
+      "example": "zoho.mail.createFolder(\"123\", \"Projects\");"
+    },
+    "zoho.people.getRecords": {
+      "signature": "zoho.people.getRecords(form_name, connection)",
+      "description": "Retrieves employee records or other HR data from Zoho People.",
+      "params": [],
+      "returns": "",
+      "category": "integration",
+      "example": "employees = zoho.people.getRecords(\"P_EmployeeView\");"
+    },
+    "zoho.recruit.getRecords": {
+      "signature": "zoho.recruit.getRecords(module_name, page, per_page, connection)",
+      "description": "Retrieves candidate, job opening, or client records from Zoho Recruit.",
+      "params": [],
+      "returns": "",
+      "category": "integration",
+      "example": "candidates = zoho.recruit.getRecords(\"Candidates\", 1, 200);"
+    },
+    "zoho.recruit.searchRecords": {
+      "signature": "zoho.recruit.searchRecords(module_name, search_criteria, connection)",
+      "description": "Searches for candidates or job openings matching the specified criteria.",
+      "params": [],
+      "returns": "",
+      "category": "integration",
+      "example": "results = zoho.recruit.searchRecords(\"Candidates\", \"(Email:john@example.com)\");"
+    },
+    "zoho.recruit.getRecordById": {
+      "signature": "zoho.recruit.getRecordById(module_name, record_id, connection)",
+      "description": "Retrieves a single candidate or job opening by ID.",
+      "params": [],
+      "returns": "",
+      "category": "integration",
+      "example": "candidate = zoho.recruit.getRecordById(\"Candidates\", \"123456\");"
+    },
+    "zoho.recruit.addRecord": {
+      "signature": "zoho.recruit.addRecord(module_name, record_details, connection)",
+      "description": "Creates a new candidate, job opening, or client record.",
+      "params": [],
+      "returns": "",
+      "category": "integration",
+      "example": "candidateData = {\n  \"First_Name\": \"John\",\n  \"Last_Name\": \"Doe\",\n  \"Email\": \"john@example.com\"\n};\nresponse = zoho.recruit.addRecord(\"Candidates\", candidateData);"
+    },
+    "zoho.projects.getPortals": {
+      "signature": "zoho.projects.getPortals(connection)",
+      "description": "Retrieves a list of all available project portals in Zoho Projects.",
+      "params": [],
+      "returns": "",
+      "category": "integration",
+      "example": "portals = zoho.projects.getPortals();"
+    },
+    "zoho.projects.getProjectDetails": {
+      "signature": "zoho.projects.getProjectDetails(portal_id, project_id, connection)",
+      "description": "Retrieves detailed information about a specific project.",
+      "params": [],
+      "returns": "",
+      "category": "integration",
+      "example": "project = zoho.projects.getProjectDetails(\"123\", \"456\");"
+    },
+    "zoho.cliq.postToUser": {
+      "signature": "zoho.cliq.postToUser(user_id, message, connection)",
+      "description": "Posts a direct message to a specific user in Zoho Cliq.",
+      "params": [],
+      "returns": "",
+      "category": "integration",
+      "example": "zoho.cliq.postToUser(\"john@example.com\", \"Hello!\");"
+    },
+    "zoho.cliq.postToChannel": {
+      "signature": "zoho.cliq.postToChannel(channel_id, message, connection)",
+      "description": "Posts a message to a specific channel in Zoho Cliq.",
+      "params": [],
+      "returns": "",
+      "category": "integration",
+      "example": "zoho.cliq.postToChannel(\"general\", \"Deployment complete!\");"
+    },
+    "zoho.workdrive.uploadFile": {
+      "signature": "zoho.workdrive.uploadFile(team_id, folder_id, file_content, file_name, connection)",
+      "description": "Uploads a file to the specified folder in Zoho WorkDrive.",
+      "params": [],
+      "returns": "",
+      "category": "integration",
+      "example": "zoho.workdrive.uploadFile(\"team123\", \"folder456\", fileContent, \"report.pdf\");"
+    },
+    "zoho.workdrive.createFolder": {
+      "signature": "zoho.workdrive.createFolder(team_id, parent_folder_id, folder_name, connection)",
+      "description": "Creates a new folder in the specified parent folder.",
+      "params": [],
+      "returns": "",
+      "category": "integration",
+      "example": "zoho.workdrive.createFolder(\"team123\", \"parent456\", \"2024 Reports\");"
+    },
+    "zoho.inventory.getRecords": {
+      "signature": "zoho.inventory.getRecords(organization_id, module_name, connection)",
+      "description": "Retrieves items, sales orders, purchase orders, or other records from Zoho Inventory.",
+      "params": [],
+      "returns": "",
+      "category": "integration",
+      "example": "items = zoho.inventory.getRecords(\"org123\", \"items\");"
+    },
+    "zoho.inventory.createRecord": {
+      "signature": "zoho.inventory.createRecord(organization_id, module_name, record_details, connection)",
+      "description": "Creates a new item, sales order, or purchase order in Zoho Inventory.",
+      "params": [],
+      "returns": "",
+      "category": "integration",
+      "example": "itemData = {\n  \"name\": \"Widget\",\n  \"rate\": 99.99\n};\nresponse = zoho.inventory.createRecord(\"org123\", \"items\", itemData);"
+    },
+    "invokeUrl": {
+      "signature": "invokeUrl(url, headers, params, method)",
+      "description": "Sends an HTTP request (GET, POST, PUT, DELETE, PATCH) to the specified URL with optional headers and parameters. Returns the response from the server.",
+      "params": [],
+      "returns": "",
+      "category": "integration",
+      "example": "headers = Map();\nheaders.put(\"Content-Type\", \"application/json\");\nparams = {\"key\": \"value\"};\nresponse = invokeUrl[url: \"https://api.example.com/data\", type: POST, parameters: params.toString(), headers: headers];"
+    },
+    "MD5": {
+      "signature": "MD5(text)",
+      "description": "Computes the MD5 hash of the input string. Returns a 32-character hexadecimal string.",
+      "params": [],
+      "returns": "",
+      "category": "encryption",
+      "example": "hash = MD5(\"password123\");"
+    },
+    "SHA256": {
+      "signature": "SHA256(text)",
+      "description": "Computes the SHA-256 cryptographic hash of the input string. Returns a 64-character hexadecimal string.",
+      "params": [],
+      "returns": "",
+      "category": "encryption",
+      "example": "hash = SHA256(\"sensitive data\");"
+    },
+    "SHA512": {
+      "signature": "SHA512(text)",
+      "description": "Computes the SHA-512 cryptographic hash of the input string. Returns a 128-character hexadecimal string.",
+      "params": [],
+      "returns": "",
+      "category": "encryption",
+      "example": "hash = SHA512(\"sensitive data\");"
+    },
+    "base64Encode": {
+      "signature": "base64Encode(text)",
+      "description": "Encodes the input string using Base64 encoding. Useful for encoding binary data or credentials.",
+      "params": [],
+      "returns": "",
+      "category": "encryption",
+      "example": "encoded = base64Encode(\"username:password\");"
+    },
+    "base64Decode": {
+      "signature": "base64Decode(encodedText)",
+      "description": "Decodes a Base64-encoded string back to its original form.",
+      "params": [],
+      "returns": "",
+      "category": "encryption",
+      "example": "decoded = base64Decode(encodedText);"
+    },
+    "addDay": {
+      "signature": "date.addDay(days)",
+      "description": "Adds the specified number of days to a date. Use negative values to subtract days.",
+      "params": [],
+      "returns": "",
+      "category": "datetime",
+      "example": "tomorrow = zoho.currentdate.addDay(1);\nlastWeek = zoho.currentdate.addDay(-7);"
+    },
+    "addMonth": {
+      "signature": "date.addMonth(months)",
+      "description": "Adds the specified number of months to a date. Use negative values to subtract months.",
+      "params": [],
+      "returns": "",
+      "category": "datetime",
+      "example": "nextMonth = zoho.currentdate.addMonth(1);"
+    },
+    "addYear": {
+      "signature": "date.addYear(years)",
+      "description": "Adds the specified number of years to a date. Use negative values to subtract years.",
+      "params": [],
+      "returns": "",
+      "category": "datetime",
+      "example": "nextYear = zoho.currentdate.addYear(1);"
+    },
+    "addHour": {
+      "signature": "datetime.addHour(hours)",
+      "description": "Adds the specified number of hours to a datetime value.",
+      "params": [],
+      "returns": "",
+      "category": "datetime",
+      "example": "deadline = zoho.currenttime.addHour(24);"
+    },
+    "addMinutes": {
+      "signature": "datetime.addMinutes(minutes)",
+      "description": "Adds the specified number of minutes to a datetime value.",
+      "params": [],
+      "returns": "",
+      "category": "datetime",
+      "example": "reminder = zoho.currenttime.addMinutes(30);"
+    },
+    "toDate": {
+      "signature": "toDate(dateString, format)",
+      "description": "Parses a date string using the specified format and returns a date object.",
+      "params": [],
+      "returns": "",
+      "category": "datetime",
+      "example": "myDate = toDate(\"2024-01-29\", \"yyyy-MM-dd\");"
+    },
+    "toJSONList": {
+      "signature": "jsonString.toJSONList()",
+      "description": "Parses a JSON string and returns it as a Deluge list.",
+      "params": [],
+      "returns": "",
+      "category": "list",
+      "example": "jsonStr = \"[1, 2, 3]\";\nmyList = jsonStr.toJSONList();"
+    },
+    "getJSON": {
+      "signature": "map.getJSON(key)",
+      "description": "Retrieves a value from a map that contains JSON data.",
+      "params": [],
+      "returns": "",
+      "category": "map",
+      "example": "value = responseMap.getJSON(\"data\");"
+    },
+    "getFileContent": {
+      "signature": "getFileContent(fileVariable)",
+      "description": "Retrieves the content of a file variable as text.",
+      "params": [],
+      "returns": "",
+      "category": "file",
+      "example": "content = getFileContent(uploadedFile);"
+    },
+    "toFile": {
+      "signature": "toFile(content, filename)",
+      "description": "Creates a file object from the given content and filename.",
+      "params": [],
+      "returns": "",
+      "category": "file",
+      "example": "file = toFile(csvData, \"report.csv\");"
+    },
+    "sendmail": {
+      "signature": "sendmail(from, to, subject, message, cc, bcc, attachments)",
+      "description": "Sends an email with the specified parameters. Supports CC, BCC, and attachments.",
+      "params": [],
+      "returns": "",
+      "category": "common",
+      "example": "sendmail[\n  from: zoho.loginuserid,\n  to: \"customer@example.com\",\n  subject: \"Order Confirmation\",\n  message: \"Your order has been confirmed.\"\n];"
+    },
+    "openUrl": {
+      "signature": "openUrl(url)",
+      "description": "Opens the specified URL in a new browser window or tab.",
+      "params": [],
+      "returns": "",
+      "category": "common",
+      "example": "openUrl(\"https://www.zoho.com\");"
+    },
+    "input": {
+      "signature": "input.FieldName",
+      "description": "Retrieves the value of an input field from a form submission.",
+      "params": [],
+      "returns": "",
+      "category": "common",
+      "example": "customerName = input.Customer_Name;"
+    },
+    "zoho.reports.createRow": {
+      "signature": "zoho.reports.createRow(database_name, table_name, data_map, connection)",
+      "description": "Creates a new row in the specified Zoho Analytics table with the provided data. Returns a map containing the created row data.",
+      "params": [],
+      "returns": "",
+      "category": "integration",
+      "example": "rowInfo = Map();\nrowInfo.put(\"Region\", \"India\");\nrowInfo.put(\"Product\", \"Creator\");\nrowInfo.put(\"Sales\", 1000);\nresponse = zoho.reports.createRow(\"Website\", \"Search Analytics\", rowInfo, \"analytics_connection\");"
+    },
+    "zoho.reports.deleteRow": {
+      "signature": "zoho.reports.deleteRow(database_name, table_name, criteria, connection)",
+      "description": "Deletes rows from a Zoho Analytics table based on specified criteria. Supports operators: =, !=, <, >, <=, >=, LIKE, NOT LIKE, IN, NOT IN, BETWEEN.",
+      "params": [],
+      "returns": "",
+      "category": "integration",
+      "example": "response = zoho.reports.deleteRow(\"Website\", \"Search Analytics\", \"name='John'\", \"analytics_connection\");"
+    },
+    "zoho.reports.updateData": {
+      "signature": "zoho.reports.updateData(database_name, table_name, data_map, criteria, connection)",
+      "description": "Updates rows in a Zoho Analytics table based on criteria. Returns a map with updatedRows count and updatedColumns array.",
+      "params": [],
+      "returns": "",
+      "category": "integration",
+      "example": "updateMap = {\"name\": \"Tony\"};\nresponse = zoho.reports.updateData(\"Website\", \"Search Analytics\", updateMap, \"name='John'\", \"analytics_connection\");"
+    },
+    "zoho.invoice.create": {
+      "signature": "zoho.invoice.create(module_name, org_ID, data_map, connection)",
+      "description": "Creates a new record in the specified Zoho Invoice module (Contacts, Invoices, Customer Payments, Items, Estimates, Expenses, ExpenseCategory, Projects).",
+      "params": [],
+      "returns": "",
+      "category": "integration",
+      "example": "values = Map();\nvalues.put(\"customer_id\", input.Customer_ID);\nresponse = zoho.invoice.create(\"Invoices\", \"66XXXXX66\", values);"
+    },
+    "zoho.invoice.getRecordById": {
+      "signature": "zoho.invoice.getRecordById(module_name, org_ID, record_ID, connection)",
+      "description": "Retrieves details of a specific record using its ID from Zoho Invoice.",
+      "params": [],
+      "returns": "",
+      "category": "integration",
+      "example": "response = zoho.invoice.getRecordById(\"Items\", \"5368XXXX\", \"13144XXXXXXXXXXXX\");"
+    },
+    "zoho.invoice.update": {
+      "signature": "zoho.invoice.update(module_name, org_ID, record_ID, data_map)",
+      "description": "Updates a record in Zoho Invoice with new values. Note: Records not being updated will be deleted automatically.",
+      "params": [],
+      "returns": "",
+      "category": "integration",
+      "example": "contactMap = Map();\ncontactMap.put(\"first_name\", \"Bettie\");\nresponse = zoho.invoice.update(\"Contacts\", \"5368XXXX\", \"13144XXXXXXXXXXXX\", contactMap);"
+    },
+    "zoho.billing.create": {
+      "signature": "zoho.billing.create(module_name, org_id, data_map, connection)",
+      "description": "Creates a new subscription, customer, or other record in Zoho Billing.",
+      "params": [],
+      "returns": "",
+      "category": "integration",
+      "example": "values = Map();\nvalues.put(\"customer_id\", input.Customer_ID);\nvalues.put(\"plan\", {\"plan_code\": input.Plan_Code});\nresponse = zoho.billing.create(\"Subscriptions\", \"66XXXXX66\", values, \"billing_connection\");"
+    },
+    "zoho.billing.getList": {
+      "signature": "zoho.billing.getList(moduleName, organization_ID, per_page, page, connection)",
+      "description": "Retrieves records from the specified module with pagination support.",
+      "params": [],
+      "returns": "",
+      "category": "integration",
+      "example": "response = zoho.billing.getList(\"Customers\", \"66XXXXX66\", 2, 1, \"billing_connection\");"
+    },
+    "zoho.billing.retrieve": {
+      "signature": "zoho.billing.retrieve(module_name, org_ID, record_ID, connection)",
+      "description": "Retrieves a specific record using its ID from Zoho Billing.",
+      "params": [],
+      "returns": "",
+      "category": "integration",
+      "example": "response = zoho.billing.retrieve(\"hostedpages\", \"10982991\", \"1687000000116001\", \"billing_connection\");"
+    },
+    "zoho.billing.update": {
+      "signature": "zoho.billing.update(moduleName, organization_id, record_ID, data_map, connection)",
+      "description": "Updates a record in Zoho Billing with new values.",
+      "params": [],
+      "returns": "",
+      "category": "integration",
+      "example": "values = Map();\nvalues.put(\"plan_code\", 101);\nresponse = zoho.billing.update(\"Subscriptions\", \"66XXXX66\", \"52849000000170032\", values, \"billing_connection\");"
+    },
+    "zoho.billing.getOrganizations": {
+      "signature": "zoho.billing.getOrganizations(connection)",
+      "description": "Retrieves all associated organizations with details including IDs, names, settings, currency, and timezone.",
+      "params": [],
+      "returns": "",
+      "category": "integration",
+      "example": "response = zoho.billing.getOrganizations(\"billing_connection\");\norgs = response.get(\"organizations\");"
+    },
+    "zoho.sheet.getSheets": {
+      "signature": "zoho.sheet.getSheets(resource_id, connection)",
+      "description": "Retrieves all worksheets from a Zoho Sheet file using its resource ID.",
+      "params": [],
+      "returns": "",
+      "category": "integration",
+      "example": "response = zoho.sheet.getSheets(\"eev4nXXXXXXXXXXcff41\", \"sheet_connection\");"
+    },
+    "zoho.sheet.createRecords": {
+      "signature": "zoho.sheet.createRecords(resource_id, worksheet_name, row_data, query_map, connection)",
+      "description": "Inserts single or multiple rows into a specified worksheet in Zoho Sheet.",
+      "params": [],
+      "returns": "",
+      "category": "integration",
+      "example": "rowData = Map();\nrowData.put(\"Email\", \"shawn@zylker.com\");\nrowData.put(\"Name\", \"Shawn\");\nresponse = zoho.sheet.createRecords(\"eev4nXXXXXXcff41\", \"Sheet1\", rowData, Map(), \"sheet_connection\");"
+    },
+    "zoho.sheet.getRecords": {
+      "signature": "zoho.sheet.getRecords(resource_id, worksheet_name, query_map, connection)",
+      "description": "Retrieves data from a specified worksheet. Maximum 1000 records per call. Supports criteria, pagination, and filtering.",
+      "params": [],
+      "returns": "",
+      "category": "integration",
+      "example": "queryValue = Map();\nqueryValue.put(\"criteria\", \"\\\"Lead Source\\\"=\\\"Trade Show\\\"\");\nresponse = zoho.sheet.getRecords(\"eev4nXXXXXXcff41\", \"Sheet1\", queryValue, \"sheet_connection\");"
+    },
+    "zoho.sheet.updateRecords": {
+      "signature": "zoho.sheet.updateRecords(resource_id, worksheet_name, criteria, data_map, optional_map, connection)",
+      "description": "Updates rows matching the criteria with new values. Use empty criteria to update all rows.",
+      "params": [],
+      "returns": "",
+      "category": "integration",
+      "example": "newValues = Map();\nnewValues.put(\"Priority\", \"High\");\nresponse = zoho.sheet.updateRecords(\"eev4nXXXXXXcff41\", \"Sheet1\", \"\\\"User Count\\\">=200\", newValues, Map(), \"sheet_connection\");"
+    },
+    "zoho.sheet.find": {
+      "signature": "zoho.sheet.find(resource_id, scope, search_text, worksheet_name, row_index_or_column_index, connection)",
+      "description": "Searches for specified text in workbook, worksheet, row, or column. Case-insensitive search.",
+      "params": [],
+      "returns": "",
+      "category": "integration",
+      "example": "response = zoho.sheet.find(\"eev4nXXXXXXcff41\", \"workbook\", \"Shawn\", \"\", 0, \"sheet_connection\");"
+    },
+    "zoho.sheet.replace": {
+      "signature": "zoho.sheet.replace(resource_id, scope, search_text, replace_with, worksheet_name, row_index_or_column_index, connection)",
+      "description": "Finds text and replaces all occurrences with new text in the specified scope.",
+      "params": [],
+      "returns": "",
+      "category": "integration",
+      "example": "response = zoho.sheet.replace(\"eev4nXXXXXXcff41\", \"workbook\", \"Trade Show\", \"Event\", \"\", 0, \"sheet_connection\");"
+    },
+    "zoho.sheet.insertCSV": {
+      "signature": "zoho.sheet.insertCSV(resource_id, worksheet_name, csv_data, row, column, connection)",
+      "description": "Inserts CSV-formatted data into a worksheet at specified position.",
+      "params": [],
+      "returns": "",
+      "category": "integration",
+      "example": "response = zoho.sheet.insertCSV(\"eev4nXXXXXXcff41\", \"Sheet1\", \"Ben,ben@zylker.com,350\", 1, 1, \"sheet_connection\");"
+    },
+    "zoho.writer.getDocuments": {
+      "signature": "zoho.writer.getDocuments(category, offset, limit, sort_by, connection)",
+      "description": "Retrieves documents based on category (all, shared_to_me, or owned_by_me) with sorting and pagination.",
+      "params": [],
+      "returns": "",
+      "category": "integration",
+      "example": "response = zoho.writer.getDocuments(\"all\", 0, 2, \"created_time\", \"writer_connection\");"
+    },
+    "zoho.writer.uploadDocument": {
+      "signature": "zoho.writer.uploadDocument(content, file_name, folder_id, password, connection)",
+      "description": "Uploads a document (.doc, .docx, .rtf, .odt, .html, .txt, .htm, .zdoc, .zip) to Zoho Writer.",
+      "params": [],
+      "returns": "",
+      "category": "integration",
+      "example": "response = zoho.writer.uploadDocument(fileContent, \"sample file\", \"al296XXXXXXa516c\", \"\", \"writer_connection\");"
+    },
+    "zoho.writer.shareDocument": {
+      "signature": "zoho.writer.shareDocument(document_id, email_id, role, type, connection)",
+      "description": "Shares a document with collaborators. Roles: viewer, commenter, editor, or co_owner. Max 10 emails.",
+      "params": [],
+      "returns": "",
+      "category": "integration",
+      "example": "response = zoho.writer.shareDocument(\"al296XXXXXXa516c\", \"shawn@zylker.com\", \"editor\", \"personal\", \"writer_connection\");"
+    },
+    "zoho.writer.getMergeFields": {
+      "signature": "zoho.writer.getMergeFields(document_id, connection)",
+      "description": "Retrieves all merge fields inserted into a Zoho Writer document.",
+      "params": [],
+      "returns": "",
+      "category": "integration",
+      "example": "response = zoho.writer.getMergeFields(\"al296XXXXXXa516c\", \"writer_connection\");"
+    },
+    "zoho.writer.getAllFields": {
+      "signature": "zoho.writer.getAllFields(document_id, connection)",
+      "description": "Retrieves all fields present in a Zoho Writer document.",
+      "params": [],
+      "returns": "",
+      "category": "integration",
+      "example": "response = zoho.writer.getAllFields(\"al296XXXXXXa516c\", \"writer_connection\");"
+    },
+    "zoho.writer.mergeAndSend": {
+      "signature": "zoho.writer.mergeAndSend(document_id, output_format, email_id, values_map, connection)",
+      "description": "Auto-populates merge field values and emails the merged document. Output formats: inline, pdf, or docx.",
+      "params": [],
+      "returns": "",
+      "category": "integration",
+      "example": "mergeValues = Map();\nmergeValues.put(\"merge_data\", jsonText);\nresponse = zoho.writer.mergeAndSend(\"docID\", \"pdf\", \"shawn@zylker.com\", mergeValues, \"writer_connection\");"
+    },
+    "zoho.writer.v2.mergeAndStore": {
+      "signature": "zoho.writer.v2.mergeAndStore(document_id, merge_detail, output_settings, optional_settings, connection)",
+      "description": "Merges document with data and stores in Zoho WorkDrive with specified settings.",
+      "params": [],
+      "returns": "",
+      "category": "integration",
+      "example": "outputSettings = Map();\noutputSettings.put(\"doc_name\", \"Student Grade\");\noutputSettings.put(\"output_format\", \"pdf\");\nresponse = zoho.writer.v2.mergeAndStore(documentId, mergeDetails, outputSettings, Map(), \"writer_connection\");"
+    },
+    "zoho.writer.mergeAndInvoke": {
+      "signature": "zoho.writer.mergeAndInvoke(document_id, merge_detail, optional_settings, connection)",
+      "description": "Merges document and invokes custom function for further operations.",
+      "params": [],
+      "returns": "",
+      "category": "integration",
+      "example": "response = zoho.writer.mergeAndInvoke(documentId, mergeDetails, Map(), \"writer_connection\");"
+    },
+    "zoho.writer.mergeAndSign": {
+      "signature": "zoho.writer.mergeAndSign(document_id, merge_detail, filename, signerList, option_settings, connection)",
+      "description": "Merges document and sends for signature collection via Zoho Sign.",
+      "params": [],
+      "returns": "",
+      "category": "integration",
+      "example": "response = zoho.writer.mergeAndSign(documentId, mergeDetails, \"Invoice\", signerList, optionSettings, \"writer_connection\");"
+    },
+    "zoho.writer.v2.signDocument": {
+      "signature": "zoho.writer.v2.signDocument(document_id, recipients_list, signed_document_name, optional_settings, connection)",
+      "description": "Sends document for signature with up to 10 recipients. Supports sequential signing, reminders, and expiry.",
+      "params": [],
+      "returns": "",
+      "category": "integration",
+      "example": "response = zoho.writer.v2.signDocument(documentId, recipientsList, \"Signed_doc\", optionalSettings, \"writer_connection\");"
+    },
+    "zoho.writer.getMergeTemplates": {
+      "signature": "zoho.writer.getMergeTemplates(optional_settings, connection)",
+      "description": "Retrieves all merge templates created by the user with sorting and pagination.",
+      "params": [],
+      "returns": "",
+      "category": "integration",
+      "example": "response = zoho.writer.getMergeTemplates(Map(), \"writer_connection\");"
+    },
+    "zoho.writer.getSignTemplates": {
+      "signature": "zoho.writer.getSignTemplates(optional_settings, connection)",
+      "description": "Retrieves all sign templates with sorting and pagination options.",
+      "params": [],
+      "returns": "",
+      "category": "integration",
+      "example": "response = zoho.writer.getSignTemplates(Map(), \"writer_connection\");"
+    },
+    "zoho.writer.getFillableTemplates": {
+      "signature": "zoho.writer.getFillableTemplates(optional_settings, connection)",
+      "description": "Retrieves all fillable templates with sorting and pagination.",
+      "params": [],
+      "returns": "",
+      "category": "integration",
+      "example": "response = zoho.writer.getFillableTemplates(Map(), \"writer_connection\");"
+    },
+    "zoho.writer.generateFillableLink": {
+      "signature": "zoho.writer.generateFillableLink(document_id, merge_detail, optional_settings, connection)",
+      "description": "Generates prefilled fillable links to collect data from users.",
+      "params": [],
+      "returns": "",
+      "category": "integration",
+      "example": "response = zoho.writer.generateFillableLink(documentId, mergeDetail, Map(), \"writer_connection\");"
+    },
+    "zoho.sign.createDocument": {
+      "signature": "zoho.sign.createDocument(files, data_map, connection)",
+      "description": "Uploads single or multiple files to Zoho Sign. Maximum 50 MB per file.",
+      "params": [],
+      "returns": "",
+      "category": "integration",
+      "example": "pdfFile = invokeUrl[url: \"http://sample.pdf\" type: GET];\nresponse = zoho.sign.createDocument(pdfFile, Map(), \"sign_connection\");"
+    },
+    "zoho.sign.getDocumentById": {
+      "signature": "zoho.sign.getDocumentById(request_id, connection)",
+      "description": "Retrieves a document from Zoho Sign using its request ID.",
+      "params": [],
+      "returns": "",
+      "category": "integration",
+      "example": "response = zoho.sign.getDocumentById(10696000000014007, \"sign_connection\");"
+    },
+    "zoho.sign.updateDocument": {
+      "signature": "zoho.sign.updateDocument(document_id, values_map, connection)",
+      "description": "Updates a document in Zoho Sign. Only works with draft status documents.",
+      "params": [],
+      "returns": "",
+      "category": "integration",
+      "example": "valuesMap = Map();\nvaluesMap.put(\"file\", pdfFile);\nresponse = zoho.sign.updateDocument(10696000000040001, valuesMap, \"sign_connection\");"
+    },
+    "zoho.sign.getFieldIds": {
+      "signature": "zoho.sign.getFieldIds(connection)",
+      "description": "Gets IDs of all fields in your Zoho Sign account.",
+      "params": [],
+      "returns": "",
+      "category": "integration",
+      "example": "response = zoho.sign.getFieldIds(\"sign_connection\");"
+    },
+    "zoho.sign.submitRequest": {
+      "signature": "zoho.sign.submitRequest(request_id, params, connection)",
+      "description": "Inserts required fields and sends documents to recipients for signing.",
+      "params": [],
+      "returns": "",
+      "category": "integration",
+      "example": "response = zoho.sign.submitRequest(10696000000010248, dataMap, \"sign_connection\");"
+    },
+    "zoho.sign.getTemplates": {
+      "signature": "zoho.sign.getTemplates(query_value, connection)",
+      "description": "Retrieves all templates from Zoho Sign account.",
+      "params": [],
+      "returns": "",
+      "category": "integration",
+      "example": "response = zoho.sign.getTemplates(Map(), \"sign_connection\");"
+    },
+    "zoho.sign.getTemplateById": {
+      "signature": "zoho.sign.getTemplateById(template_ID, connection)",
+      "description": "Retrieves details of a specific template by its ID.",
+      "params": [],
+      "returns": "",
+      "category": "integration",
+      "example": "response = zoho.sign.getTemplateById(32076000000002011, \"sign_connection\");"
+    },
+    "zoho.sign.createUsingTemplate": {
+      "signature": "zoho.sign.createUsingTemplate(template_ID, params, connection)",
+      "description": "Creates documents using a template and sends to recipients for signing.",
+      "params": [],
+      "returns": "",
+      "category": "integration",
+      "example": "response = zoho.sign.createUsingTemplate(templateId, parameters, \"sign_connection\");"
+    },
+    "zoho.bookings.getWorkspaces": {
+      "signature": "zoho.bookings.getWorkspaces(connection)",
+      "description": "Retrieves all workspaces from Zoho Bookings account.",
+      "params": [],
+      "returns": "",
+      "category": "integration",
+      "example": "response = zoho.bookings.getWorkspaces(\"bookings_connection\");"
+    },
+    "zoho.bookings.getRecordById": {
+      "signature": "zoho.bookings.getRecordById(module, record_id, connection)",
+      "description": "Retrieves a record from specified module (Resources, Staff, Workspaces, or Services) using its ID.",
+      "params": [],
+      "returns": "",
+      "category": "integration",
+      "example": "response = zoho.bookings.getRecordById(\"services\", 3883XXXXXXXXXXX7032, \"bookings_connection\");"
+    },
+    "zoho.bookings.getRelatedRecords": {
+      "signature": "zoho.bookings.getRelatedRecords(module, parent_module, record_id, connection)",
+      "description": "Retrieves records from related sub-modules (Services, Staffs, or Resources).",
+      "params": [],
+      "returns": "",
+      "category": "integration",
+      "example": "response = zoho.bookings.getRelatedRecords(\"staffs\", \"services\", 3883XXXXXXXXXXX7032, \"bookings_connection\");"
+    },
+    "zoho.bookings.getAvailableSlots": {
+      "signature": "zoho.bookings.getAvailableSlots(service_id, staff_id, date, connection)",
+      "description": "Retrieves available time slots for a service and staff on a specific date (format: DD-MM-YYYY).",
+      "params": [],
+      "returns": "",
+      "category": "integration",
+      "example": "response = zoho.bookings.getAvailableSlots(3883XXXX7032, 3883XXXX7008, \"18-10-2019\", \"bookings_connection\");"
+    },
+    "zoho.bookings.createAppointment": {
+      "signature": "zoho.bookings.createAppointment(service_id, appointment_date_time, customer_details, staff_id_or_resource_id, time_zone, is_staff, connection)",
+      "description": "Books an appointment with specified service, staff/resource, and customer details.",
+      "params": [],
+      "returns": "",
+      "category": "integration",
+      "example": "customerDetails = Map();\ncustomerDetails.put(\"name\", \"Laura\");\ncustomerDetails.put(\"email\", \"laura@gmail.com\");\nresponse = zoho.bookings.createAppointment(serviceId, \"18-Oct-2019 12:15:00\", customerDetails, staffId, \"Asia/Calcutta\", true, \"bookings_connection\");"
+    },
+    "zoho.bookings.updateRecord": {
+      "signature": "zoho.bookings.updateRecord(module, record_id, new_values, connection)",
+      "description": "Updates an appointment record with new values. Supports actions: completed, cancel, or noshow.",
+      "params": [],
+      "returns": "",
+      "category": "integration",
+      "example": "valuesMap = Map();\nvaluesMap.put(\"action\", \"completed\");\nresponse = zoho.bookings.updateRecord(\"appointment\", \"#PA-00002\", valuesMap, \"bookings_connection\");"
+    },
+    "zoho.connect.myNetworks": {
+      "signature": "zoho.connect.myNetworks()",
+      "description": "Gets the Scope ID of networks in Zoho Connect.",
+      "params": [],
+      "returns": "",
+      "category": "integration",
+      "example": "networks = zoho.connect.myNetworks();"
+    },
+    "zoho.connect.myGroups": {
+      "signature": "zoho.connect.myGroups()",
+      "description": "Gets the Partition ID of groups in Zoho Connect.",
+      "params": [],
+      "returns": "",
+      "category": "integration",
+      "example": "groups = zoho.connect.myGroups();"
+    },
+    "zoho.connect.getPost": {
+      "signature": "zoho.connect.getPost()",
+      "description": "Gets the Stream ID of a message in Zoho Connect.",
+      "params": [],
+      "returns": "",
+      "category": "integration",
+      "example": "post = zoho.connect.getPost();"
+    },
+    "zoho.connect.addPost": {
+      "signature": "zoho.connect.addPost(type, scopeID, partitionID, contentMap, connectionName)",
+      "description": "Creates a post (status, event, or task) to a group in Zoho Connect.",
+      "params": [],
+      "returns": "",
+      "category": "integration",
+      "example": "contentMap = {\"message\": \"Stock Details\", \"title\": \"Store\"};\nresponse = zoho.connect.addPost(\"status\", 105000017039001, 105000207776548, contentMap, \"connect_connection\");"
+    },
+    "zoho.connect.updatePost": {
+      "signature": "zoho.connect.updatePost(scopeID, streamID, contentMap, connectionName)",
+      "description": "Updates an existing post in Zoho Connect.",
+      "params": [],
+      "returns": "",
+      "category": "integration",
+      "example": "contentMap = {\"message\": \"Updated message\"};\nresponse = zoho.connect.updatePost(105000017039001, 105000209401145, contentMap, \"connect_connection\");"
+    },
+    "zoho.calendar.createEvent": {
+      "signature": "zoho.calendar.createEvent(calendar_uid, event_details_map, connection)",
+      "description": "Creates a new event in Zoho Calendar with specified details including title, date/time, attendees, and reminders.",
+      "params": [],
+      "returns": "",
+      "category": "integration",
+      "example": "eventDetails = Map();\neventDetails.put(\"title\", \"Zylker invitation\");\ndateandtime = Map();\ndateandtime.put(\"start\", \"20200201T153000+0530\");\neventDetails.put(\"dateandtime\", dateandtime);\nresponse = zoho.calendar.createEvent(\"18027XXXXXXe986\", Map().put(\"eventdata\", eventDetails), \"calendar_connection\");"
+    },
+    "zoho.salesiq.visitorsession.set": {
+      "signature": "zoho.salesiq.visitorsession.set(portal_name, session_data, connection)",
+      "description": "Temporarily stores data during a chat conversation with a visitor in Zoho SalesIQ.",
+      "params": [],
+      "returns": "",
+      "category": "integration",
+      "example": "sessionMap = Map();\nsessionMap.put(\"visitorEmail\", email);\nresponse = zoho.salesiq.visitorsession.set(\"portal_1\", sessionMap, \"salesiq_connection\");"
+    },
+    "zoho.salesiq.visitorsession.get": {
+      "signature": "zoho.salesiq.visitorsession.get(portal_name, key, connection)",
+      "description": "Fetches temporarily stored data based on visitor chat conversation in Zoho SalesIQ.",
+      "params": [],
+      "returns": "",
+      "category": "integration",
+      "example": "response = zoho.salesiq.visitorsession.get(\"portal_1\", \"email\", \"salesiq_connection\");"
+    },
+    "zoho.notebook.createNotecard": {
+      "signature": "zoho.notebook.createNotecard(content, type, values, connection)",
+      "description": "Creates a notecard with specified content (text, HTML, image, or PDF) in Zoho Notebook.",
+      "params": [],
+      "returns": "",
+      "category": "integration",
+      "example": "note = Map();\nnote.put(\"appName\", \"Zoho CRM\");\nresponse = zoho.notebook.createNotecard(\"Note content\", \"text\", Map().put(\"version_notes\", note), \"notebook_connection\");"
+    },
+    "zoho.map.geoCode": {
+      "signature": "zoho.map.geoCode(address)",
+      "description": "Converts an address to GPS coordinates (latitude and longitude). Available in US, EU, IN domains.",
+      "params": [],
+      "returns": "",
+      "category": "integration",
+      "example": "response = zoho.map.geoCode(\"4141 Hacienda Dr, Pleasanton, CA 94588, United States\");"
+    },
+    "zoho.map.distanceBetween": {
+      "signature": "zoho.map.distanceBetween(source_address, destination_address, unit)",
+      "description": "Calculates the flight distance between source and destination addresses in specified unit (MILE, etc.).",
+      "params": [],
+      "returns": "",
+      "category": "integration",
+      "example": "distance = zoho.map.distanceBetween(\"Chennai, Tamil Nadu, India\", \"Austin, Texas, US\", \"MILE\");"
+    },
+    "subText": {
+      "signature": "string.subText(start_index, end_index)",
+      "description": "Returns a piece of text containing characters between the specified indices (including start_index and excluding end_index).",
+      "params": [],
+      "returns": "",
+      "category": "string",
+      "example": "sub = text.subText(0, 5);"
+    },
+    "left": {
+      "signature": "string.left(count)",
+      "description": "Returns the specified number of characters from the beginning of the string.",
+      "params": [],
+      "returns": "",
+      "category": "string",
+      "example": "prefix = name.left(3);"
+    },
+    "right": {
+      "signature": "string.right(count)",
+      "description": "Returns the specified number of characters from the end of the string.",
+      "params": [],
+      "returns": "",
+      "category": "string",
+      "example": "suffix = filename.right(4);"
+    },
+    "mid": {
+      "signature": "string.mid(start, count)",
+      "description": "Returns a substring starting at the specified position with the specified length.",
+      "params": [],
+      "returns": "",
+      "category": "string",
+      "example": "middle = text.mid(5, 10);"
+    },
+    "getAlpha": {
+      "signature": "string.getAlpha()",
+      "description": "Returns only the alphabetic characters from the string, removing numbers and special characters.",
+      "params": [],
+      "returns": "",
+      "category": "string",
+      "example": "letters = \"abc123def\".getAlpha(); // returns \"abcdef\""
+    },
+    "getAlphaNumeric": {
+      "signature": "string.getAlphaNumeric()",
+      "description": "Returns only alphabetic and numeric characters, removing special characters.",
+      "params": [],
+      "returns": "",
+      "category": "string",
+      "example": "clean = \"abc-123!def\".getAlphaNumeric(); // returns \"abc123def\""
+    },
+    "proper": {
+      "signature": "string.proper()",
+      "description": "Capitalizes the first letter of each word and converts remaining letters to lowercase.",
+      "params": [],
+      "returns": "",
+      "category": "string",
+      "example": "title = \"hello world\".proper(); // returns \"Hello World\""
+    },
+    "concat": {
+      "signature": "concat(string1, string2, ...)",
+      "description": "Combines multiple strings into a single string.",
+      "params": [],
+      "returns": "",
+      "category": "string",
+      "example": "full = concat(firstName, \" \", lastName);"
+    },
+    "ltrim": {
+      "signature": "string.ltrim()",
+      "description": "Returns the string with leading (left) whitespace removed.",
+      "params": [],
+      "returns": "",
+      "category": "string",
+      "example": "cleaned = \"  text  \".ltrim(); // returns \"text  \""
+    },
+    "rtrim": {
+      "signature": "string.rtrim()",
+      "description": "Returns the string with trailing (right) whitespace removed.",
+      "params": [],
+      "returns": "",
+      "category": "string",
+      "example": "cleaned = \"  text  \".rtrim(); // returns \"  text\""
+    },
+    "leftpad": {
+      "signature": "string.leftpad(length, padChar)",
+      "description": "Pads the string on the left with the specified character to reach the desired length.",
+      "params": [],
+      "returns": "",
+      "category": "string",
+      "example": "padded = \"5\".leftpad(3, \"0\"); // returns \"005\""
+    },
+    "rightpad": {
+      "signature": "string.rightpad(length, padChar)",
+      "description": "Pads the string on the right with the specified character to reach the desired length.",
+      "params": [],
+      "returns": "",
+      "category": "string",
+      "example": "padded = \"5\".rightpad(3, \"0\"); // returns \"500\""
+    },
+    "reverse": {
+      "signature": "string.reverse()",
+      "description": "Returns the string with characters in reverse order.",
+      "params": [],
+      "returns": "",
+      "category": "string",
+      "example": "reversed = \"hello\".reverse(); // returns \"olleh\""
+    },
+    "repeat": {
+      "signature": "string.repeat(count)",
+      "description": "Returns the string repeated the specified number of times.",
+      "params": [],
+      "returns": "",
+      "category": "string",
+      "example": "repeated = \"Ha\".repeat(3); // returns \"HaHaHa\""
+    },
+    "removeFirstOccurence": {
+      "signature": "string.removeFirstOccurence(searchString)",
+      "description": "Removes only the first occurrence of the search string.",
+      "params": [],
+      "returns": "",
+      "category": "string",
+      "example": "result = \"hello hello\".removeFirstOccurence(\"hello\");"
+    },
+    "removeLastOccurence": {
+      "signature": "string.removeLastOccurence(searchString)",
+      "description": "Removes only the last occurrence of the search string.",
+      "params": [],
+      "returns": "",
+      "category": "string",
+      "example": "result = \"hello hello\".removeLastOccurence(\"hello\");"
+    },
+    "lastIndexOf": {
+      "signature": "list.lastIndexOf(element)",
+      "description": "Returns the index of the last occurrence of the element, or -1 if not found.",
+      "params": [],
+      "returns": "",
+      "category": "string",
+      "example": "pos = myList.lastIndexOf(\"value\");"
+    },
+    "find": {
+      "signature": "string.find(searchString)",
+      "description": "Performs a case-sensitive search and returns the index of the first match.",
+      "params": [],
+      "returns": "",
+      "category": "string",
+      "example": "pos = text.find(\"search\");"
+    },
+    "replaceFirst": {
+      "signature": "string.replaceFirst(oldString, newString)",
+      "description": "Replaces only the first occurrence of oldString with newString.",
+      "params": [],
+      "returns": "",
+      "category": "string",
+      "example": "result = \"test test\".replaceFirst(\"test\", \"done\");"
+    },
+    "containsIgnoreCase": {
+      "signature": "string.containsIgnoreCase(searchString)",
+      "description": "Returns true if the string contains the search string, ignoring case differences.",
+      "params": [],
+      "returns": "",
+      "category": "string",
+      "example": "if(email.containsIgnoreCase(\"GMAIL\")) { }"
+    },
+    "startsWithIgnoreCase": {
+      "signature": "string.startsWithIgnoreCase(prefix)",
+      "description": "Returns true if the string starts with the prefix, ignoring case.",
+      "params": [],
+      "returns": "",
+      "category": "string",
+      "example": "if(name.startsWithIgnoreCase(\"mr\")) { }"
+    },
+    "endsWithIgnoreCase": {
+      "signature": "string.endsWithIgnoreCase(suffix)",
+      "description": "Returns true if the string ends with the suffix, ignoring case.",
+      "params": [],
+      "returns": "",
+      "category": "string",
+      "example": "if(filename.endsWithIgnoreCase(\".PDF\")) { }"
+    },
+    "notContains": {
+      "signature": "string.notContains(searchString)",
+      "description": "Returns true if the string does not contain the search string.",
+      "params": [],
+      "returns": "",
+      "category": "string",
+      "example": "if(text.notContains(\"error\")) { }"
+    },
+    "getPrefix": {
+      "signature": "string.getPrefix(delimiter)",
+      "description": "Returns the portion of the string before the first occurrence of the delimiter.",
+      "params": [],
+      "returns": "",
+      "category": "string",
+      "example": "domain = email.getPrefix(\"@\");"
+    },
+    "getSuffix": {
+      "signature": "string.getSuffix(delimiter)",
+      "description": "Returns the portion of the string after the first occurrence of the delimiter.",
+      "params": [],
+      "returns": "",
+      "category": "string",
+      "example": "extension = filename.getSuffix(\".\");"
+    },
+    "getPrefixIgnoreCase": {
+      "signature": "string.getPrefixIgnoreCase(delimiter)",
+      "description": "Returns the prefix portion, using case-insensitive delimiter matching.",
+      "params": [],
+      "returns": "",
+      "category": "string",
+      "example": "prefix = text.getPrefixIgnoreCase(\"DELIMITER\");"
+    },
+    "getSuffixIgnoreCase": {
+      "signature": "string.getSuffixIgnoreCase(delimiter)",
+      "description": "Returns the suffix portion, using case-insensitive delimiter matching.",
+      "params": [],
+      "returns": "",
+      "category": "string",
+      "example": "suffix = text.getSuffixIgnoreCase(\"DELIMITER\");"
+    },
+    "getOccurenceCount": {
+      "signature": "string.getOccurenceCount(searchString)",
+      "description": "Returns the number of times the search string appears in the text.",
+      "params": [],
+      "returns": "",
+      "category": "string",
+      "example": "count = \"hello hello hello\".getOccurenceCount(\"hello\"); // returns 3"
+    },
+    "len": {
+      "signature": "string.len()",
+      "description": "Alternative to length(). Returns the number of characters in the string.",
+      "params": [],
+      "returns": "",
+      "category": "string",
+      "example": "size = text.len();"
+    },
+    "isAscii": {
+      "signature": "string.isAscii()",
+      "description": "Returns true if all characters in the string are ASCII characters.",
+      "params": [],
+      "returns": "",
+      "category": "string",
+      "example": "if(input.isAscii()) { }"
+    },
+    "hexToText": {
+      "signature": "hexToText(hexString)",
+      "description": "Converts a hexadecimal string to its text equivalent.",
+      "params": [],
+      "returns": "",
+      "category": "string",
+      "example": "text = hexToText(\"48656c6c6f\");"
+    },
+    "textToHex": {
+      "signature": "textToHex(text)",
+      "description": "Converts text to its hexadecimal representation.",
+      "params": [],
+      "returns": "",
+      "category": "string",
+      "example": "hex = textToHex(\"Hello\");"
+    },
+    "toText": {
+      "signature": "value.toText()",
+      "description": "Alternative to toString(). Converts any value to its text representation.",
+      "params": [],
+      "returns": "",
+      "category": "string",
+      "example": "text = number.toText();"
+    },
+    "toLong": {
+      "signature": "string.toLong()",
+      "description": "Parses the string and returns a long integer value.",
+      "params": [],
+      "returns": "",
+      "category": "string",
+      "example": "bigNum = \"9999999999\".toLong();"
+    },
+    "addAll": {
+      "signature": "list.addAll(otherList)",
+      "description": "Appends all elements from the specified list to the end of this list.",
+      "params": [],
+      "returns": "",
+      "category": "list",
+      "example": "list1.addAll(list2);"
+    },
+    "removeAll": {
+      "signature": "list.removeAll(otherList)",
+      "description": "Removes all elements from this list that are present in the specified list.",
+      "params": [],
+      "returns": "",
+      "category": "list",
+      "example": "myList.removeAll(itemsToRemove);"
+    },
+    "removeElement": {
+      "signature": "list.removeElement(element)",
+      "description": "Removes the first occurrence of the specified element from the list.",
+      "params": [],
+      "returns": "",
+      "category": "list",
+      "example": "employees.removeElement(\"John\");"
+    },
+    "distinct": {
+      "signature": "list.distinct()",
+      "description": "Returns a new list containing only unique elements.",
+      "params": [],
+      "returns": "",
+      "category": "list",
+      "example": "uniqueList = myList.distinct();"
+    },
+    "intersect": {
+      "signature": "list.intersect(otherList)",
+      "description": "Returns a new list containing only elements that appear in both lists.",
+      "params": [],
+      "returns": "",
+      "category": "list",
+      "example": "common = list1.intersect(list2);"
+    },
+    "sort": {
+      "signature": "list.sort()",
+      "description": "Sorts the list elements in ascending order.",
+      "params": [],
+      "returns": "",
+      "category": "list",
+      "example": "sortedList = myList.sort();"
+    },
+    "subList": {
+      "signature": "list.subList(startIndex, endIndex)",
+      "description": "Returns a new list containing elements from startIndex to endIndex.",
+      "params": [],
+      "returns": "",
+      "category": "list",
+      "example": "portion = myList.subList(2, 5);"
+    },
+    "average": {
+      "signature": "list.average()",
+      "description": "Returns the arithmetic mean of all numeric elements in the list.",
+      "params": [],
+      "returns": "",
+      "category": "list",
+      "example": "avg = numberList.average();"
+    },
+    "largest": {
+      "signature": "list.largest()",
+      "description": "Returns the largest element in the list.",
+      "params": [],
+      "returns": "",
+      "category": "list",
+      "example": "max = numberList.largest();"
+    },
+    "smallest": {
+      "signature": "list.smallest()",
+      "description": "Returns the smallest element in the list.",
+      "params": [],
+      "returns": "",
+      "category": "list",
+      "example": "min = numberList.smallest();"
+    },
+    "median": {
+      "signature": "list.median()",
+      "description": "Returns the median (middle value) of the numeric list.",
+      "params": [],
+      "returns": "",
+      "category": "list",
+      "example": "mid = numberList.median();"
+    },
+    "nthLargest": {
+      "signature": "list.nthLargest(n)",
+      "description": "Returns the nth largest element in the list.",
+      "params": [],
+      "returns": "",
+      "category": "list",
+      "example": "secondMax = numberList.nthLargest(2);"
+    },
+    "nthSmallest": {
+      "signature": "list.nthSmallest(n)",
+      "description": "Returns the nth smallest element in the list.",
+      "params": [],
+      "returns": "",
+      "category": "list",
+      "example": "secondMin = numberList.nthSmallest(2);"
+    },
+    "toListString": {
+      "signature": "toListString(csvText)",
+      "description": "Converts comma-separated values into a list where elements are of type text.",
+      "params": [],
+      "returns": "",
+      "category": "list",
+      "example": "items = toListString(\"apple,banana,orange\");"
+    },
+    "putAll": {
+      "signature": "map.putAll(otherMap)",
+      "description": "Copies all key-value pairs from the specified map to this map.",
+      "params": [],
+      "returns": "",
+      "category": "map",
+      "example": "myMap.putAll(additionalData);"
+    },
+    "getKey": {
+      "signature": "collection.getKey(value)",
+      "description": "Returns the key associated with the specified value in the collection.",
+      "params": [],
+      "returns": "",
+      "category": "map",
+      "example": "key = myMap.getKey(\"someValue\");"
+    },
+    "getLastKey": {
+      "signature": "collection.getLastKey()",
+      "description": "Returns the last key in the collection.",
+      "params": [],
+      "returns": "",
+      "category": "map",
+      "example": "lastKey = myMap.getLastKey();"
+    },
+    "delete": {
+      "signature": "collection.delete(key)",
+      "description": "Removes the entry with the specified key from the collection.",
+      "params": [],
+      "returns": "",
+      "category": "map",
+      "example": "myMap.delete(\"keyName\");"
+    },
+    "deleteAll": {
+      "signature": "collection.deleteAll(keysList)",
+      "description": "Removes all entries whose keys are in the specified list.",
+      "params": [],
+      "returns": "",
+      "category": "map",
+      "example": "myMap.deleteAll(keysToRemove);"
+    },
+    "deleteKey": {
+      "signature": "collection.deleteKey(key)",
+      "description": "Removes the specified key and its value from the collection.",
+      "params": [],
+      "returns": "",
+      "category": "map",
+      "example": "myMap.deleteKey(\"oldKey\");"
+    },
+    "deleteKeys": {
+      "signature": "collection.deleteKeys(keysList)",
+      "description": "Removes all specified keys from the collection.",
+      "params": [],
+      "returns": "",
+      "category": "map",
+      "example": "myMap.deleteKeys(List(\"key1\", \"key2\"));"
+    },
+    "insert": {
+      "signature": "collection.insert(index, element)",
+      "description": "Inserts the element at the specified position in the collection.",
+      "params": [],
+      "returns": "",
+      "category": "map",
+      "example": "myList.insert(2, \"newItem\");"
+    },
+    "insertAll": {
+      "signature": "collection.insertAll(index, elements)",
+      "description": "Inserts all elements from the list at the specified position.",
+      "params": [],
+      "returns": "",
+      "category": "map",
+      "example": "myList.insertAll(2, newItems);"
+    },
+    "update": {
+      "signature": "collection.update(key, value)",
+      "description": "Updates the value associated with the specified key.",
+      "params": [],
+      "returns": "",
+      "category": "map",
+      "example": "myMap.update(\"status\", \"active\");"
+    },
+    "sortKey": {
+      "signature": "collection.sortKey()",
+      "description": "Returns a new collection sorted by keys in ascending order.",
+      "params": [],
+      "returns": "",
+      "category": "map",
+      "example": "sorted = myMap.sortKey();"
+    },
+    "duplicate": {
+      "signature": "collection.duplicate()",
+      "description": "Returns a deep copy of the collection.",
+      "params": [],
+      "returns": "",
+      "category": "map",
+      "example": "backup = myMap.duplicate();"
+    },
+    "now": {
+      "signature": "now()",
+      "description": "Returns the current date-time value in the format selected in application settings.",
+      "params": [],
+      "returns": "",
+      "category": "datetime",
+      "example": "currentDateTime = now();"
+    },
+    "today": {
+      "signature": "today()",
+      "description": "Returns the current date value (time is set to 00:00:00).",
+      "params": [],
+      "returns": "",
+      "category": "datetime",
+      "example": "currentDate = today();"
+    },
+    "subDay": {
+      "signature": "date.subDay(days)",
+      "description": "Subtracts the specified number of days from the date.",
+      "params": [],
+      "returns": "",
+      "category": "datetime",
+      "example": "yesterday = today().subDay(1);"
+    },
+    "subMonth": {
+      "signature": "date.subMonth(months)",
+      "description": "Subtracts the specified number of months from the date.",
+      "params": [],
+      "returns": "",
+      "category": "datetime",
+      "example": "lastMonth = today().subMonth(1);"
+    },
+    "subYear": {
+      "signature": "date.subYear(years)",
+      "description": "Subtracts the specified number of years from the date.",
+      "params": [],
+      "returns": "",
+      "category": "datetime",
+      "example": "lastYear = today().subYear(1);"
+    },
+    "subHour": {
+      "signature": "datetime.subHour(hours)",
+      "description": "Subtracts the specified number of hours from the datetime.",
+      "params": [],
+      "returns": "",
+      "category": "datetime",
+      "example": "earlier = now().subHour(2);"
+    },
+    "subMinutes": {
+      "signature": "datetime.subMinutes(minutes)",
+      "description": "Subtracts the specified number of minutes from the datetime.",
+      "params": [],
+      "returns": "",
+      "category": "datetime",
+      "example": "earlier = now().subMinutes(30);"
+    },
+    "subSeconds": {
+      "signature": "datetime.subSeconds(seconds)",
+      "description": "Subtracts the specified number of seconds from the datetime.",
+      "params": [],
+      "returns": "",
+      "category": "datetime",
+      "example": "earlier = now().subSeconds(10);"
+    },
+    "addWeek": {
+      "signature": "date.addWeek(weeks)",
+      "description": "Adds the specified number of weeks to the date.",
+      "params": [],
+      "returns": "",
+      "category": "datetime",
+      "example": "nextWeek = today().addWeek(1);"
+    },
+    "subWeek": {
+      "signature": "date.subWeek(weeks)",
+      "description": "Subtracts the specified number of weeks from the date.",
+      "params": [],
+      "returns": "",
+      "category": "datetime",
+      "example": "lastWeek = today().subWeek(1);"
+    },
+    "addSeconds": {
+      "signature": "datetime.addSeconds(seconds)",
+      "description": "Adds the specified number of seconds to the datetime.",
+      "params": [],
+      "returns": "",
+      "category": "datetime",
+      "example": "later = now().addSeconds(30);"
+    },
+    "addBusinessDay": {
+      "signature": "date.addBusinessDay(days)",
+      "description": "Adds the specified number of business days (excluding weekends) to the date.",
+      "params": [],
+      "returns": "",
+      "category": "datetime",
+      "example": "deadline = today().addBusinessDay(5);"
+    },
+    "subBusinessDay": {
+      "signature": "date.subBusinessDay(days)",
+      "description": "Subtracts the specified number of business days from the date.",
+      "params": [],
+      "returns": "",
+      "category": "datetime",
+      "example": "pastDate = today().subBusinessDay(3);"
+    },
+    "day": {
+      "signature": "date.day()",
+      "description": "Returns the day of the month (1-31) from the date.",
+      "params": [],
+      "returns": "",
+      "category": "datetime",
+      "example": "dayNum = today().day();"
+    },
+    "getDay": {
+      "signature": "date.getDay()",
+      "description": "Returns the day of the month (1-31) from the date.",
+      "params": [],
+      "returns": "",
+      "category": "datetime",
+      "example": "dayNum = today().getDay();"
+    },
+    "month": {
+      "signature": "date.month()",
+      "description": "Returns the month number (1-12) from the date.",
+      "params": [],
+      "returns": "",
+      "category": "datetime",
+      "example": "monthNum = today().month();"
+    },
+    "getMonth": {
+      "signature": "date.getMonth()",
+      "description": "Returns the month number (1-12) from the date.",
+      "params": [],
+      "returns": "",
+      "category": "datetime",
+      "example": "monthNum = today().getMonth();"
+    },
+    "year": {
+      "signature": "date.year()",
+      "description": "Returns the year from the date.",
+      "params": [],
+      "returns": "",
+      "category": "datetime",
+      "example": "yearNum = today().year();"
+    },
+    "getYear": {
+      "signature": "date.getYear()",
+      "description": "Returns the year from the date.",
+      "params": [],
+      "returns": "",
+      "category": "datetime",
+      "example": "yearNum = today().getYear();"
+    },
+    "hour": {
+      "signature": "datetime.hour()",
+      "description": "Returns the hour (0-23) from the datetime.",
+      "params": [],
+      "returns": "",
+      "category": "datetime",
+      "example": "hourNum = now().hour();"
+    },
+    "getHour": {
+      "signature": "datetime.getHour()",
+      "description": "Returns the hour (0-23) from the datetime.",
+      "params": [],
+      "returns": "",
+      "category": "datetime",
+      "example": "hourNum = now().getHour();"
+    },
+    "minute": {
+      "signature": "datetime.minute()",
+      "description": "Returns the minute (0-59) from the datetime.",
+      "params": [],
+      "returns": "",
+      "category": "datetime",
+      "example": "minuteNum = now().minute();"
+    },
+    "getMinutes": {
+      "signature": "datetime.getMinutes()",
+      "description": "Returns the minute (0-59) from the datetime.",
+      "params": [],
+      "returns": "",
+      "category": "datetime",
+      "example": "minuteNum = now().getMinutes();"
+    },
+    "second": {
+      "signature": "datetime.second()",
+      "description": "Returns the second (0-59) from the datetime.",
+      "params": [],
+      "returns": "",
+      "category": "datetime",
+      "example": "secondNum = now().second();"
+    },
+    "getSeconds": {
+      "signature": "datetime.getSeconds()",
+      "description": "Returns the second (0-59) from the datetime.",
+      "params": [],
+      "returns": "",
+      "category": "datetime",
+      "example": "secondNum = now().getSeconds();"
+    },
+    "getTime": {
+      "signature": "datetime.getTime()",
+      "description": "Returns the time portion of a datetime value in a presentable format.",
+      "params": [],
+      "returns": "",
+      "category": "datetime",
+      "example": "timeOnly = now().getTime();"
+    },
+    "getDateTime": {
+      "signature": "datetime.getDateTime()",
+      "description": "Returns a formatted date-time value in a presentable format.",
+      "params": [],
+      "returns": "",
+      "category": "datetime",
+      "example": "formatted = myDateTime.getDateTime();"
+    },
+    "daysBetween": {
+      "signature": "daysBetween(startDate, endDate)",
+      "description": "Returns the number of days between two dates.",
+      "params": [],
+      "returns": "",
+      "category": "datetime",
+      "example": "diff = daysBetween(startDate, endDate);"
+    },
+    "hoursBetween": {
+      "signature": "hoursBetween(startDateTime, endDateTime)",
+      "description": "Returns the number of hours between two datetime values.",
+      "params": [],
+      "returns": "",
+      "category": "datetime",
+      "example": "hours = hoursBetween(start, end);"
+    },
+    "monthsBetween": {
+      "signature": "monthsBetween(startDate, endDate)",
+      "description": "Returns the number of months between two dates.",
+      "params": [],
+      "returns": "",
+      "category": "datetime",
+      "example": "months = monthsBetween(startDate, endDate);"
+    },
+    "yearsBetween": {
+      "signature": "yearsBetween(startDate, endDate)",
+      "description": "Returns the number of years between two dates.",
+      "params": [],
+      "returns": "",
+      "category": "datetime",
+      "example": "years = yearsBetween(birthDate, today());"
+    },
+    "totalMonth": {
+      "signature": "date.totalMonth()",
+      "description": "Calculates the total number of months from a base date.",
+      "params": [],
+      "returns": "",
+      "category": "datetime",
+      "example": "totalMonths = myDate.totalMonth();"
+    },
+    "totalYear": {
+      "signature": "date.totalYear()",
+      "description": "Calculates the total number of years from a base date.",
+      "params": [],
+      "returns": "",
+      "category": "datetime",
+      "example": "totalYears = myDate.totalYear();"
+    },
+    "days360": {
+      "signature": "days360(startDate, endDate)",
+      "description": "Returns the number of days between dates based on a 360-day year (used in financial calculations).",
+      "params": [],
+      "returns": "",
+      "category": "datetime",
+      "example": "days = days360(startDate, endDate);"
+    },
+    "workday": {
+      "signature": "workday(startDate, numDays)",
+      "description": "Returns a date that is the specified number of working days from the start date.",
+      "params": [],
+      "returns": "",
+      "category": "datetime",
+      "example": "deadline = workday(today(), 10);"
+    },
+    "nextWeekDay": {
+      "signature": "date.nextWeekDay(dayNumber)",
+      "description": "Returns the date of the next occurrence of the specified weekday (1=Sunday, 7=Saturday).",
+      "params": [],
+      "returns": "",
+      "category": "datetime",
+      "example": "nextMonday = today().nextWeekDay(2);"
+    },
+    "previousWeekDay": {
+      "signature": "date.previousWeekDay(dayNumber)",
+      "description": "Returns the date of the previous occurrence of the specified weekday.",
+      "params": [],
+      "returns": "",
+      "category": "datetime",
+      "example": "lastFriday = today().previousWeekDay(6);"
+    },
+    "eomonth": {
+      "signature": "eomonth(date, months)",
+      "description": "Returns the last day of the month that is the specified number of months before or after the date.",
+      "params": [],
+      "returns": "",
+      "category": "datetime",
+      "example": "lastDayOfMonth = eomonth(today(), 0);"
+    },
+    "edate": {
+      "signature": "edate(date, months)",
+      "description": "Returns the date that is the specified number of months before or after the start date.",
+      "params": [],
+      "returns": "",
+      "category": "datetime",
+      "example": "futureDate = edate(today(), 6);"
+    },
+    "unixEpoch": {
+      "signature": "datetime.unixEpoch()",
+      "description": "Returns the Unix epoch timestamp (milliseconds since January 1, 1970).",
+      "params": [],
+      "returns": "",
+      "category": "datetime",
+      "example": "timestamp = now().unixEpoch();"
+    },
+    "toDateTimeString": {
+      "signature": "datetime.toDateTimeString()",
+      "description": "Returns the datetime value as a formatted string.",
+      "params": [],
+      "returns": "",
+      "category": "datetime",
+      "example": "dateStr = now().toDateTimeString();"
+    },
+    "toTime": {
+      "signature": "toTime(timeString)",
+      "description": "Parses a time string and returns a time value.",
+      "params": [],
+      "returns": "",
+      "category": "datetime",
+      "example": "myTime = toTime(\"14:30:00\");"
+    },
+    "isDate": {
+      "signature": "isDate(value)",
+      "description": "Returns true if the value is a valid date.",
+      "params": [],
+      "returns": "",
+      "category": "datetime",
+      "example": "if(isDate(input)) { }"
+    },
+    "sin": {
+      "signature": "sin(angle)",
+      "description": "Returns the sine of an angle (in radians).",
+      "params": [],
+      "returns": "",
+      "category": "number",
+      "example": "result = sin(1.57);"
+    },
+    "cos": {
+      "signature": "cos(angle)",
+      "description": "Returns the cosine of an angle (in radians).",
+      "params": [],
+      "returns": "",
+      "category": "number",
+      "example": "result = cos(0);"
+    },
+    "tan": {
+      "signature": "tan(angle)",
+      "description": "Returns the tangent of an angle (in radians).",
+      "params": [],
+      "returns": "",
+      "category": "number",
+      "example": "result = tan(0.785);"
+    },
+    "asin": {
+      "signature": "asin(value)",
+      "description": "Returns the arcsine (inverse sine) of a value.",
+      "params": [],
+      "returns": "",
+      "category": "number",
+      "example": "angle = asin(0.5);"
+    },
+    "acos": {
+      "signature": "acos(value)",
+      "description": "Returns the arccosine (inverse cosine) of a value.",
+      "params": [],
+      "returns": "",
+      "category": "number",
+      "example": "angle = acos(0.5);"
+    },
+    "atan": {
+      "signature": "atan(value)",
+      "description": "Returns the arctangent (inverse tangent) of a value.",
+      "params": [],
+      "returns": "",
+      "category": "number",
+      "example": "angle = atan(1);"
+    },
+    "atan2": {
+      "signature": "atan2(y, x)",
+      "description": "Returns the arctangent of y/x, using signs to determine the quadrant.",
+      "params": [],
+      "returns": "",
+      "category": "number",
+      "example": "angle = atan2(1, 1);"
+    },
+    "sinh": {
+      "signature": "sinh(value)",
+      "description": "Returns the hyperbolic sine of a value.",
+      "params": [],
+      "returns": "",
+      "category": "number",
+      "example": "result = sinh(1);"
+    },
+    "cosh": {
+      "signature": "cosh(value)",
+      "description": "Returns the hyperbolic cosine of a value.",
+      "params": [],
+      "returns": "",
+      "category": "number",
+      "example": "result = cosh(1);"
+    },
+    "tanh": {
+      "signature": "tanh(value)",
+      "description": "Returns the hyperbolic tangent of a value.",
+      "params": [],
+      "returns": "",
+      "category": "number",
+      "example": "result = tanh(0.5);"
+    },
+    "asinh": {
+      "signature": "asinh(value)",
+      "description": "Returns the inverse hyperbolic sine of a value.",
+      "params": [],
+      "returns": "",
+      "category": "number",
+      "example": "result = asinh(1);"
+    },
+    "acosh": {
+      "signature": "acosh(value)",
+      "description": "Returns the inverse hyperbolic cosine of a value.",
+      "params": [],
+      "returns": "",
+      "category": "number",
+      "example": "result = acosh(1.5);"
+    },
+    "atanh": {
+      "signature": "atanh(value)",
+      "description": "Returns the inverse hyperbolic tangent of a value.",
+      "params": [],
+      "returns": "",
+      "category": "number",
+      "example": "result = atanh(0.5);"
+    },
+    "exp": {
+      "signature": "exp(exponent)",
+      "description": "Returns e (Euler's number) raised to the specified power.",
+      "params": [],
+      "returns": "",
+      "category": "number",
+      "example": "result = exp(2);"
+    },
+    "log": {
+      "signature": "log(number)",
+      "description": "Returns the natural logarithm (base e) of a number.",
+      "params": [],
+      "returns": "",
+      "category": "number",
+      "example": "result = log(10);"
+    },
+    "log10": {
+      "signature": "log10(number)",
+      "description": "Returns the base-10 logarithm of a number.",
+      "params": [],
+      "returns": "",
+      "category": "number",
+      "example": "result = log10(100); // returns 2"
+    },
+    "frac": {
+      "signature": "frac(number)",
+      "description": "Returns the fractional part of a decimal number.",
+      "params": [],
+      "returns": "",
+      "category": "number",
+      "example": "fraction = frac(3.14); // returns 0.14"
+    },
+    "randomNumber": {
+      "signature": "randomNumber(min, max)",
+      "description": "Returns a random number within the specified range (inclusive).",
+      "params": [],
+      "returns": "",
+      "category": "number",
+      "example": "rand = randomNumber(1, 100);"
+    },
+    "max": {
+      "signature": "max(number1, number2, ...)",
+      "description": "Returns the largest number from the arguments.",
+      "params": [],
+      "returns": "",
+      "category": "number",
+      "example": "maximum = max(5, 10, 3, 8);"
+    },
+    "min": {
+      "signature": "min(number1, number2, ...)",
+      "description": "Returns the smallest number from the arguments.",
+      "params": [],
+      "returns": "",
+      "category": "number",
+      "example": "minimum = min(5, 10, 3, 8);"
+    },
+    "toHex": {
+      "signature": "number.toHex()",
+      "description": "Converts the number to its hexadecimal string representation.",
+      "params": [],
+      "returns": "",
+      "category": "number",
+      "example": "hex = (255).toHex(); // returns \"FF\""
+    },
+    "toWords": {
+      "signature": "number.toWords()",
+      "description": "Converts a number into its word representation.",
+      "params": [],
+      "returns": "",
+      "category": "number",
+      "example": "words = (123).toWords(); // returns \"one hundred twenty three\""
+    },
+    "signum": {
+      "signature": "signum(number)",
+      "description": "Returns 1.0 if positive, -1.0 if negative, or 0.0 if zero.",
+      "params": [],
+      "returns": "",
+      "category": "number",
+      "example": "sign = signum(-5); // returns -1.0"
+    },
+    "isNumber": {
+      "signature": "isNumber(value)",
+      "description": "Returns true if the value is a valid number.",
+      "params": [],
+      "returns": "",
+      "category": "number",
+      "example": "if(isNumber(input)) { }"
+    },
+    "aesEncode": {
+      "signature": "aesEncode(encryption_key, encryption_value)",
+      "description": "Returns encrypted text using AES encryption with 256-bit key.",
+      "params": [],
+      "returns": "",
+      "category": "encryption",
+      "example": "encrypted = aesEncode(\"myKey123\", \"secret data\");"
+    },
+    "aesDecode": {
+      "signature": "aesDecode(encryption_key, encrypted_value)",
+      "description": "Returns decrypted text using AES decryption with 256-bit key.",
+      "params": [],
+      "returns": "",
+      "category": "encryption",
+      "example": "decrypted = aesDecode(\"myKey123\", encryptedData);"
+    },
+    "aesEncode128": {
+      "signature": "aesEncode128(encryption_key, encryption_value)",
+      "description": "Returns encrypted text using AES encryption with 128-bit key.",
+      "params": [],
+      "returns": "",
+      "category": "encryption",
+      "example": "encrypted = aesEncode128(\"myKey\", \"secret data\");"
+    },
+    "aesDecode128": {
+      "signature": "aesDecode128(encryption_key, encrypted_value)",
+      "description": "Returns decrypted text using AES decryption with 128-bit key.",
+      "params": [],
+      "returns": "",
+      "category": "encryption",
+      "example": "decrypted = aesDecode128(\"myKey\", encryptedData);"
+    },
+    "urlEncode": {
+      "signature": "urlEncode(text)",
+      "description": "Encodes text for safe use in URLs by replacing special characters.",
+      "params": [],
+      "returns": "",
+      "category": "encryption",
+      "example": "encoded = urlEncode(\"hello world\");"
+    },
+    "urlDecode": {
+      "signature": "urlDecode(encodedText)",
+      "description": "Decodes URL-encoded text back to its original form.",
+      "params": [],
+      "returns": "",
+      "category": "encryption",
+      "example": "decoded = urlDecode(\"hello%20world\");"
+    },
+    "toXml": {
+      "signature": "map.toXml()",
+      "description": "Converts a map or JSON-formatted text to XML format.",
+      "params": [],
+      "returns": "",
+      "category": "xml",
+      "example": "xml = myMap.toXml();"
+    },
+    "toXmlList": {
+      "signature": "list.toXmlList()",
+      "description": "Converts a list to XML format.",
+      "params": [],
+      "returns": "",
+      "category": "xml",
+      "example": "xmlList = myList.toXmlList();"
+    },
+    "xmlEncode": {
+      "signature": "xmlEncode(text)",
+      "description": "Transforms special XML characters into XML entities.",
+      "params": [],
+      "returns": "",
+      "category": "xml",
+      "example": "encoded = xmlEncode(\"<tag>value</tag>\");"
+    },
+    "xmlDecode": {
+      "signature": "xmlDecode(xmlText)",
+      "description": "Renders XML entities back to their original characters.",
+      "params": [],
+      "returns": "",
+      "category": "xml",
+      "example": "decoded = xmlDecode(\"&lt;tag&gt;\");"
+    },
+    "isEven": {
+      "signature": "isEven(number)",
+      "description": "Returns true if the number is even, false otherwise.",
+      "params": [],
+      "returns": "",
+      "category": "number",
+      "example": "if(isEven(4)) { }"
+    },
+    "isOdd": {
+      "signature": "isOdd(number)",
+      "description": "Returns true if the number is odd, false otherwise.",
+      "params": [],
+      "returns": "",
+      "category": "number",
+      "example": "if(isOdd(3)) { }"
+    },
+    "removeAllAlpha": {
+      "signature": "string.removeAllAlpha()",
+      "description": "Removes all alphabetic characters from the string, leaving only numbers and special characters.",
+      "params": [],
+      "returns": "string",
+      "category": "string",
+      "example": "nums = \"abc123def456\".removeAllAlpha(); // returns \"123456\""
+    },
+    "removeAllAlphaNumeric": {
+      "signature": "string.removeAllAlphaNumeric()",
+      "description": "Removes all alphanumeric characters from the string, leaving only special characters.",
+      "params": [],
+      "returns": "string",
+      "category": "string",
+      "example": "specials = \"abc-123!def\".removeAllAlphaNumeric(); // returns \"-!\""
+    },
+    "replaceAllIgnoreCase": {
+      "signature": "string.replaceAllIgnoreCase(oldString, newString)",
+      "description": "Replaces all occurrences of oldString with newString, ignoring case differences.",
+      "params": [
+        {
+          "name": "oldString",
+          "type": "string",
+          "description": "The string to search for (case-insensitive)"
+        },
+        {
+          "name": "newString",
+          "type": "string",
+          "description": "The replacement string"
+        }
+      ],
+      "returns": "string",
+      "category": "string",
+      "example": "result = \"Hello HELLO hello\".replaceAllIgnoreCase(\"hello\", \"hi\");"
+    },
+    "replaceFirstIgnoreCase": {
+      "signature": "string.replaceFirstIgnoreCase(oldString, newString)",
+      "description": "Replaces the first occurrence of oldString with newString, ignoring case differences.",
+      "params": [
+        {
+          "name": "oldString",
+          "type": "string",
+          "description": "The string to search for (case-insensitive)"
+        },
+        {
+          "name": "newString",
+          "type": "string",
+          "description": "The replacement string"
+        }
+      ],
+      "returns": "string",
+      "category": "string",
+      "example": "result = \"HELLO hello\".replaceFirstIgnoreCase(\"hello\", \"hi\");"
+    },
+    "toMap": {
+      "signature": "string.toMap()",
+      "description": "Converts a JSON-formatted string to a map (key-value pairs).",
+      "params": [],
+      "returns": "map",
+      "category": "string",
+      "example": "myMap = '{\"name\":\"John\",\"age\":\"30\"}'.toMap();"
+    },
+    "text": {
+      "signature": "number.text(format)",
+      "description": "Formats a number as text using the specified format pattern.",
+      "params": [
+        {
+          "name": "format",
+          "type": "string",
+          "description": "The format pattern (e.g., \"#,##0.00\")"
+        }
+      ],
+      "returns": "string",
+      "category": "number",
+      "example": "formatted = 1234.5.text(\"#,##0.00\"); // returns \"1,234.50\""
+    },
+    "toStartOfMonth": {
+      "signature": "date.toStartOfMonth()",
+      "description": "Returns the first day of the month for the given date.",
+      "params": [],
+      "returns": "date",
+      "category": "datetime",
+      "example": "firstDay = today().toStartOfMonth();"
+    },
+    "toStartOfWeek": {
+      "signature": "date.toStartOfWeek()",
+      "description": "Returns the first day (Sunday or Monday depending on locale) of the week for the given date.",
+      "params": [],
+      "returns": "date",
+      "category": "datetime",
+      "example": "weekStart = today().toStartOfWeek();"
+    },
+    "getDayOfYear": {
+      "signature": "date.getDayOfYear()",
+      "description": "Returns the day of the year (1-366) for the given date.",
+      "params": [],
+      "returns": "number",
+      "category": "datetime",
+      "example": "dayOfYear = today().getDayOfYear();"
+    },
+    "getWeekOfYear": {
+      "signature": "date.getWeekOfYear()",
+      "description": "Returns the ISO week number (1-53) for the given date.",
+      "params": [],
+      "returns": "number",
+      "category": "datetime",
+      "example": "weekNum = today().getWeekOfYear();"
+    },
+    "monthsDiff": {
+      "signature": "monthsDiff(startDate, endDate)",
+      "description": "Returns the difference in months between two dates. Similar to monthsBetween but may handle partial months differently.",
+      "params": [
+        {
+          "name": "startDate",
+          "type": "date",
+          "description": "The start date"
+        },
+        {
+          "name": "endDate",
+          "type": "date",
+          "description": "The end date"
+        }
+      ],
+      "returns": "number",
+      "category": "datetime",
+      "example": "diff = monthsDiff(startDate, endDate);"
+    },
+    "toDateTime": {
+      "signature": "toDateTime(dateTimeString, format)",
+      "description": "Parses a date-time string using the specified format and returns a datetime object.",
+      "params": [
+        {
+          "name": "dateTimeString",
+          "type": "string",
+          "description": "The date-time string to parse"
+        },
+        {
+          "name": "format",
+          "type": "string",
+          "description": "The format pattern"
+        }
+      ],
+      "returns": "datetime",
+      "category": "datetime",
+      "example": "dt = toDateTime(\"2024-01-29 14:30:00\", \"yyyy-MM-dd HH:mm:ss\");"
+    },
+    "isBlank": {
+      "signature": "isBlank(expression)",
+      "description": "Checks if a value is blank (null, empty string, or whitespace only). Stricter than isEmpty.",
+      "params": [
+        {
+          "name": "expression",
+          "type": "any",
+          "description": "The value to check"
+        }
+      ],
+      "returns": "boolean",
+      "category": "common",
+      "example": "if(isBlank(input.Name)) { alert \"Name is required\"; }"
+    },
+    "isText": {
+      "signature": "isText(value)",
+      "description": "Returns true if the value is of type text/string.",
+      "params": [
+        {
+          "name": "value",
+          "type": "any",
+          "description": "The value to check"
+        }
+      ],
+      "returns": "boolean",
+      "category": "common",
+      "example": "if(isText(myVar)) { info \"It is text\"; }"
+    },
+    "isFile": {
+      "signature": "isFile(value)",
+      "description": "Returns true if the value is of file data type.",
+      "params": [
+        {
+          "name": "value",
+          "type": "any",
+          "description": "The value to check"
+        }
+      ],
+      "returns": "boolean",
+      "category": "common",
+      "example": "if(isFile(uploadedDoc)) { info \"File received\"; }"
+    },
+    "encodeUrl": {
+      "signature": "encodeUrl(text)",
+      "description": "Encodes text for safe use in URLs. Alternative name for urlEncode.",
+      "params": [
+        {
+          "name": "text",
+          "type": "string",
+          "description": "The text to encode"
+        }
+      ],
+      "returns": "string",
+      "category": "encryption",
+      "example": "encoded = encodeUrl(\"hello world & more\");"
+    },
+    "extract": {
+      "signature": "file.extract()",
+      "description": "Extracts the content of an archive file (e.g., ZIP).",
+      "params": [],
+      "returns": "list",
+      "category": "file",
+      "example": "files = uploadedZip.extract();"
+    },
+    "zoho.crm.getRelatedRecords": {
+      "signature": "zoho.crm.getRelatedRecords(module_name, record_id, related_module, page, per_page, connection)",
+      "description": "Fetches records from a related module linked to a parent record in Zoho CRM.",
+      "params": [
+        {
+          "name": "module_name",
+          "type": "string",
+          "description": "The parent module name"
+        },
+        {
+          "name": "record_id",
+          "type": "number",
+          "description": "The parent record ID"
+        },
+        {
+          "name": "related_module",
+          "type": "string",
+          "description": "The related module name"
+        },
+        {
+          "name": "page",
+          "type": "number",
+          "description": "Page number (optional)"
+        },
+        {
+          "name": "per_page",
+          "type": "number",
+          "description": "Records per page (optional)"
+        },
+        {
+          "name": "connection",
+          "type": "string",
+          "description": "Connection name (optional)"
+        }
+      ],
+      "returns": "list",
+      "category": "integration",
+      "example": "contacts = zoho.crm.getRelatedRecords(\"Accounts\", accountId, \"Contacts\");"
+    },
+    "zoho.crm.bulkUpdate": {
+      "signature": "zoho.crm.bulkUpdate(module_name, record_ids, values, connection)",
+      "description": "Updates multiple records in a Zoho CRM module in a single API call.",
+      "params": [
+        {
+          "name": "module_name",
+          "type": "string",
+          "description": "The module name"
+        },
+        {
+          "name": "record_ids",
+          "type": "list",
+          "description": "List of record IDs to update"
+        },
+        {
+          "name": "values",
+          "type": "map",
+          "description": "Field values to set"
+        },
+        {
+          "name": "connection",
+          "type": "string",
+          "description": "Connection name (optional)"
+        }
+      ],
+      "returns": "map",
+      "category": "integration",
+      "example": "response = zoho.crm.bulkUpdate(\"Leads\", idList, {\"Status\": \"Contacted\"});"
+    },
+    "zoho.crm.getOrgVariable": {
+      "signature": "zoho.crm.getOrgVariable(variable_api_name)",
+      "description": "Retrieves the value of an organization variable from Zoho CRM.",
+      "params": [
+        {
+          "name": "variable_api_name",
+          "type": "string",
+          "description": "The API name of the org variable"
+        }
+      ],
+      "returns": "string",
+      "category": "integration",
+      "example": "value = zoho.crm.getOrgVariable(\"API_Key\");"
+    },
+    "zoho.crm.updateOrgVariable": {
+      "signature": "zoho.crm.updateOrgVariable(variable_api_name, value)",
+      "description": "Updates the value of an organization variable in Zoho CRM.",
+      "params": [
+        {
+          "name": "variable_api_name",
+          "type": "string",
+          "description": "The API name of the org variable"
+        },
+        {
+          "name": "value",
+          "type": "string",
+          "description": "The new value"
+        }
+      ],
+      "returns": "void",
+      "category": "integration",
+      "example": "zoho.crm.updateOrgVariable(\"Last_Sync_Time\", now().toString());"
+    },
+    "zoho.crm.getUsers": {
+      "signature": "zoho.crm.getUsers(type, page, per_page)",
+      "description": "Retrieves users from Zoho CRM organization.",
+      "params": [
+        {
+          "name": "type",
+          "type": "string",
+          "description": "User type: AllUsers, ActiveUsers, DeactiveUsers, etc."
+        },
+        {
+          "name": "page",
+          "type": "number",
+          "description": "Page number (optional)"
+        },
+        {
+          "name": "per_page",
+          "type": "number",
+          "description": "Records per page (optional)"
+        }
+      ],
+      "returns": "list",
+      "category": "integration",
+      "example": "users = zoho.crm.getUsers(\"ActiveUsers\", 1, 200);"
+    },
+    "zoho.books.getRecordById": {
+      "signature": "zoho.books.getRecordById(organization_id, module_name, record_id, connection)",
+      "description": "Fetches a specific record from Zoho Books by ID.",
+      "params": [
+        {
+          "name": "organization_id",
+          "type": "string",
+          "description": "The Books organization ID"
+        },
+        {
+          "name": "module_name",
+          "type": "string",
+          "description": "The module name"
+        },
+        {
+          "name": "record_id",
+          "type": "string",
+          "description": "The record ID"
+        },
+        {
+          "name": "connection",
+          "type": "string",
+          "description": "Connection name (optional)"
+        }
+      ],
+      "returns": "map",
+      "category": "integration",
+      "example": "invoice = zoho.books.getRecordById(\"749684621\", \"invoices\", invoiceId);"
+    },
+    "zoho.books.deleteRecord": {
+      "signature": "zoho.books.deleteRecord(organization_id, module_name, record_id, connection)",
+      "description": "Deletes a record from Zoho Books.",
+      "params": [
+        {
+          "name": "organization_id",
+          "type": "string",
+          "description": "The Books organization ID"
+        },
+        {
+          "name": "module_name",
+          "type": "string",
+          "description": "The module name"
+        },
+        {
+          "name": "record_id",
+          "type": "string",
+          "description": "The record ID"
+        },
+        {
+          "name": "connection",
+          "type": "string",
+          "description": "Connection name (optional)"
+        }
+      ],
+      "returns": "map",
+      "category": "integration",
+      "example": "response = zoho.books.deleteRecord(\"749684621\", \"invoices\", invoiceId);"
+    },
+    "zoho.creator.getRecords": {
+      "signature": "zoho.creator.getRecords(owner_name, app_link_name, report_link_name, criteria, from_index, limit, connection)",
+      "description": "Fetches records from a Zoho Creator report with optional criteria filtering.",
+      "params": [
+        {
+          "name": "owner_name",
+          "type": "string",
+          "description": "The app owner name"
+        },
+        {
+          "name": "app_link_name",
+          "type": "string",
+          "description": "The app link name"
+        },
+        {
+          "name": "report_link_name",
+          "type": "string",
+          "description": "The report link name"
+        },
+        {
+          "name": "criteria",
+          "type": "string",
+          "description": "Filter criteria (optional)"
+        },
+        {
+          "name": "from_index",
+          "type": "number",
+          "description": "Start index (optional)"
+        },
+        {
+          "name": "limit",
+          "type": "number",
+          "description": "Max records to return (optional)"
+        },
+        {
+          "name": "connection",
+          "type": "string",
+          "description": "Connection name (optional)"
+        }
+      ],
+      "returns": "list",
+      "category": "integration",
+      "example": "jobs = zoho.creator.getRecords(\"degroot\", \"fsm\", \"All_Jobs\", \"(Stage == \\\"Job Created\\\")\", 0, 200);"
+    },
+    "zoho.creator.getRecordById": {
+      "signature": "zoho.creator.getRecordById(owner_name, app_link_name, report_link_name, record_id, connection)",
+      "description": "Fetches a single record from Zoho Creator by ID.",
+      "params": [
+        {
+          "name": "owner_name",
+          "type": "string",
+          "description": "The app owner name"
+        },
+        {
+          "name": "app_link_name",
+          "type": "string",
+          "description": "The app link name"
+        },
+        {
+          "name": "report_link_name",
+          "type": "string",
+          "description": "The report link name"
+        },
+        {
+          "name": "record_id",
+          "type": "number",
+          "description": "The record ID"
+        },
+        {
+          "name": "connection",
+          "type": "string",
+          "description": "Connection name (optional)"
+        }
+      ],
+      "returns": "map",
+      "category": "integration",
+      "example": "job = zoho.creator.getRecordById(\"degroot\", \"fsm\", \"All_Jobs\", 12345);"
+    },
+    "zoho.creator.deleteRecord": {
+      "signature": "zoho.creator.deleteRecord(owner_name, app_link_name, form_link_name, record_id, connection)",
+      "description": "Deletes a record from Zoho Creator.",
+      "params": [
+        {
+          "name": "owner_name",
+          "type": "string",
+          "description": "The app owner name"
+        },
+        {
+          "name": "app_link_name",
+          "type": "string",
+          "description": "The app link name"
+        },
+        {
+          "name": "form_link_name",
+          "type": "string",
+          "description": "The form link name"
+        },
+        {
+          "name": "record_id",
+          "type": "number",
+          "description": "The record ID"
+        },
+        {
+          "name": "connection",
+          "type": "string",
+          "description": "Connection name (optional)"
+        }
+      ],
+      "returns": "map",
+      "category": "integration",
+      "example": "response = zoho.creator.deleteRecord(\"degroot\", \"fsm\", \"Job\", 12345);"
+    },
+    "zoho.loginuserid": {
+      "signature": "zoho.loginuserid",
+      "description": "Built-in variable that returns the login user ID (email) of the currently logged-in user.",
+      "params": [],
+      "returns": "string",
+      "category": "integration",
+      "example": "userId = zoho.loginuserid;"
+    },
+    "zoho.appuri": {
+      "signature": "zoho.appuri",
+      "description": "Built-in variable that returns the application URI in Zoho Creator.",
+      "params": [],
+      "returns": "string",
+      "category": "integration",
+      "example": "uri = zoho.appuri;"
+    },
+    "zoho.adminuserid": {
+      "signature": "zoho.adminuserid",
+      "description": "Built-in variable that returns the admin user ID of the application.",
+      "params": [],
+      "returns": "string",
+      "category": "integration",
+      "example": "admin = zoho.adminuserid;"
+    }
+  },
+  "metadata": {
+    "source": "bagaducedigital.deluge-lang-0.6.1",
+    "supplementarySource": "zoho-deluge-reference (zoho.com/deluge/help)",
+    "extractedAt": "2026-04-11T14:08:38.280Z",
+    "extensionCount": 294,
+    "supplementaryCount": 30,
+    "count": 324
+  }
+}

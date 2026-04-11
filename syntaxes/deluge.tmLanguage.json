@@ -1,0 +1,170 @@
+{
+  "$schema": "https://raw.githubusercontent.com/martinring/tmlanguage/master/tmlanguage.json",
+  "name": "Deluge",
+  "scopeName": "source.deluge",
+  "patterns": [
+    {
+      "include": "#comments"
+    },
+    {
+      "include": "#keywords"
+    },
+    {
+      "include": "#constants"
+    },
+    {
+      "include": "#built-in-functions"
+    },
+    {
+      "include": "#operators"
+    },
+    {
+      "include": "#strings"
+    },
+    {
+      "include": "#numbers"
+    },
+    {
+      "include": "#data-types"
+    },
+    {
+      "include": "#function-call"
+    },
+    {
+      "include": "#variables"
+    }
+  ],
+  "repository": {
+    "comments": {
+      "patterns": [
+        {
+          "name": "comment.line.double-slash.deluge",
+          "match": "//.*$"
+        },
+        {
+          "name": "comment.block.deluge",
+          "begin": "/\\*",
+          "end": "\\*/"
+        }
+      ]
+    },
+    "keywords": {
+      "patterns": [
+        {
+          "name": "keyword.control.deluge",
+          "match": "\\b(if|else|for|each|in|while|break|continue|return|try|catch|finally)\\b"
+        },
+        {
+          "name": "keyword.other.deluge",
+          "match": "\\b(ifNull|cancel|submit)\\b"
+        }
+      ]
+    },
+    "constants": {
+      "patterns": [
+        {
+          "name": "constant.language.boolean.deluge",
+          "match": "\\b(true|false|True|False|TRUE|FALSE)\\b"
+        },
+        {
+          "name": "constant.language.null.deluge",
+          "match": "\\b(null|Null|NULL)\\b"
+        },
+        {
+          "name": "constant.other.deluge",
+          "match": "\\b(zoho\\.currentdate|zoho\\.currenttime|zoho\\.loginuser|zoho\\.adminuser)\\b"
+        }
+      ]
+    },
+    "built-in-functions": {
+      "patterns": [
+        {
+          "name": "support.function.deluge",
+          "match": "\\b(info|alert|isNull|isEmpty|ifNull|count|add|remove|get|put|size|clear|containsKey|containsValue|keys|values|toString|toList|toMap|toNumber|toDecimal|toBoolean|toDate|toTime|length|substring|indexOf|contains|startsWith|endsWith|replace|replaceAll|replaceFirst|toLowerCase|toUpperCase|trim|split|equalsIgnoreCase|matches|getAlpha|getAlphaNumeric|floor|ceil|round|abs|sqrt|pow|toWords|weekday)\\b"
+        }
+      ]
+    },
+    "operators": {
+      "patterns": [
+        {
+          "name": "keyword.operator.comparison.deluge",
+          "match": "(==|!=|<|>|<=|>=)"
+        },
+        {
+          "name": "keyword.operator.logical.deluge",
+          "match": "(&&|\\|\\||!)"
+        },
+        {
+          "name": "keyword.operator.arithmetic.deluge",
+          "match": "(\\+|\\-|\\*|\\/|%)"
+        },
+        {
+          "name": "keyword.operator.assignment.deluge",
+          "match": "(=|\\+=|\\-=|\\*=|\\/=)"
+        }
+      ]
+    },
+    "strings": {
+      "patterns": [
+        {
+          "name": "string.quoted.double.deluge",
+          "begin": "\"",
+          "end": "\"",
+          "patterns": [
+            {
+              "name": "constant.character.escape.deluge",
+              "match": "\\\\."
+            }
+          ]
+        },
+        {
+          "name": "string.quoted.single.deluge",
+          "begin": "'",
+          "end": "'",
+          "patterns": [
+            {
+              "name": "constant.character.escape.deluge",
+              "match": "\\\\."
+            }
+          ]
+        }
+      ]
+    },
+    "numbers": {
+      "patterns": [
+        {
+          "name": "constant.numeric.decimal.deluge",
+          "match": "\\b\\d+\\.\\d+\\b"
+        },
+        {
+          "name": "constant.numeric.integer.deluge",
+          "match": "\\b\\d+\\b"
+        }
+      ]
+    },
+    "data-types": {
+      "patterns": [
+        {
+          "name": "support.type.deluge",
+          "match": "\\b(List|Map|Collection|Text|Number|Decimal|Boolean|Date|Time|File)\\b"
+        }
+      ]
+    },
+    "function-call": {
+      "patterns": [
+        {
+          "name": "entity.name.function.deluge",
+          "match": "\\b([a-zA-Z_][a-zA-Z0-9_]*)\\s*(?=\\()"
+        }
+      ]
+    },
+    "variables": {
+      "patterns": [
+        {
+          "name": "variable.other.deluge",
+          "match": "\\b[a-zA-Z_][a-zA-Z0-9_]*\\b"
+        }
+      ]
+    }
+  }
+}

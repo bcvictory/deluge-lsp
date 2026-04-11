@@ -1,0 +1,119 @@
+{
+  "name": "Deluge",
+  "type": "dark",
+  "colors": {
+    "editor.background": "#282C34",
+    "editor.foreground": "#ABB2BF",
+    "editorLineNumber.foreground": "#5C6370",
+    "editorCursor.foreground": "#528BFF"
+  },
+  "tokenColors": [
+    {
+      "name": "Comment",
+      "scope": [
+        "comment.line.double-slash.deluge",
+        "comment.block.deluge"
+      ],
+      "settings": {
+        "foreground": "#808080"
+      }
+    },
+    {
+      "name": "Keywords (if, else, for, etc.)",
+      "scope": [
+        "keyword.control.deluge",
+        "keyword.other.deluge"
+      ],
+      "settings": {
+        "foreground": "#CC7AFF"
+      }
+    },
+    {
+      "name": "Built-in Functions (info, alert, isNull, etc.)",
+      "scope": [
+        "support.function.deluge"
+      ],
+      "settings": {
+        "foreground": "#E6C07B"
+      }
+    },
+    {
+      "name": "Strings",
+      "scope": [
+        "string.quoted.double.deluge",
+        "string.quoted.single.deluge"
+      ],
+      "settings": {
+        "foreground": "#7EC699"
+      }
+    },
+    {
+      "name": "Numbers",
+      "scope": [
+        "constant.numeric.integer.deluge",
+        "constant.numeric.decimal.deluge"
+      ],
+      "settings": {
+        "foreground": "#F5A623"
+      }
+    },
+    {
+      "name": "Boolean and Null Constants",
+      "scope": [
+        "constant.language.boolean.deluge",
+        "constant.language.null.deluge"
+      ],
+      "settings": {
+        "foreground": "#F5A623"
+      }
+    },
+    {
+      "name": "Operators",
+      "scope": [
+        "keyword.operator.comparison.deluge",
+        "keyword.operator.logical.deluge",
+        "keyword.operator.arithmetic.deluge",
+        "keyword.operator.assignment.deluge"
+      ],
+      "settings": {
+        "foreground": "#FFFFFF"
+      }
+    },
+    {
+      "name": "Data Types",
+      "scope": [
+        "support.type.deluge"
+      ],
+      "settings": {
+        "foreground": "#E6C07B"
+      }
+    },
+    {
+      "name": "Function Calls",
+      "scope": [
+        "entity.name.function.deluge"
+      ],
+      "settings": {
+        "foreground": "#56B6C2"
+      }
+    },
+    {
+      "name": "Variables",
+      "scope": [
+        "variable.other.deluge"
+      ],
+      "settings": {
+        "foreground": "#56B6C2"
+      }
+    },
+    {
+      "name": "Zoho Built-in Constants",
+      "scope": [
+        "constant.other.deluge"
+      ],
+      "settings": {
+        "foreground": "#E6C07B"
+      }
+    }
+  ]
+}

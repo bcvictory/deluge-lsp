@@ -1,0 +1,664 @@
+{
+  "If Statement": {
+    "prefix": "if",
+    "body": [
+      "if(${1:condition})",
+      "{",
+      "\t${2:// code}",
+      "}"
+    ],
+    "description": "If statement"
+  },
+  "If Else Statement": {
+    "prefix": "ifelse",
+    "body": [
+      "if(${1:condition})",
+      "{",
+      "\t${2:// if code}",
+      "}",
+      "else",
+      "{",
+      "\t${3:// else code}",
+      "}"
+    ],
+    "description": "If-else statement"
+  },
+  "For Each Loop": {
+    "prefix": "foreach",
+    "body": [
+      "for each ${1:item} in ${2:list}",
+      "{",
+      "\t${3:// code}",
+      "}"
+    ],
+    "description": "For each loop"
+  },
+  "Try Catch": {
+    "prefix": "try",
+    "body": [
+      "try",
+      "{",
+      "\t${1:// code}",
+      "}",
+      "catch(${2:e})",
+      "{",
+      "\t${3:// error handling}",
+      "}"
+    ],
+    "description": "Try-catch block"
+  },
+  "Info Statement": {
+    "prefix": "info",
+    "body": [
+      "info ${1:message};"
+    ],
+    "description": "Info log statement"
+  },
+  "Alert Statement": {
+    "prefix": "alert",
+    "body": [
+      "alert ${1:message};"
+    ],
+    "description": "Alert statement"
+  },
+  "Create List": {
+    "prefix": "list",
+    "body": [
+      "${1:myList} = List();",
+      "${1:myList}.add(${2:value});"
+    ],
+    "description": "Create and add to list"
+  },
+  "Create Map": {
+    "prefix": "map",
+    "body": [
+      "${1:myMap} = Map();",
+      "${1:myMap}.put(\"${2:key}\", ${3:value});"
+    ],
+    "description": "Create and add to map"
+  },
+  "Fetch Records": {
+    "prefix": "fetch",
+    "body": [
+      "${1:records} = ${2:ModuleName}[${3:criteria}];"
+    ],
+    "description": "Fetch records from module"
+  },
+  "Function Definition": {
+    "prefix": "function",
+    "body": [
+      "${1:functionName} = fn(${2:parameters})",
+      "{",
+      "\t${3:// code}",
+      "\treturn ${4:result};",
+      "};"
+    ],
+    "description": "Function definition"
+  },
+  "isNull Check": {
+    "prefix": "isnull",
+    "body": [
+      "if(isNull(${1:variable}))",
+      "{",
+      "\t${2:// handle null}",
+      "}"
+    ],
+    "description": "Check if variable is null"
+  },
+  "ifNull Assignment": {
+    "prefix": "ifnull",
+    "body": [
+      "${1:variable} = ifNull(${2:expression}, ${3:defaultValue});"
+    ],
+    "description": "Assign with null check"
+  },
+  "Zoho CRM Get Records": {
+    "prefix": "zcrm",
+    "body": [
+      "${1:records} = zoho.crm.getRecords(\"${2:ModuleName}\");"
+    ],
+    "description": "Get records from Zoho CRM"
+  },
+  "Zoho CRM Create Record": {
+    "prefix": "zcrmcreate",
+    "body": [
+      "${1:recordMap} = Map();",
+      "${1:recordMap}.put(\"${2:Field_Name}\", ${3:value});",
+      "${4:response} = zoho.crm.createRecord(\"${5:ModuleName}\", ${1:recordMap});"
+    ],
+    "description": "Create record in Zoho CRM"
+  },
+  "Zoho CRM Update Record": {
+    "prefix": "zcrmupdate",
+    "body": [
+      "${1:updateMap} = Map();",
+      "${1:updateMap}.put(\"${2:Field_Name}\", ${3:value});",
+      "${4:response} = zoho.crm.updateRecord(\"${5:ModuleName}\", ${6:recordId}, ${1:updateMap});"
+    ],
+    "description": "Update record in Zoho CRM"
+  },
+  "Get Current Date": {
+    "prefix": "today",
+    "body": [
+      "${1:today} = zoho.currentdate;"
+    ],
+    "description": "Get current date"
+  },
+  "String Concatenation": {
+    "prefix": "concat",
+    "body": [
+      "${1:result} = ${2:string1} + ${3:string2};"
+    ],
+    "description": "Concatenate strings"
+  },
+  "Comment Block": {
+    "prefix": "comment",
+    "body": [
+      "/*",
+      " * ${1:Description}",
+      " */"
+    ],
+    "description": "Multi-line comment block"
+  },
+  "Zoho CRM Get Record By ID": {
+    "prefix": "zcrmget",
+    "body": [
+      "${1:record} = zoho.crm.getRecordById(\"${2:ModuleName}\", ${3:recordId});"
+    ],
+    "description": "Get record by ID from Zoho CRM"
+  },
+  "Zoho CRM Search Records": {
+    "prefix": "zcrmsearch",
+    "body": [
+      "${1:results} = zoho.crm.searchRecords(\"${2:ModuleName}\", \"(${3:Field_Name}:${4|equals,starts_with,contains|}:${5:value})\");"
+    ],
+    "description": "Search records in Zoho CRM"
+  },
+  "Zoho CRM Delete Record": {
+    "prefix": "zcrmdelete",
+    "body": [
+      "${1:response} = zoho.crm.deleteRecord(\"${2:ModuleName}\", ${3:recordId});"
+    ],
+    "description": "Delete record from Zoho CRM"
+  },
+  "Zoho Creator Create Record": {
+    "prefix": "zcreate",
+    "body": [
+      "${1:values} = Map();",
+      "${1:values}.put(\"${2:Field_Name}\", ${3:value});",
+      "${4:response} = zoho.creator.createRecord(\"${5:owner_name}\", \"${6:app_link_name}\", \"${7:form_link_name}\", ${1:values});"
+    ],
+    "description": "Create record in Zoho Creator"
+  },
+  "Zoho Creator Update Record": {
+    "prefix": "zupdate",
+    "body": [
+      "${1:values} = Map();",
+      "${1:values}.put(\"${2:Field_Name}\", ${3:value});",
+      "${4:response} = zoho.creator.updateRecord(\"${5:owner_name}\", \"${6:app_link_name}\", \"${7:form_link_name}\", ${8:recordId}, ${1:values});"
+    ],
+    "description": "Update record in Zoho Creator"
+  },
+  "Zoho CRM Get Records with Query": {
+    "prefix": "zcrmquery",
+    "body": [
+      "${1:query_map} = Map();",
+      "${1:query_map}.put(\"sort_order\", \"${2|asc,desc|}\");",
+      "${1:query_map}.put(\"sort_by\", \"${3:Field_Name}\");",
+      "${4:records} = zoho.crm.getRecords(\"${5:ModuleName}\", ${6:1}, ${7:200}, ${1:query_map});"
+    ],
+    "description": "Get records with query parameters from Zoho CRM"
+  },
+  "Zoho CRM Create Record Full": {
+    "prefix": "zcrmfull",
+    "body": [
+      "${1:recordData} = {",
+      "\t\"${2:Field_Name}\": ${3:value},",
+      "\t\"${4:Field_Name}\": ${5:value}",
+      "};",
+      "${6:response} = zoho.crm.createRecord(\"${7:ModuleName}\", ${1:recordData});",
+      "${8:recordId} = ${6:response}.get(\"id\");"
+    ],
+    "description": "Create CRM record with data map syntax"
+  },
+  "Zoho CRM Update Record Full": {
+    "prefix": "zcrmupdfull",
+    "body": [
+      "${1:updateData} = {",
+      "\t\"${2:Field_Name}\": ${3:value},",
+      "\t\"${4:Field_Name}\": ${5:value}",
+      "};",
+      "${6:response} = zoho.crm.updateRecord(\"${7:ModuleName}\", ${8:recordId}, ${1:updateData});"
+    ],
+    "description": "Update CRM record with data map syntax"
+  },
+  "Zoho Books Create Record": {
+    "prefix": "zbookscreate",
+    "body": [
+      "${1:recordData} = {",
+      "\t\"${2:field_name}\": ${3:value}",
+      "};",
+      "${4:response} = zoho.books.createRecord(\"${5:org_id}\", \"${6|contacts,invoices,items,bills|}\", ${1:recordData});"
+    ],
+    "description": "Create record in Zoho Books"
+  },
+  "Zoho Books Update Record": {
+    "prefix": "zbooksupdate",
+    "body": [
+      "${1:updateData} = {",
+      "\t\"${2:field_name}\": ${3:value}",
+      "};",
+      "${4:response} = zoho.books.updateRecord(\"${5:org_id}\", \"${6|contacts,invoices,items,bills|}\", \"${7:record_id}\", ${1:updateData});"
+    ],
+    "description": "Update record in Zoho Books"
+  },
+  "Zoho Desk Create Ticket": {
+    "prefix": "zdeskcreate",
+    "body": [
+      "${1:ticketData} = {",
+      "\t\"subject\": \"${2:Subject}\",",
+      "\t\"departmentId\": \"${3:dept_id}\",",
+      "\t\"contactId\": \"${4:contact_id}\"",
+      "};",
+      "${5:response} = zoho.desk.create(\"${6:org_id}\", \"tickets\", ${1:ticketData});"
+    ],
+    "description": "Create ticket in Zoho Desk"
+  },
+  "Zoho Desk Update": {
+    "prefix": "zdeskupdate",
+    "body": [
+      "${1:updateData} = {",
+      "\t\"${2:field}\": \"${3:value}\"",
+      "};",
+      "${4:response} = zoho.desk.update(\"${5:org_id}\", \"${6|tickets,contacts,accounts|}\", \"${7:record_id}\", ${1:updateData});"
+    ],
+    "description": "Update record in Zoho Desk"
+  },
+  "Zoho Mail Get Message": {
+    "prefix": "zmailget",
+    "body": [
+      "${1:message} = zoho.mail.getMessage(\"${2:account_id}\", \"${3|Inbox,Sent,Draft,Trash|}\", \"${4:message_id}\");"
+    ],
+    "description": "Get email message from Zoho Mail"
+  },
+  "Zoho Recruit Add Candidate": {
+    "prefix": "zrecruitadd",
+    "body": [
+      "${1:candidateData} = {",
+      "\t\"First_Name\": \"${2:First Name}\",",
+      "\t\"Last_Name\": \"${3:Last Name}\",",
+      "\t\"Email\": \"${4:email@example.com}\"",
+      "};",
+      "${5:response} = zoho.recruit.addRecord(\"Candidates\", ${1:candidateData});"
+    ],
+    "description": "Add candidate in Zoho Recruit"
+  },
+  "Zoho Cliq Post Message": {
+    "prefix": "zcliq",
+    "body": [
+      "zoho.cliq.postTo${1|User,Channel|}(\"${2:user_or_channel_id}\", \"${3:message}\");"
+    ],
+    "description": "Post message to Zoho Cliq"
+  },
+  "Zoho WorkDrive Upload": {
+    "prefix": "zworkdrive",
+    "body": [
+      "zoho.workdrive.uploadFile(\"${1:team_id}\", \"${2:folder_id}\", ${3:fileContent}, \"${4:filename.ext}\");"
+    ],
+    "description": "Upload file to Zoho WorkDrive"
+  },
+  "Invoke URL GET": {
+    "prefix": "invokeget",
+    "body": [
+      "${1:response} = invokeUrl[",
+      "\turl: \"${2:https://api.example.com/endpoint}\",",
+      "\ttype: GET",
+      "];"
+    ],
+    "description": "Make HTTP GET request"
+  },
+  "Invoke URL POST": {
+    "prefix": "invokepost",
+    "body": [
+      "${1:headers} = Map();",
+      "${1:headers}.put(\"Content-Type\", \"application/json\");",
+      "${2:params} = {\"${3:key}\": \"${4:value}\"};",
+      "${5:response} = invokeUrl[",
+      "\turl: \"${6:https://api.example.com/endpoint}\",",
+      "\ttype: POST,",
+      "\tparameters: ${2:params}.toString(),",
+      "\theaders: ${1:headers}",
+      "];"
+    ],
+    "description": "Make HTTP POST request with headers"
+  },
+  "Send Email": {
+    "prefix": "sendmail",
+    "body": [
+      "sendmail[",
+      "\tfrom: zoho.loginuserid,",
+      "\tto: \"${1:recipient@example.com}\",",
+      "\tsubject: \"${2:Subject}\",",
+      "\tmessage: \"${3:Message body}\"",
+      "];"
+    ],
+    "description": "Send email via Zoho"
+  },
+  "Hash SHA256": {
+    "prefix": "sha256",
+    "body": [
+      "${1:hash} = SHA256(${2:text});"
+    ],
+    "description": "Generate SHA-256 hash"
+  },
+  "Base64 Encode": {
+    "prefix": "base64enc",
+    "body": [
+      "${1:encoded} = base64Encode(${2:text});"
+    ],
+    "description": "Encode text to Base64"
+  },
+  "Date Add Days": {
+    "prefix": "addday",
+    "body": [
+      "${1:newDate} = ${2:zoho.currentdate}.addDay(${3:days});"
+    ],
+    "description": "Add days to date"
+  },
+  "Convert to Date": {
+    "prefix": "todate",
+    "body": [
+      "${1:dateObj} = toDate(\"${2:2024-01-29}\", \"${3:yyyy-MM-dd}\");"
+    ],
+    "description": "Convert string to date object"
+  },
+  "Parse JSON List": {
+    "prefix": "jsonlist",
+    "body": [
+      "${1:myList} = ${2:jsonString}.toJSONList();"
+    ],
+    "description": "Parse JSON string to list"
+  },
+  "Get File Content": {
+    "prefix": "filecontent",
+    "body": [
+      "${1:content} = getFileContent(${2:fileVariable});"
+    ],
+    "description": "Get content from file variable"
+  },
+  "Now Function": {
+    "prefix": "now",
+    "body": [
+      "${1:currentDateTime} = now();"
+    ],
+    "description": "Get current date and time"
+  },
+  "Today Function": {
+    "prefix": "today",
+    "body": [
+      "${1:currentDate} = today();"
+    ],
+    "description": "Get current date"
+  },
+  "Days Between": {
+    "prefix": "daysbetween",
+    "body": [
+      "${1:diff} = daysBetween(${2:startDate}, ${3:endDate});"
+    ],
+    "description": "Calculate days between two dates"
+  },
+  "Random Number": {
+    "prefix": "random",
+    "body": [
+      "${1:rand} = randomNumber(${2:min}, ${3:max});"
+    ],
+    "description": "Generate random number in range"
+  },
+  "Distinct List": {
+    "prefix": "distinct",
+    "body": [
+      "${1:uniqueList} = ${2:myList}.distinct();"
+    ],
+    "description": "Remove duplicates from list"
+  },
+  "Sort List": {
+    "prefix": "sortlist",
+    "body": [
+      "${1:sortedList} = ${2:myList}.sort();"
+    ],
+    "description": "Sort list in ascending order"
+  },
+  "List Average": {
+    "prefix": "average",
+    "body": [
+      "${1:avg} = ${2:numberList}.average();"
+    ],
+    "description": "Calculate average of number list"
+  },
+  "AES Encode": {
+    "prefix": "aesencode",
+    "body": [
+      "${1:encrypted} = aesEncode(\"${2:encryption_key}\", ${3:data});"
+    ],
+    "description": "Encrypt data using AES 256-bit"
+  },
+  "AES Decode": {
+    "prefix": "aesdecode",
+    "body": [
+      "${1:decrypted} = aesDecode(\"${2:encryption_key}\", ${3:encryptedData});"
+    ],
+    "description": "Decrypt data using AES 256-bit"
+  },
+  "URL Encode": {
+    "prefix": "urlencode",
+    "body": [
+      "${1:encoded} = urlEncode(${2:text});"
+    ],
+    "description": "URL encode text"
+  },
+  "URL Decode": {
+    "prefix": "urldecode",
+    "body": [
+      "${1:decoded} = urlDecode(${2:encodedText});"
+    ],
+    "description": "URL decode text"
+  },
+  "Proper Case": {
+    "prefix": "proper",
+    "body": [
+      "${1:titleCase} = ${2:text}.proper();"
+    ],
+    "description": "Convert to title case"
+  },
+  "Left String": {
+    "prefix": "left",
+    "body": [
+      "${1:prefix} = ${2:text}.left(${3:count});"
+    ],
+    "description": "Get leftmost characters"
+  },
+  "Right String": {
+    "prefix": "right",
+    "body": [
+      "${1:suffix} = ${2:text}.right(${3:count});"
+    ],
+    "description": "Get rightmost characters"
+  },
+  "Reverse String": {
+    "prefix": "reverse",
+    "body": [
+      "${1:reversed} = ${2:text}.reverse();"
+    ],
+    "description": "Reverse string"
+  },
+  "Get Prefix": {
+    "prefix": "getprefix",
+    "body": [
+      "${1:prefix} = ${2:text}.getPrefix(\"${3:delimiter}\");"
+    ],
+    "description": "Get text before delimiter"
+  },
+  "Get Suffix": {
+    "prefix": "getsuffix",
+    "body": [
+      "${1:suffix} = ${2:text}.getSuffix(\"${3:delimiter}\");"
+    ],
+    "description": "Get text after delimiter"
+  },
+  "To XML": {
+    "prefix": "toxml",
+    "body": [
+      "${1:xml} = ${2:myMap}.toXml();"
+    ],
+    "description": "Convert map to XML"
+  },
+  "Add Business Days": {
+    "prefix": "addbusinessday",
+    "body": [
+      "${1:deadline} = ${2:today()}.addBusinessDay(${3:days});"
+    ],
+    "description": "Add business days to date"
+  },
+  "Workday": {
+    "prefix": "workday",
+    "body": [
+      "${1:deadline} = workday(${2:startDate}, ${3:numDays});"
+    ],
+    "description": "Calculate workday date"
+  },
+  "Unix Epoch": {
+    "prefix": "unixepoch",
+    "body": [
+      "${1:timestamp} = ${2:now()}.unixEpoch();"
+    ],
+    "description": "Convert to Unix timestamp"
+  },
+  "Trigonometry Sin": {
+    "prefix": "sin",
+    "body": [
+      "${1:result} = sin(${2:angle});"
+    ],
+    "description": "Calculate sine"
+  },
+  "Trigonometry Cos": {
+    "prefix": "cos",
+    "body": [
+      "${1:result} = cos(${2:angle});"
+    ],
+    "description": "Calculate cosine"
+  },
+  "Logarithm": {
+    "prefix": "log",
+    "body": [
+      "${1:result} = log(${2:number});"
+    ],
+    "description": "Calculate natural logarithm"
+  },
+  "Exponential": {
+    "prefix": "exp",
+    "body": [
+      "${1:result} = exp(${2:exponent});"
+    ],
+    "description": "Calculate e raised to power"
+  },
+  "Max Value": {
+    "prefix": "max",
+    "body": [
+      "${1:maximum} = max(${2:num1}, ${3:num2});"
+    ],
+    "description": "Find maximum value"
+  },
+  "Min Value": {
+    "prefix": "min",
+    "body": [
+      "${1:minimum} = min(${2:num1}, ${3:num2});"
+    ],
+    "description": "Find minimum value"
+  },
+  "Duplicate Collection": {
+    "prefix": "duplicate",
+    "body": [
+      "${1:copy} = ${2:myCollection}.duplicate();"
+    ],
+    "description": "Create a copy of collection"
+  },
+  "Put All": {
+    "prefix": "putall",
+    "body": [
+      "${1:myMap}.putAll(${2:otherMap});"
+    ],
+    "description": "Add all entries from another map"
+  },
+  "Intersect Lists": {
+    "prefix": "intersect",
+    "body": [
+      "${1:common} = ${2:list1}.intersect(${3:list2});"
+    ],
+    "description": "Get common elements from two lists"
+  },
+  "SubList": {
+    "prefix": "sublist",
+    "body": [
+      "${1:portion} = ${2:myList}.subList(${3:startIndex}, ${4:endIndex});"
+    ],
+    "description": "Extract portion of list"
+  },
+  "Median": {
+    "prefix": "median",
+    "body": [
+      "${1:mid} = ${2:numberList}.median();"
+    ],
+    "description": "Find median value"
+  },
+  "Trim Whitespace": {
+    "prefix": "trim",
+    "body": [
+      "${1:cleaned} = ${2:text}.trim();"
+    ],
+    "description": "Remove leading and trailing whitespace"
+  },
+  "Contains Ignore Case": {
+    "prefix": "containsignorecase",
+    "body": [
+      "if(${1:text}.containsIgnoreCase(\"${2:search}\"))",
+      "{",
+      "\t${3:// code}",
+      "}"
+    ],
+    "description": "Case-insensitive contains check"
+  },
+  "End of Month": {
+    "prefix": "eomonth",
+    "body": [
+      "${1:lastDay} = eomonth(${2:today()}, ${3:0});"
+    ],
+    "description": "Get last day of month"
+  },
+  "Hours Between": {
+    "prefix": "hoursbetween",
+    "body": [
+      "${1:hours} = hoursBetween(${2:startDateTime}, ${3:endDateTime});"
+    ],
+    "description": "Calculate hours between datetimes"
+  },
+  "Is Number": {
+    "prefix": "isnumber",
+    "body": [
+      "if(isNumber(${1:value}))",
+      "{",
+      "\t${2:// code}",
+      "}"
+    ],
+    "description": "Check if value is a number"
+  },
+  "Is Even": {
+    "prefix": "iseven",
+    "body": [
+      "if(isEven(${1:number}))",
+      "{",
+      "\t${2:// code}",
+      "}"
+    ],
+    "description": "Check if number is even"
+  }
+}
