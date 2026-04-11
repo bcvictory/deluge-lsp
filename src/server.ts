@@ -8,6 +8,7 @@ import {
     DidChangeConfigurationNotification,
 } from 'vscode-languageserver/node';
 import { TextDocument } from 'vscode-languageserver-textdocument';
+import * as fs from 'fs';
 import { getCompletions, resolveCompletion } from './providers/completion';
 import { getHover } from './providers/hover';
 import { validateDocument } from './providers/diagnostics';
@@ -17,6 +18,32 @@ import { getDocumentSymbols } from './providers/document-symbols';
 
 const connection = createConnection(ProposedFeatures.all);
 const documents: TextDocuments<TextDocument> = new TextDocuments(TextDocument);
+
+/**
+ * Get a document from the documents collection, or load from disk as fallback.
+ * Claude Code's LSP client may not send textDocument/didOpen before querying,
+ * so we need to handle files that aren't in the collection yet.
+ */
+function getOrLoadDocument(uri: string): TextDocument | undefined {
+    const doc = documents.get(uri);
+    if (doc) {
+        return doc;
+    }
+    // Fallback: read from disk
+    try {
+        let filePath = uri;
+        if (uri.startsWith('file://')) {
+            filePath = decodeURIComponent(uri.replace('file://', ''));
+        }
+        if (fs.existsSync(filePath)) {
+            const content = fs.readFileSync(filePath, 'utf-8');
+            return TextDocument.create(uri, 'deluge', 1, content);
+        }
+    } catch {
+        // Silently fail — return undefined
+    }
+    return undefined;
+}
 
 connection.onInitialize((_params: InitializeParams): InitializeResult => {
     return {
@@ -42,7 +69,7 @@ connection.onInitialized(() => {
 
 // Completions
 connection.onCompletion((params) => {
-    const document = documents.get(params.textDocument.uri);
+    const document = getOrLoadDocument(params.textDocument.uri);
     if (!document) {
         return [];
     }
@@ -55,7 +82,7 @@ connection.onCompletionResolve((item) => {
 
 // Hover
 connection.onHover((params) => {
-    const document = documents.get(params.textDocument.uri);
+    const document = getOrLoadDocument(params.textDocument.uri);
     if (!document) {
         return null;
     }
@@ -64,7 +91,7 @@ connection.onHover((params) => {
 
 // Signature Help
 connection.onSignatureHelp((params) => {
-    const document = documents.get(params.textDocument.uri);
+    const document = getOrLoadDocument(params.textDocument.uri);
     if (!document) {
         return null;
     }
@@ -73,7 +100,7 @@ connection.onSignatureHelp((params) => {
 
 // Document Formatting
 connection.onDocumentFormatting((params) => {
-    const document = documents.get(params.textDocument.uri);
+    const document = getOrLoadDocument(params.textDocument.uri);
     if (!document) {
         return [];
     }
@@ -82,7 +109,7 @@ connection.onDocumentFormatting((params) => {
 
 // Document Symbols
 connection.onDocumentSymbol((params) => {
-    const document = documents.get(params.textDocument.uri);
+    const document = getOrLoadDocument(params.textDocument.uri);
     if (!document) {
         return [];
     }
