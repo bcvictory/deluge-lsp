@@ -15,10 +15,12 @@ export function validateDocument(document: TextDocument): Diagnostic[] {
 }
 
 function checkBracketBalance(text: string, lines: string[], diagnostics: Diagnostic[]): void {
+    // Only check braces and parentheses — square brackets are used in
+    // invokeurl/sendmail block syntax which is NOT a balanced-bracket construct.
+    // e.g.: response = invokeurl\n[\n  url: "..."\n  type: GET\n];
     const pairs: Array<{ open: string; close: string; name: string }> = [
         { open: '{', close: '}', name: 'brace' },
         { open: '(', close: ')', name: 'parenthesis' },
-        { open: '[', close: ']', name: 'bracket' },
     ];
 
     for (const pair of pairs) {
@@ -36,6 +38,19 @@ function checkBracketBalance(text: string, lines: string[], diagnostics: Diagnos
                 const ch = line[j];
                 const next = j < line.length - 1 ? line[j + 1] : '';
 
+                // String handling MUST come before comment detection,
+                // otherwise // in URLs like "https://..." triggers false comments
+                if (inString) {
+                    if (ch === '\\') {
+                        j++;
+                        continue;
+                    }
+                    if (ch === stringChar) {
+                        inString = false;
+                    }
+                    continue;
+                }
+
                 if (inBlockComment) {
                     if (ch === '*' && next === '/') {
                         inBlockComment = false;
@@ -48,6 +63,12 @@ function checkBracketBalance(text: string, lines: string[], diagnostics: Diagnos
                     continue;
                 }
 
+                if (ch === '"' || ch === "'") {
+                    inString = true;
+                    stringChar = ch;
+                    continue;
+                }
+
                 if (ch === '/' && next === '/') {
                     inLineComment = true;
                     continue;
@@ -56,23 +77,6 @@ function checkBracketBalance(text: string, lines: string[], diagnostics: Diagnos
                 if (ch === '/' && next === '*') {
                     inBlockComment = true;
                     j++;
-                    continue;
-                }
-
-                if (inString) {
-                    if (ch === '\\') {
-                        j++;
-                        continue;
-                    }
-                    if (ch === stringChar) {
-                        inString = false;
-                    }
-                    continue;
-                }
-
-                if (ch === '"' || ch === "'") {
-                    inString = true;
-                    stringChar = ch;
                     continue;
                 }
 
@@ -115,7 +119,8 @@ function checkMissingSemicolons(lines: string[], diagnostics: Diagnostic[]): voi
         /^\s*\[/, // opening bracket (invokeurl/sendmail block)
         /^\s*\]/, // closing bracket
         /^\s*(void|return)\b/, // function def or bare return
-        /^\s*(from|to|subject|message|cc|bcc|replyto|content\-type|url|type|parameters|headers|connection|detailed|response\-format)\s*:/, // sendmail/invokeurl params
+        /^\s*(string|int|long|float|decimal|boolean|bool|list|map|void)\s+[\w.]+\s*\(/, // function signature (may contain dots in name)
+        /^\s*(from|to|subject|message|cc|bcc|replyto|content\-type|url|type|parameters|headers|connection|detailed|response\-format|body|content_type)\s*\s*:/, // sendmail/invokeurl params
     ];
 
     for (let i = 0; i < lines.length; i++) {
@@ -130,8 +135,27 @@ function checkMissingSemicolons(lines: string[], diagnostics: Diagnostic[]): voi
             continue;
         }
 
+        // Strip trailing line comments before checking line ending
+        const withoutComment = trimmed.replace(/\/\/.*$/, '').trim();
+
         // Skip lines ending with { or } or ] or ,
-        if (/[{}\],]$/.test(trimmed)) {
+        if (/[{}\],]$/.test(withoutComment)) {
+            continue;
+        }
+
+        // Skip continuation lines ending with || or && or operators
+        if (/(\|\||&&|[+\-*\/=<>!&|,])\s*$/.test(withoutComment)) {
+            continue;
+        }
+
+        // Skip lines that are just closing parens of multi-line conditions
+        // e.g., (condition3 != null && condition3.containsIgnoreCase(term)))
+        if (/^\(.*\)\)*\s*$/.test(withoutComment) && !withoutComment.includes('=')) {
+            continue;
+        }
+
+        // If the line (without comments) already ends with ;, it's fine
+        if (withoutComment.endsWith(';')) {
             continue;
         }
 
@@ -140,10 +164,32 @@ function checkMissingSemicolons(lines: string[], diagnostics: Diagnostic[]): voi
             continue;
         }
 
+        // Skip lines that are continuations into invokeurl/sendmail blocks
+        // e.g., "response = invokeurl" followed by "[" on next line
+        if (/\b(invokeurl|sendmail)\s*$/.test(trimmed)) {
+            continue;
+        }
+
+        // Skip lines where the next non-empty line starts with [
+        // (handles "response = invokeurl" or "sendmail" before block open)
+        if (!trimmed.endsWith(';')) {
+            let nextNonEmpty = '';
+            for (let j = i + 1; j < lines.length; j++) {
+                const nextTrimmed = lines[j].trim();
+                if (nextTrimmed.length > 0) {
+                    nextNonEmpty = nextTrimmed;
+                    break;
+                }
+            }
+            if (nextNonEmpty === '[') {
+                continue;
+            }
+        }
+
         // Statement lines should end with ;
-        if (!trimmed.endsWith(';') && !trimmed.endsWith('{') && !trimmed.endsWith('}')) {
+        if (!withoutComment.endsWith(';') && !withoutComment.endsWith('{') && !withoutComment.endsWith('}')) {
             // Only flag if it looks like a statement (has assignment or function call)
-            if (/=/.test(trimmed) || /\w+\s*\(/.test(trimmed) || /^info\s/.test(trimmed)) {
+            if (/=/.test(withoutComment) || /\w+\s*\(/.test(withoutComment) || /^info\s/.test(withoutComment)) {
                 diagnostics.push({
                     severity: DiagnosticSeverity.Warning,
                     range: Range.create(i, line.length - line.trimEnd().length, i, line.length),
