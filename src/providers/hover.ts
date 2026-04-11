@@ -5,22 +5,33 @@ import { ZOHO_SERVICES } from '../data/zoho-services';
 
 export function getHover(document: TextDocument, params: TextDocumentPositionParams): Hover | null {
     const position = params.position;
-    const text = document.getText();
-    const offset = document.offsetAt(position);
+    const lineCount = document.lineCount;
+    const line = position.line;
+    const character = position.character;
 
-    // Extract the word under cursor
-    const word = getWordAtOffset(text, offset);
+    // Get the text of the current line
+    const lineEnd = line + 1 < lineCount
+        ? document.positionAt(document.offsetAt({ line: line + 1, character: 0 }))
+        : { line, character: Number.MAX_SAFE_INTEGER };
+    const lineText = document.getText({
+        start: { line, character: 0 },
+        end: lineEnd,
+    }).replace(/\n$/, '');
+
+    // Extract the word at the cursor position within this line
+    const word = getWordAtPosition(lineText, character);
     if (!word) {
         return null;
     }
 
-    // Check if it's a zoho service method (look back for zoho.service. prefix)
-    const lineStart = text.lastIndexOf('\n', offset - 1) + 1;
-    const lineEnd = text.indexOf('\n', offset);
-    const line = text.substring(lineStart, lineEnd === -1 ? text.length : lineEnd);
-    const charInLine = offset - lineStart;
+    // Find the end of the word in the line for proper substring matching
+    let wordEnd = character;
+    while (wordEnd < lineText.length && /[a-zA-Z0-9_]/.test(lineText[wordEnd])) {
+        wordEnd++;
+    }
 
-    const serviceMethodMatch = line.substring(0, charInLine + word.length).match(/zoho\.(\w+)\.(\w+)$/);
+    // Check if it's a zoho service method (look back for zoho.service. prefix)
+    const serviceMethodMatch = lineText.substring(0, wordEnd).match(/zoho\.(\w+)\.(\w+)$/);
     if (serviceMethodMatch) {
         const serviceName = `zoho.${serviceMethodMatch[1]}`;
         const methodName = serviceMethodMatch[2];
@@ -91,16 +102,24 @@ export function getHover(document: TextDocument, params: TextDocumentPositionPar
     return null;
 }
 
-function getWordAtOffset(text: string, offset: number): string | null {
-    const wordPattern = /[a-zA-Z_][a-zA-Z0-9_]*/g;
-    let match;
-    while ((match = wordPattern.exec(text)) !== null) {
-        if (match.index <= offset && offset <= match.index + match[0].length) {
-            return match[0];
-        }
-        if (match.index > offset) {
-            break;
-        }
+function getWordAtPosition(lineText: string, character: number): string | null {
+    // Walk left from cursor to find word start
+    let start = character;
+    while (start > 0 && /[a-zA-Z0-9_]/.test(lineText[start - 1])) {
+        start--;
     }
-    return null;
+    // Walk right from cursor to find word end
+    let end = character;
+    while (end < lineText.length && /[a-zA-Z0-9_]/.test(lineText[end])) {
+        end++;
+    }
+    if (start === end) {
+        return null;
+    }
+    const word = lineText.substring(start, end);
+    // Must start with letter or underscore
+    if (!/^[a-zA-Z_]/.test(word)) {
+        return null;
+    }
+    return word;
 }

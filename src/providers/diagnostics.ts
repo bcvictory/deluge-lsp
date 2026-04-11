@@ -135,8 +135,8 @@ function checkMissingSemicolons(lines: string[], diagnostics: Diagnostic[]): voi
             continue;
         }
 
-        // Strip trailing line comments before checking line ending
-        const withoutComment = trimmed.replace(/\/\/.*$/, '').trim();
+        // Strip trailing line comments before checking line ending (string-aware)
+        const withoutComment = stripTrailingComment(trimmed);
 
         // Skip lines ending with { or } or ] or ,
         if (/[{}\],]$/.test(withoutComment)) {
@@ -150,7 +150,8 @@ function checkMissingSemicolons(lines: string[], diagnostics: Diagnostic[]): voi
 
         // Skip lines that are just closing parens of multi-line conditions
         // e.g., (condition3 != null && condition3.containsIgnoreCase(term)))
-        if (/^\(.*\)\)*\s*$/.test(withoutComment) && !withoutComment.includes('=')) {
+        // Allow != and == (comparison operators) but not bare = (assignment)
+        if (/^\(.*\)\)*\s*$/.test(withoutComment) && !/(?<![!=<>])=(?!=)/.test(withoutComment)) {
             continue;
         }
 
@@ -199,6 +200,37 @@ function checkMissingSemicolons(lines: string[], diagnostics: Diagnostic[]): voi
             }
         }
     }
+}
+
+/**
+ * Strip trailing line comments while respecting string literals.
+ * A naive `replace(/\/\/.*$/, '')` breaks on URLs inside strings like "https://...".
+ */
+function stripTrailingComment(trimmed: string): string {
+    let inString = false;
+    let stringChar = '';
+    for (let i = 0; i < trimmed.length; i++) {
+        const ch = trimmed[i];
+        if (inString) {
+            if (ch === '\\') {
+                i++;
+                continue;
+            }
+            if (ch === stringChar) {
+                inString = false;
+            }
+            continue;
+        }
+        if (ch === '"' || ch === "'") {
+            inString = true;
+            stringChar = ch;
+            continue;
+        }
+        if (ch === '/' && i + 1 < trimmed.length && trimmed[i + 1] === '/') {
+            return trimmed.substring(0, i).trim();
+        }
+    }
+    return trimmed;
 }
 
 function checkMultipleStatementsPerLine(lines: string[], diagnostics: Diagnostic[]): void {

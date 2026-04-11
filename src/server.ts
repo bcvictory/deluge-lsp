@@ -13,6 +13,7 @@ import { getHover } from './providers/hover';
 import { validateDocument } from './providers/diagnostics';
 import { getSignatureHelp } from './providers/signature-help';
 import { formatDocument } from './providers/formatting';
+import { getDocumentSymbols } from './providers/document-symbols';
 
 const connection = createConnection(ProposedFeatures.all);
 const documents: TextDocuments<TextDocument> = new TextDocuments(TextDocument);
@@ -30,6 +31,7 @@ connection.onInitialize((_params: InitializeParams): InitializeResult => {
                 triggerCharacters: ['(', ','],
             },
             documentFormattingProvider: true,
+            documentSymbolProvider: true,
         },
     };
 });
@@ -76,6 +78,15 @@ connection.onDocumentFormatting((params) => {
         return [];
     }
     return formatDocument(document, params);
+});
+
+// Document Symbols
+connection.onDocumentSymbol((params) => {
+    const document = documents.get(params.textDocument.uri);
+    if (!document) {
+        return [];
+    }
+    return getDocumentSymbols(document);
 });
 
 // Diagnostics — run on open and on change
