@@ -1,0 +1,10 @@
+{
+  "name": "deluge-lsp",
+  "description": "Language Server for Zoho Deluge — completions, hover, diagnostics, signature help for .dg files",
+  "version": "1.0.0",
+  "author": {
+    "name": "bcvictory"
+  },
+  "license": "MIT",
+  "keywords": ["lsp", "deluge", "zoho", "crm", "language-server"]
+}

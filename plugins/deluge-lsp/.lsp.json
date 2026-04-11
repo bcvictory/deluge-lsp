@@ -1,0 +1,11 @@
+{
+  "deluge": {
+    "command": "node",
+    "args": ["/Users/bailey/deluge-lsp/out/server.js", "--stdio"],
+    "extensionToLanguage": {
+      ".dg": "deluge",
+      ".ds": "deluge",
+      ".deluge": "deluge"
+    }
+  }
+}

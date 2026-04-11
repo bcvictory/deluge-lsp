@@ -1,0 +1,17 @@
+{
+  "name": "deluge-lsp",
+  "description": "Deluge Language Server for Claude Code — completions, hover, diagnostics for Zoho Deluge (.dg) files",
+  "owner": {
+    "name": "bcvictory",
+    "url": "https://github.com/bcvictory"
+  },
+  "plugins": [
+    {
+      "name": "deluge-lsp",
+      "description": "Language Server for Zoho Deluge with 324 built-in functions, diagnostics, and hover docs",
+      "version": "1.0.0",
+      "source": "./plugins/deluge-lsp",
+      "tags": ["lsp", "deluge", "zoho", "crm", "language-server"]
+    }
+  ]
+}
