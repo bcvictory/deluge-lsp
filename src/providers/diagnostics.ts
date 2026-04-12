@@ -10,6 +10,8 @@ export function validateDocument(document: TextDocument): Diagnostic[] {
     checkMissingSemicolons(lines, diagnostics);
     checkMultipleStatementsPerLine(lines, diagnostics);
     checkSmartQuotes(lines, diagnostics);
+    checkMissingTriggerParam(lines, diagnostics);
+    checkCoqlLimitExceeded(lines, diagnostics);
 
     return diagnostics;
 }
@@ -306,6 +308,133 @@ function checkSmartQuotes(lines: string[], diagnostics: Diagnostic[]): void {
                 message: `Smart/Unicode character detected — replace with ASCII '${replacement}'`,
                 source: 'deluge',
             });
+        }
+    }
+}
+
+// ---------------------------------------------------------------------------
+// API-aware diagnostics
+// ---------------------------------------------------------------------------
+
+/**
+ * Warn when zoho.crm.updateRecord or zoho.crm.createRecord is called
+ * without the trigger-suppression parameter.
+ *
+ * updateRecord needs 4 params (module, id, map, triggers).
+ * createRecord needs 3 params (module, map, triggers).
+ * Omitting triggers fires ALL workflows — a well-known gotcha.
+ */
+function checkMissingTriggerParam(lines: string[], diagnostics: Diagnostic[]): void {
+    const callPattern = /zoho\.crm\.(updateRecord|createRecord)\s*\(/g;
+
+    for (let i = 0; i < lines.length; i++) {
+        const line = lines[i];
+        let match;
+
+        // Reset regex lastIndex for each line
+        callPattern.lastIndex = 0;
+        while ((match = callPattern.exec(line)) !== null) {
+            const funcName = match[1];
+            const expectedMin = funcName === 'updateRecord' ? 4 : 3;
+            const callStart = match.index + match[0].length - 1; // position of (
+
+            // Count parameters by walking from the ( and counting commas at depth 0
+            const paramCount = countParams(line, callStart);
+
+            if (paramCount > 0 && paramCount < expectedMin) {
+                diagnostics.push({
+                    severity: DiagnosticSeverity.Warning,
+                    range: Range.create(i, match.index, i, match.index + match[0].length),
+                    message: `zoho.crm.${funcName} without triggers param fires ALL workflows. Add [] as param ${expectedMin} to suppress.`,
+                    source: 'deluge-api',
+                });
+            }
+        }
+    }
+}
+
+/**
+ * Count the number of parameters in a function call starting at the opening paren.
+ * Returns 0 if the closing paren is not found on this line (multi-line call).
+ */
+function countParams(line: string, openParenIdx: number): number {
+    let depth = 0;
+    let commas = 0;
+    let inString = false;
+    let stringChar = '';
+    let hasContent = false;
+
+    for (let i = openParenIdx; i < line.length; i++) {
+        const ch = line[i];
+
+        if (inString) {
+            if (ch === '\\') {
+                i++;
+                continue;
+            }
+            if (ch === stringChar) {
+                inString = false;
+            }
+            continue;
+        }
+
+        if (ch === '"' || ch === "'") {
+            inString = true;
+            stringChar = ch;
+            hasContent = true;
+            continue;
+        }
+
+        if (ch === '(' || ch === '[' || ch === '{') {
+            depth++;
+            if (depth === 1) {
+                continue; // skip the opening paren itself
+            }
+        } else if (ch === ')' || ch === ']' || ch === '}') {
+            depth--;
+            if (depth === 0) {
+                // Found closing paren
+                return hasContent ? commas + 1 : 0;
+            }
+        } else if (ch === ',' && depth === 1) {
+            commas++;
+        } else if (depth === 1 && /\S/.test(ch)) {
+            hasContent = true;
+        }
+    }
+
+    // Closing paren not found on this line — multi-line call, skip
+    return 0;
+}
+
+/**
+ * Flag COQL queries where LIMIT exceeds 200.
+ * Looks for patterns like: limit 300, LIMIT 500, etc. inside COQL query strings.
+ */
+function checkCoqlLimitExceeded(lines: string[], diagnostics: Diagnostic[]): void {
+    // Match "limit NNN" in strings — common in COQL queries
+    const limitPattern = /\blimit\s+(\d+)\b/gi;
+
+    for (let i = 0; i < lines.length; i++) {
+        const line = lines[i];
+
+        // Only check lines that look like they contain COQL (have select_query, coql, or limit in context)
+        if (!/coql|select_query|select\s+\w/i.test(line) && !/\blimit\s+\d/i.test(line)) {
+            continue;
+        }
+
+        limitPattern.lastIndex = 0;
+        let match;
+        while ((match = limitPattern.exec(line)) !== null) {
+            const limitValue = parseInt(match[1], 10);
+            if (limitValue > 200) {
+                diagnostics.push({
+                    severity: DiagnosticSeverity.Error,
+                    range: Range.create(i, match.index, i, match.index + match[0].length),
+                    message: `COQL LIMIT ${limitValue} exceeds maximum of 200. API will return LIMIT_EXCEEDED error. Use OFFSET for pagination.`,
+                    source: 'deluge-api',
+                });
+            }
         }
     }
 }

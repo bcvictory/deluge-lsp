@@ -3,10 +3,17 @@
  * Provides dot-notation completion data for zoho.crm.*, zoho.books.*, etc.
  */
 
+import { getEnrichedMethods } from './crm-endpoint-registry';
+
 export interface ZohoServiceMethod {
     name: string;
     description: string;
     signature: string;
+    params?: Array<{ name: string; type: string; description: string; required: boolean }>;
+    returns?: string;
+    errors?: string[];
+    example?: string;
+    gotchas?: string;
 }
 
 export interface ZohoService {
@@ -61,4 +68,59 @@ export const ZOHO_SERVICES: ZohoService[] = [
 export function getServiceMethods(servicePrefix: string): ZohoServiceMethod[] {
     const service = ZOHO_SERVICES.find(s => s.name === servicePrefix);
     return service?.methods ?? [];
+}
+
+/**
+ * Get enriched service methods with full descriptions, params, errors, examples, and gotchas.
+ * For zoho.crm, merges enriched data from crm-endpoints.json onto the base methods.
+ * For other services, returns the base methods unchanged.
+ * Enriched-only methods (e.g., upsertRecord) are appended at the end.
+ */
+export function getEnrichedServiceMethods(servicePrefix: string): ZohoServiceMethod[] {
+    const baseMethods = getServiceMethods(servicePrefix);
+
+    if (servicePrefix === 'zoho.crm') {
+        const enriched = getEnrichedMethods(servicePrefix);
+        const enrichedByName = new Map(enriched.map(m => [m.name, m]));
+        const seen = new Set<string>();
+
+        // Merge enriched data onto base methods, keeping base as fallback
+        const merged: ZohoServiceMethod[] = baseMethods.map(base => {
+            seen.add(base.name);
+            const rich = enrichedByName.get(base.name);
+            if (!rich) {
+                return base;
+            }
+            return {
+                name: base.name,
+                description: rich.description || base.description,
+                signature: rich.signature || base.signature,
+                params: rich.params,
+                returns: rich.returns,
+                errors: rich.errors,
+                example: rich.example,
+                gotchas: rich.gotchas,
+            };
+        });
+
+        // Append enriched-only methods not in the base set
+        for (const rich of enriched) {
+            if (!seen.has(rich.name)) {
+                merged.push({
+                    name: rich.name,
+                    description: rich.description,
+                    signature: rich.signature,
+                    params: rich.params,
+                    returns: rich.returns,
+                    errors: rich.errors,
+                    example: rich.example,
+                    gotchas: rich.gotchas,
+                });
+            }
+        }
+
+        return merged;
+    }
+
+    return baseMethods;
 }

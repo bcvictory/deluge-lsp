@@ -1,0 +1,1448 @@
+{
+  "metadata": {
+    "source": "Zoho CRM REST APIs.postman_collection.json",
+    "extractedAt": "2026-04-12",
+    "endpointCount": 14,
+    "enrichedMethodCount": 10,
+    "urlPatternCount": 26
+  },
+  "endpoints": [
+    {
+      "id": "fields_metadata",
+      "category": "Fields Metadata",
+      "method": "GET",
+      "url": "https://www.zohoapis.com/crm/v3/settings/fields?module=Quotes",
+      "version": "v3",
+      "allVersions": [
+        "v2",
+        "v2.1",
+        "v3",
+        "v5",
+        "v6",
+        "v7",
+        "v8"
+      ],
+      "description": "Get field definitions and validation rules for a module",
+      "requestBody": null,
+      "successResponse": {
+        "fields": [
+          {
+            "system_mandatory": false,
+            "private": null,
+            "webhook": true,
+            "virtual_field": false,
+            "json_type": "jsonobject",
+            "crypt": null,
+            "field_label": "Lead Owner",
+            "tooltip": null,
+            "created_source": "default",
+            "type": "used",
+            "field_read_only": true,
+            "display_label": "Lead Owner",
+            "display_type": -1,
+            "ui_type": 8,
+            "read_only": false,
+            "association_details": null,
+            "businesscard_supported": true,
+            "multi_module_lookup": {},
+            "currency": {},
+            "id": "4876876000000002589",
+            "custom_field": false,
+            "lookup": {},
+            "filterable": true,
+            "convert_mapping": {
+              "Contacts": null,
+              "Deals": null,
+              "Accounts": null
+            },
+            "visible": true,
+            "profiles": [
+              {
+                "permission_type": "read_write",
+                "name": "Administrator",
+                "id": "4876876000000026011"
+              }
+            ],
+            "length": 120,
+            "view_type": {
+              "view": true,
+              "edit": true,
+              "quick_create": false,
+              "create": true
+            },
+            "display_field": false,
+            "pick_list_values_sorted_lexically": false,
+            "sortable": true,
+            "subform": null,
+            "separator": false,
+            "searchable": true,
+            "external": null,
+            "api_name": "Owner",
+            "unique": {},
+            "enable_colour_code": false,
+            "history_tracking": null,
+            "data_type": "ownerlookup",
+            "formula": {},
+            "decimal_place": null,
+            "mass_update": false,
+            "multiselectlookup": {},
+            "pick_list_values": [],
+            "auto_number": {}
+          }
+        ]
+      },
+      "errors": [
+        "INVALID_MODULE",
+        "REQUIRED_PARAM_MISSING",
+        "INVALID_URL_PATTERN",
+        "INVALID_REQUEST_METHOD",
+        "AUTHENTICATION_FAILURE",
+        "OAUTH_SCOPE_MISMATCH",
+        "INVALID_DATA",
+        "NOT_ALLOWED"
+      ],
+      "snippet": "response = invokeurl\n[\n  url: \"https://www.zohoapis.com/crm/v3/settings/fields?module=Quotes\"\n  type: GET\n  connection: \"crm\"\n];"
+    },
+    {
+      "id": "search_records",
+      "category": "Search Records",
+      "method": "GET",
+      "url": "https://www.zohoapis.com/crm/v2/Leads/search?criteria=((Last_Name:equals:Burns%5C%2CB)or(First_Name:starts_with:P))",
+      "version": "v2",
+      "allVersions": [
+        "v2",
+        "v2.1",
+        "v3",
+        "v5",
+        "v6",
+        "v7",
+        "v8"
+      ],
+      "description": "Search records by criteria, email, phone, or word",
+      "requestBody": null,
+      "successResponse": null,
+      "errors": [
+        "MANDATORY_NOT_FOUND",
+        "INVALID_QUERY",
+        "INVALID_MODULE",
+        "INVALID_URL_PATTERN",
+        "INVALID_REQUEST_METHOD",
+        "AUTHENTICATION_FAILURE",
+        "OAUTH_SCOPE_MISMATCH",
+        "INVALID_REQUEST"
+      ],
+      "snippet": "response = invokeurl\n[\n  url: \"https://www.zohoapis.com/crm/v2/Leads/search?criteria=((Last_Name:equals:Burns%5C%2CB)or(First_Name:starts_with:P))\"\n  type: GET\n  connection: \"crm\"\n];"
+    },
+    {
+      "id": "notes",
+      "category": "Notes",
+      "method": "POST",
+      "url": "https://www.zohoapis.com/crm/v2/notes",
+      "version": "v2",
+      "allVersions": [
+        "v2",
+        "v2.1",
+        "v3",
+        "v5",
+        "v6",
+        "v7",
+        "v8"
+      ],
+      "description": "CRUD operations on record notes",
+      "requestBody": {
+        "data": [
+          {
+            "Note_Title": "Contacted",
+            "Note_Content": "Need to do further tracking",
+            "Parent_Id": "{{record_id}}",
+            "se_module": "Leads"
+          }
+        ]
+      },
+      "successResponse": {
+        "data": [
+          {
+            "Owner": {
+              "name": "Patricia Boyle",
+              "id": "738964000000291009",
+              "email": "patricia.ss@zylker.com"
+            },
+            "Modified_Time": "2021-05-07T11:10:01+00:00",
+            "$attachments": null,
+            "Created_Time": "2021-05-07T11:08:30+00:00",
+            "Parent_Id": {
+              "name": null,
+              "id": "738964000002131001"
+            },
+            "$editable": true,
+            "$se_module": "Leads",
+            "$is_shared_to_client": false,
+            "Modified_By": {
+              "name": "Patricia Boyle",
+              "id": "738964000000291009",
+              "email": "patricia.ss@zylker.com"
+            },
+            "$size": null,
+            "$state": "save",
+            "$voice_note": false,
+            "id": "738964000002130215",
+            "Created_By": {
+              "name": "Patricia Boyle",
+              "id": "738964000000291009",
+              "email": "patricia.ss@zylker.com"
+            },
+            "Note_Title": "Contacted",
+            "Note_Content": "Have to assign to a different user"
+          }
+        ],
+        "info": {
+          "per_page": 1,
+          "count": 1,
+          "page": 1,
+          "more_records": true
+        }
+      },
+      "errors": [
+        "INVALID_MODULE",
+        "INVALID_REQUEST_METHOD",
+        "AUTHENTICATION_FAILURE",
+        "OAUTH_SCOPE_MISMATCH",
+        "UNABLE_TO_PARSE_DATA_TYPE",
+        "MANDATORY_NOT_FOUND",
+        "INVALID_REQUEST",
+        "INVALID_URL_PATTERN"
+      ],
+      "snippet": "response = invokeurl\n[\n  url: \"https://www.zohoapis.com/crm/v2/notes\"\n  type: POST\n  parameters: payload.toString()\n  connection: \"crm\"\n];"
+    },
+    {
+      "id": "attachments",
+      "category": "Attachments",
+      "method": "GET",
+      "url": "https://www.zohoapis.com/crm/v2/Leads/{param}/Attachments",
+      "version": "v2",
+      "allVersions": [
+        "v2",
+        "v2.1",
+        "v3",
+        "v5",
+        "v6",
+        "v7",
+        "v8"
+      ],
+      "description": "Upload, download, list, and delete record attachments",
+      "requestBody": null,
+      "successResponse": {
+        "data": [
+          {
+            "Owner": {
+              "name": "Patricia Boyle",
+              "id": "4150868000000225013",
+              "email": "patricia.ss@zylker.com"
+            },
+            "Modified_Time": "2021-05-03T17:59:02+05:30",
+            "File_Name": "0f2b4454e6fea3b4c8fcc82e7d2601b0.jpg",
+            "Created_Time": "2021-05-03T17:59:02+05:30",
+            "Size": "563181",
+            "Parent_Id": {
+              "name": "Brian Dolan",
+              "id": "4150868000004943003"
+            },
+            "$editable": true,
+            "$file_id": "1nvs60c82c750d8564edeaf5093ecadff1c9a",
+            "$type": "Attachment",
+            "$se_module": "Leads",
+            "Modified_By": {
+              "name": "Patricia Boyle",
+              "id": "4150868000000225013",
+              "email": "patricia.ss@zylker.com"
+            },
+            "$state": "save",
+            "id": "4150868000005282007",
+            "Created_By": {
+              "name": "Patricia Boyle",
+              "id": "4150868000000225013",
+              "email": "patricia.ss@zylker.com"
+            },
+            "$link_url": null
+          }
+        ],
+        "info": {
+          "per_page": 200,
+          "count": 3,
+          "page": 1,
+          "more_records": false
+        }
+      },
+      "errors": [
+        "INVALID_MODULE",
+        "INVALID_REQUEST_METHOD",
+        "AUTHENTICATION_FAILURE",
+        "OAUTH_SCOPE_MISMATCH",
+        "INVALID_URL_PATTERN",
+        "INVALID_DATA"
+      ],
+      "snippet": "response = invokeurl\n[\n  url: \"https://www.zohoapis.com/crm/v2/Leads/{param}/Attachments\"\n  type: GET\n  connection: \"crm\"\n];"
+    },
+    {
+      "id": "crm_variables",
+      "category": "CRM Variables",
+      "method": "POST",
+      "url": "https://www.zohoapis.com/crm/v6/settings/variables",
+      "version": "v6",
+      "allVersions": [
+        "v2",
+        "v2.1",
+        "v3",
+        "v5",
+        "v6",
+        "v7",
+        "v8"
+      ],
+      "description": "Read and update org-level CRM variables",
+      "requestBody": {
+        "variables": [
+          {
+            "name": "Variable100",
+            "api_name": "Variable100",
+            "variable_group": {
+              "id": "{{variable_group_id}}"
+            },
+            "type": "integer",
+            "value": 33,
+            "description": "This denotes variable 3 description"
+          },
+          {
+            "name": "Variable101",
+            "api_name": "Variable101",
+            "variable_group": {
+              "name": "General"
+            },
+            "type": "text",
+            "value": "Hello",
+            "description": "This denotes variable 4 description"
+          }
+        ]
+      },
+      "successResponse": {
+        "variables": [
+          {
+            "api_name": "Variable101",
+            "name": "Variable101",
+            "description": "This denotes variable 4 description",
+            "id": "4876876000001124010",
+            "source": "crm",
+            "type": "text",
+            "variable_group": {
+              "api_name": "General",
+              "id": "4876876000001124006"
+            },
+            "value": "Hello"
+          }
+        ]
+      },
+      "errors": [
+        "INVALID_URL_PATTERN",
+        "INVALID_REQUEST_METHOD",
+        "AUTHENTICATION_FAILURE",
+        "OAUTH_SCOPE_MISMATCH",
+        "PATTERN_NOT_MATCHED",
+        "REQUIRED_PARAM_MISSING",
+        "UNABLE_TO_PARSE_DATA_TYPE"
+      ],
+      "snippet": "response = invokeurl\n[\n  url: \"https://www.zohoapis.com/crm/v6/settings/variables\"\n  type: GET\n  connection: \"crm\"\n];"
+    },
+    {
+      "id": "tags",
+      "category": "Tags",
+      "method": "POST",
+      "url": "https://www.zohoapis.com/crm/v2/settings/tags?module=Leads",
+      "version": "v2",
+      "allVersions": [
+        "v2",
+        "v2.1",
+        "v3",
+        "v5",
+        "v6",
+        "v7",
+        "v8"
+      ],
+      "description": "Add, remove, and manage tags on records",
+      "requestBody": {
+        "tags": [
+          {
+            "name": "Nurturing Lead"
+          },
+          {
+            "name": "Qualifies Lead"
+          }
+        ]
+      },
+      "successResponse": {
+        "tags": [
+          {
+            "created_time": "2021-05-07T12:40:30+00:00",
+            "modified_time": "2021-05-07T12:40:30+00:00",
+            "name": "test",
+            "modified_by": {
+              "name": "Patricia Boyle",
+              "id": "738964000000291009"
+            },
+            "id": "738964000002130345",
+            "created_by": {
+              "name": "Patricia Boyle",
+              "id": "738964000000291009"
+            }
+          }
+        ],
+        "info": {
+          "count": 4,
+          "allowed_count": 100
+        }
+      },
+      "errors": [
+        "INVALID_URL_PATTERN",
+        "INVALID_MODULE",
+        "INVALID_REQUEST_METHOD",
+        "AUTHENTICATION_FAILURE",
+        "REQUIRED_PARAM_MISSING",
+        "OAUTH_SCOPE_MISMATCH",
+        "TAG_ID_NOT_FOUND",
+        "UNABLE_TO_PARSE_DATA_TYPE"
+      ],
+      "snippet": "tagPayload = Map();\ntagList = List();\ntag = Map();\ntag.put(\"name\", \"${1:TagName}\");\ntagList.add(tag);\ntagPayload.put(\"tags\", tagList);\nresponse = invokeurl\n[\n  url: \"https://www.zohoapis.com/crm/v2/${2:Module}/\" + recordId + \"/actions/add_tags\"\n  type: POST\n  parameters: tagPayload.toString()\n  connection: \"crm\"\n];"
+    },
+    {
+      "id": "file_upload",
+      "category": "File Upload",
+      "method": "POST",
+      "url": "https://www.zohoapis.com/crm/v3/files",
+      "version": "v3",
+      "allVersions": [
+        "v2",
+        "v2.1",
+        "v3",
+        "v5",
+        "v6",
+        "v7",
+        "v8"
+      ],
+      "description": "Upload files to Zoho File System for record fields",
+      "requestBody": null,
+      "successResponse": {
+        "data": [
+          {
+            "code": "SUCCESS",
+            "details": {
+              "name": "logo.png",
+              "id": "39c17f1033cd120e62f8104c545af0efc6947a7e53e20330a3fb966f69f55bef"
+            },
+            "message": "logo.png uploaded Successfully",
+            "status": "success"
+          }
+        ]
+      },
+      "errors": [
+        "INVALID_REQUEST",
+        "INVALID_URL_PATTERN",
+        "AUTHENTICATION_FAILURE",
+        "INVALID_REQUEST_METHOD",
+        "failure_in_attachment_handling",
+        "OAUTH_SCOPE_MISMATCH",
+        "INVALID_MODULE"
+      ],
+      "snippet": "response = invokeurl\n[\n  url: \"https://www.zohoapis.com/crm/v3/files\"\n  type: POST\n  connection: \"crm\"\n];"
+    },
+    {
+      "id": "coql_queries",
+      "category": "COQL Queries",
+      "method": "POST",
+      "url": "https://www.zohoapis.com/crm/v2/coql",
+      "version": "v2",
+      "allVersions": [
+        "v2",
+        "v2.1",
+        "v3",
+        "v5",
+        "v6",
+        "v7",
+        "v8"
+      ],
+      "description": "Execute a COQL (CRM Object Query Language) query to search records",
+      "requestBody": {
+        "select_query": "select Last_Name, First_Name, Full_Name, Lead_Source, Languages_Known from Contacts where (((Last_Name = 'Boyle') and (Lead_Source = Advertisement)) and Languages_Known = 'English;German') limit 2"
+      },
+      "successResponse": {
+        "data": [
+          {
+            "First_Name": null,
+            "Full_Name": "Boyle",
+            "Last_Name": "Boyle",
+            "Lead_Source": null,
+            "id": "738964000001112068"
+          }
+        ],
+        "info": {
+          "count": 2,
+          "more_records": false
+        }
+      },
+      "errors": [
+        "SYNTAX_ERROR",
+        "LIMIT_EXCEEDED",
+        "INVALID_QUERY",
+        "DUPLICATE_DATA",
+        "INVALID_REQUEST_METHOD",
+        "OAUTH_SCOPE_MISMATCH",
+        "INVALID_URL_PATTERN",
+        "AUTHENTICATION_FAILURE"
+      ],
+      "snippet": "queryMap = Map();\nqueryMap.put(\"select_query\", \"select ${1:Field1}, ${2:Field2} from ${3:Module} where ${4:Criteria} limit 200\");\nresponse = invokeurl\n[\n  url: \"https://www.zohoapis.com/crm/v2/coql\"\n  type: POST\n  parameters: queryMap.toString()\n  connection: \"crm\"\n];"
+    },
+    {
+      "id": "email_templates",
+      "category": "Email Templates",
+      "method": "GET",
+      "url": "https://www.zohoapis.com/crm/v8/settings/email_templates",
+      "version": "v8",
+      "allVersions": [
+        "v2.1",
+        "v3",
+        "v5",
+        "v6",
+        "v7",
+        "v8"
+      ],
+      "description": "Get email template content by ID",
+      "requestBody": {
+        "group": [
+          {
+            "comparator": "between",
+            "field": {
+              "api_name": "modified_time"
+            },
+            "value": [
+              "2019-04-30T18:30:00+00:00",
+              "2019-05-23T12:59:27+00:00"
+            ]
+          }
+        ]
+      },
+      "successResponse": {
+        "email_templates": [
+          {
+            "created_time": "2022-03-23T18:52:17+05:30",
+            "attachments": null,
+            "subject": "Holidays",
+            "module": {
+              "api_name": "Leads",
+              "id": "4876876000000002175"
+            },
+            "created_by": {
+              "name": "Patricia Boyle",
+              "id": "4876876000000327001"
+            },
+            "modified_time": "2022-03-23T18:52:17+05:30",
+            "folder": {
+              "name": "Holidays",
+              "id": "4876876000000888001"
+            },
+            "last_usage_time": null,
+            "associated": false,
+            "name": "HappyHolidays",
+            "consent_linked": false,
+            "modified_by": {
+              "name": "Patricia Boyle",
+              "id": "4876876000000327001"
+            },
+            "id": "4876876000000888006",
+            "editor_mode": "gallery",
+            "category": "normal",
+            "favorite": false
+          }
+        ],
+        "info": {
+          "per_page": 200,
+          "count": 2,
+          "page": 1,
+          "more_records": false
+        }
+      },
+      "errors": [
+        "AUTHENTICATION_FAILURE",
+        "INVALID_REQUEST",
+        "INVALID_REQUEST_METHOD",
+        "INVALID_URL_PATTERN",
+        "OAUTH_SCOPE_MISMATCH"
+      ],
+      "snippet": "response = invokeurl\n[\n  url: \"https://www.zohoapis.com/crm/v8/settings/email_templates\"\n  type: GET\n  connection: \"crm\"\n];"
+    },
+    {
+      "id": "send_mail",
+      "category": "Send Mail",
+      "method": "POST",
+      "url": "https://www.zohoapis.com/crm/v2.1/Leads/{param}/actions/send_mail",
+      "version": "v2.1",
+      "allVersions": [
+        "v2.1",
+        "v3",
+        "v5",
+        "v6",
+        "v7",
+        "v8"
+      ],
+      "description": "Send email from a CRM record",
+      "requestBody": {
+        "data": [
+          {
+            "from": {
+              "user_name": "Patricia Boyle",
+              "email": "p.boyle@abc.com"
+            },
+            "to": [
+              {
+                "user_name": "user1",
+                "email": "user1@gmail.com"
+              }
+            ],
+            "cc": [
+              {
+                "user_name": "user2",
+                "email": "user2email@zoho.com"
+              }
+            ],
+            "bcc": [
+              {
+                "user_name": "user3",
+                "email": "user3email@zoho.com"
+              }
+            ],
+            "reply_to": {
+              "user_name": "user4",
+              "email": "user4email@zoho.com"
+            },
+            "org_email": false,
+            "in_reply_to": "2cceafa194d037b63f2000181dd8186486f1eb0360aee76d802b6d376dea97e7",
+            "scheduled_time": "2020-06-12T12:12:12+05:30",
+            "subject": "Testing Send Mail API",
+            "content": "<h3><span style=\"background-color: rgb(254, 255, 102)\">Mail is of rich text format</span></h3><h3><span style=\"background-color: rgb(254, 255, 102)\"><img src=\"https://www.zohoapis.com/crm/viewInLineImage?fileContent=2cceafa194d037b63f2000181dd818646fd5e5167a274098b625c35654a20ed2\"></span></h3><h3><span style=\"background-color: rgb(254, 255, 102)\">REGARDS,</span></h3><div><span style=\"background-color: rgb(254, 255, 102)\">AZ</span></div><div><span style=\"background-color: rgb(254, 255, 102)\">ADMIN</span></div> <div></div>",
+            "mail_format": "html",
+            "attachments": [
+              {
+                "id": "2cceafa194d037b63f2000181dd818646fd5e5167a274098b625c35654a20ed2"
+              }
+            ]
+          }
+        ]
+      },
+      "successResponse": {
+        "data": [
+          {
+            "code": "SUCCESS",
+            "details": {
+              "message_id": "9943645bd4411e51145e0515bd77e38058ef4386573e33fc3c5a988ba3a2dead"
+            },
+            "message": "Your mail has been scheduled successfully.",
+            "status": "success"
+          }
+        ]
+      },
+      "errors": [
+        "INVALID_REQUEST_METHOD",
+        "AUTHENTICATION_FAILURE",
+        "MANDATORY_NOT_FOUND",
+        "INVALID_DATA",
+        "OAUTH_SCOPE_MISMATCH",
+        "INVALID_MODULE",
+        "INVALID_URL_PATTERN"
+      ],
+      "snippet": "mailMap = Map();\nmailMap.put(\"from\", Map());\nmailMap.put(\"to\", List());\nmailMap.put(\"subject\", ${1:subject});\nmailMap.put(\"content\", ${2:htmlBody});\npayload = Map();\npayload.put(\"data\", {mailMap});\nresponse = invokeurl\n[\n  url: \"https://www.zohoapis.com/crm/v2.1/${3:Module}/\" + recordId + \"/actions/send_mail\"\n  type: POST\n  parameters: payload.toString()\n  connection: \"crm\"\n];"
+    },
+    {
+      "id": "from_addresses",
+      "category": "From Addresses",
+      "method": "GET",
+      "url": "https://www.zohoapis.com/crm/v8/settings/emails/actions/from_addresses",
+      "version": "v8",
+      "allVersions": [
+        "v2.1",
+        "v3",
+        "v5",
+        "v6",
+        "v7",
+        "v8"
+      ],
+      "description": "Get available sender email addresses",
+      "requestBody": null,
+      "successResponse": null,
+      "errors": [
+        "INVALID_URL_PATTERN",
+        "AUTHENTICATION_FAILURE",
+        "INVALID_REQUEST_METHOD",
+        "OAUTH_SCOPE_MISMATCH"
+      ],
+      "snippet": "response = invokeurl\n[\n  url: \"https://www.zohoapis.com/crm/v8/settings/emails/actions/from_addresses\"\n  type: GET\n  connection: \"crm\"\n];"
+    },
+    {
+      "id": "composite_requests",
+      "category": "Composite Requests",
+      "method": "POST",
+      "url": "https://www.zohoapis.com/crm/v8/__composite_requests",
+      "version": "v8",
+      "allVersions": [
+        "v3",
+        "v5",
+        "v6",
+        "v7",
+        "v8"
+      ],
+      "description": "Batch multiple API calls into a single request",
+      "requestBody": {
+        "rollback_on_fail": true,
+        "concurrent_execution": false,
+        "__composite_requests": [
+          {
+            "sub_request_id": "1",
+            "method": "POST",
+            "uri": "/crm/v8/Leads",
+            "headers": {},
+            "body": {
+              "data": [
+                {
+                  "Last_Name": "Sam"
+                }
+              ]
+            }
+          },
+          {
+            "sub_request_id": "2",
+            "method": "PUT",
+            "uri": "/crm/v8/Leads/@{1:$.data[0].details.id}",
+            "body": {
+              "data": [
+                {
+                  "Company": "ZT"
+                }
+              ]
+            }
+          },
+          {
+            "sub_request_id": "3",
+            "method": "GET",
+            "params": {
+              "fields": "Last_Name,Company,Email",
+              "per_page": "3",
+              "page": "1"
+            },
+            "uri": "/crm/v8/Leads/@{2:$.data[0].details.id}"
+          },
+          {
+            "sub_request_id": "4",
+            "method": "GET",
+            "params": {
+              "fields": "Last_Name, Modified_Time"
+            },
+            "headers": {
+              "If-Modified-Since": "2019-09-23T12:30:00+05:30"
+            },
+            "uri": "/crm/v8/Leads"
+          },
+          {
+            "sub_request_id": "5",
+            "method": "GET",
+            "params": {
+              "fields": "Last_Name, Modified_Time"
+            },
+            "uri": "/crm/v8/Leads/554023000001736019"
+          }
+        ]
+      },
+      "successResponse": {
+        "__composite_requests": [
+          {
+            "code": "SUCCESS",
+            "details": {
+              "response": {
+                "headers": {
+                  "X-ACCESSTOKEN-RESET": "2022-05-23T12:37:00+05:30",
+                  "Content-Disposition": "attachment; filename=response.json",
+                  "content-type": "application/json;charset=utf-8",
+                  "clientVersion": "5038531",
+                  "clientsubVersion": "825a81583dbf9157ac7702db9870523e"
+                },
+                "status_code": 201,
+                "body": {
+                  "data": [
+                    {
+                      "code": "SUCCESS",
+                      "details": {
+                        "Modified_Time": "2022-05-23T11:49:26+05:30",
+                        "Modified_By": {
+                          "name": "Patricia Boyle",
+                          "id": "4876876000000327001"
+                        },
+                        "Created_Time": "2022-05-23T11:49:26+05:30",
+                        "id": "4876876000001294186",
+                        "Created_By": {
+                          "name": "Patricia Boyle",
+                          "id": "4876876000000327001"
+                        },
+                        "$approval_state": "approved"
+                      },
+                      "message": "record added",
+                      "status": "success"
+                    }
+                  ]
+                }
+              }
+            },
+            "message": "composite sub request executed successfully",
+            "status": "success"
+          }
+        ]
+      },
+      "errors": [
+        "INVALID_DATA",
+        "MANDATORY_NOT_FOUND",
+        "AMBIGUITY_DURING_PROCESSING",
+        "OAUTH_SCOPE_MISMATCH"
+      ],
+      "snippet": "response = invokeurl\n[\n  url: \"https://www.zohoapis.com/crm/v8/__composite_requests\"\n  type: POST\n  parameters: payload.toString()\n  connection: \"crm\"\n];"
+    },
+    {
+      "id": "timeline",
+      "category": "Timeline",
+      "method": "GET",
+      "url": "https://www.zohoapis.com/crm/v8/Leads/{param}/__timeline?include_inner_details=field_history.data_type, field_history.field_label, field_history.enable_colour_code, field_history.pick_list_values, done_by.type__s, done_by.profile&sort_by=audited_time&filters={\"comparator\":\"between\",\"field\":{\"api_name\":\"audited_time\"},\"value\":[\"{param}\",\"{param}\"]}",
+      "version": "v8",
+      "allVersions": [
+        "v5",
+        "v6",
+        "v7",
+        "v8"
+      ],
+      "description": "Get record change history and field update timeline",
+      "requestBody": null,
+      "successResponse": null,
+      "errors": [],
+      "snippet": "response = invokeurl\n[\n  url: \"https://www.zohoapis.com/crm/v8/Leads/{param}/__timeline?include_inner_details=field_history.data_type, field_history.field_label, field_history.enable_colour_code, field_history.pick_list_values, done_by.type__s, done_by.profile&sort_by=audited_time&filters={\"comparator\":\"between\",\"field\":{\"api_name\":\"audited_time\"},\"value\":[\"{param}\",\"{param}\"]}\"\n  type: GET\n  connection: \"crm\"\n];"
+    },
+    {
+      "id": "cadences",
+      "category": "Cadences",
+      "method": "POST",
+      "url": "https://www.zohoapis.com/crm/v8/Contacts/actions/enrol_in_cadences",
+      "version": "v8",
+      "allVersions": [
+        "v7",
+        "v8"
+      ],
+      "description": "List cadences and enrol records into automated flows",
+      "requestBody": {
+        "cadences_ids": [
+          "554023000004092008"
+        ],
+        "ids": [
+          "554023000001798647",
+          "554023000001625028"
+        ]
+      },
+      "successResponse": {
+        "cadences": [
+          {
+            "summary": {
+              "task_follow_up_count": 0,
+              "call_follow_up_count": 0,
+              "email_follow_up_count": 1
+            },
+            "created_time": "2024-07-30T23:41:50-0700",
+            "module": {
+              "api_name": "Leads",
+              "id": "4876876000000002175"
+            },
+            "active": true,
+            "execution_details": null,
+            "published": true,
+            "type": "Manual enrollment",
+            "created_by": {
+              "name": "Patricia Boyle",
+              "id": "4876876000000327001"
+            },
+            "modified_time": "2024-07-30T23:42:38-0700",
+            "name": "CT",
+            "modified_by": {
+              "name": "Patricia Boyle",
+              "id": "4876876000000327001"
+            },
+            "id": "4876876000008252001",
+            "custom_view": null,
+            "status": "active"
+          }
+        ],
+        "info": {
+          "per_page": 50,
+          "count": 1,
+          "page": 1,
+          "more_records": false
+        }
+      },
+      "errors": [
+        "OAUTH_SCOPE_MISMATCH"
+      ],
+      "snippet": "response = invokeurl\n[\n  url: \"https://www.zohoapis.com/crm/v8/Contacts/actions/enrol_in_cadences\"\n  type: POST\n  parameters: payload.toString()\n  connection: \"crm\"\n];"
+    }
+  ],
+  "urlPatterns": [
+    {
+      "url": "https://www.zohoapis.com/crm/v2/coql",
+      "method": "POST",
+      "label": "COQL Query",
+      "description": "Execute a COQL query",
+      "version": "v2"
+    },
+    {
+      "url": "https://www.zohoapis.com/crm/v2/{Module}/search",
+      "method": "GET",
+      "label": "Search Records",
+      "description": "Search records by criteria",
+      "version": "v2"
+    },
+    {
+      "url": "https://www.zohoapis.com/crm/v2/{Module}",
+      "method": "GET",
+      "label": "Get Records",
+      "description": "List records from a module",
+      "version": "v2"
+    },
+    {
+      "url": "https://www.zohoapis.com/crm/v2/{Module}/{id}",
+      "method": "GET",
+      "label": "Get Record by ID",
+      "description": "Fetch a single record",
+      "version": "v2"
+    },
+    {
+      "url": "https://www.zohoapis.com/crm/v2/{Module}",
+      "method": "POST",
+      "label": "Create Record",
+      "description": "Create a new record",
+      "version": "v2"
+    },
+    {
+      "url": "https://www.zohoapis.com/crm/v2/{Module}/{id}",
+      "method": "PUT",
+      "label": "Update Record",
+      "description": "Update a record by ID",
+      "version": "v2"
+    },
+    {
+      "url": "https://www.zohoapis.com/crm/v2/{Module}/{id}",
+      "method": "DELETE",
+      "label": "Delete Record",
+      "description": "Delete a record by ID",
+      "version": "v2"
+    },
+    {
+      "url": "https://www.zohoapis.com/crm/v2/{Module}/upsert",
+      "method": "POST",
+      "label": "Upsert Record",
+      "description": "Insert or update based on duplicate check",
+      "version": "v2"
+    },
+    {
+      "url": "https://www.zohoapis.com/crm/v2.1/{Module}/{id}/actions/send_mail",
+      "method": "POST",
+      "label": "Send Mail",
+      "description": "Send email from a CRM record",
+      "version": "v2.1"
+    },
+    {
+      "url": "https://www.zohoapis.com/crm/v8/settings/emails/actions/from_addresses",
+      "method": "GET",
+      "label": "From Addresses",
+      "description": "Get available sender email addresses",
+      "version": "v8"
+    },
+    {
+      "url": "https://www.zohoapis.com/crm/v8/{Module}/email_templates",
+      "method": "GET",
+      "label": "Email Templates",
+      "description": "Get email templates for a module",
+      "version": "v8"
+    },
+    {
+      "url": "https://www.zohoapis.com/crm/v3/files",
+      "method": "POST",
+      "label": "Upload File (ZFS)",
+      "description": "Upload file to Zoho File System",
+      "version": "v3"
+    },
+    {
+      "url": "https://www.zohoapis.com/crm/v2/{Module}/{id}/actions/add_tags",
+      "method": "POST",
+      "label": "Add Tags",
+      "description": "Add tags to a record",
+      "version": "v2"
+    },
+    {
+      "url": "https://www.zohoapis.com/crm/v2/{Module}/{id}/actions/remove_tags",
+      "method": "POST",
+      "label": "Remove Tags",
+      "description": "Remove tags from a record",
+      "version": "v2"
+    },
+    {
+      "url": "https://www.zohoapis.com/crm/v6/settings/variables",
+      "method": "GET",
+      "label": "Get CRM Variables",
+      "description": "Read org-level CRM variables",
+      "version": "v6"
+    },
+    {
+      "url": "https://www.zohoapis.com/crm/v6/settings/variables/{id}",
+      "method": "PUT",
+      "label": "Update CRM Variable",
+      "description": "Update an org-level CRM variable",
+      "version": "v6"
+    },
+    {
+      "url": "https://www.zohoapis.com/crm/v2/{Module}/{id}/Notes",
+      "method": "GET",
+      "label": "Get Notes",
+      "description": "Get notes for a record",
+      "version": "v2"
+    },
+    {
+      "url": "https://www.zohoapis.com/crm/v2/{Module}/{id}/Notes",
+      "method": "POST",
+      "label": "Create Note",
+      "description": "Add a note to a record",
+      "version": "v2"
+    },
+    {
+      "url": "https://www.zohoapis.com/crm/v2/{Module}/{id}/Attachments",
+      "method": "GET",
+      "label": "Get Attachments",
+      "description": "List attachments on a record",
+      "version": "v2"
+    },
+    {
+      "url": "https://www.zohoapis.com/crm/v2/{Module}/{id}/Attachments",
+      "method": "POST",
+      "label": "Upload Attachment",
+      "description": "Upload an attachment to a record",
+      "version": "v2"
+    },
+    {
+      "url": "https://www.zohoapis.com/crm/v3/settings/fields?module={Module}",
+      "method": "GET",
+      "label": "Fields Metadata",
+      "description": "Get field definitions for a module",
+      "version": "v3"
+    },
+    {
+      "url": "https://www.zohoapis.com/crm/v8/{Module}/{id}/__timeline",
+      "method": "GET",
+      "label": "Timeline",
+      "description": "Get record change history",
+      "version": "v8"
+    },
+    {
+      "url": "https://www.zohoapis.com/crm/v8/settings/cadences",
+      "method": "GET",
+      "label": "List Cadences",
+      "description": "Get available cadence flows",
+      "version": "v8"
+    },
+    {
+      "url": "https://www.zohoapis.com/crm/v8/{Module}/actions/enrol_in_cadences",
+      "method": "POST",
+      "label": "Enrol in Cadence",
+      "description": "Enrol records into an automated cadence",
+      "version": "v8"
+    },
+    {
+      "url": "https://www.zohoapis.com/crm/v2/{Module}/{id}/{RelatedModule}",
+      "method": "GET",
+      "label": "Related Records",
+      "description": "Get related records for a parent record",
+      "version": "v2"
+    },
+    {
+      "url": "https://www.zohoapis.com/crm/v8/__composite_requests",
+      "method": "POST",
+      "label": "Composite Request",
+      "description": "Batch multiple API calls",
+      "version": "v8"
+    }
+  ],
+  "enrichedMethods": [
+    {
+      "service": "zoho.crm",
+      "name": "getRecordById",
+      "signature": "zoho.crm.getRecordById(module, recordId, optionalParams?)",
+      "description": "Fetch a single CRM record by its ID.",
+      "params": [
+        {
+          "name": "module",
+          "type": "String",
+          "description": "Module API name (Deals, Contacts, Leads, etc.)",
+          "required": true
+        },
+        {
+          "name": "recordId",
+          "type": "Long",
+          "description": "Record ID to fetch",
+          "required": true
+        },
+        {
+          "name": "optionalParams",
+          "type": "Map",
+          "description": "Optional: {\"fields\": \"Field1,Field2\"} to limit returned fields",
+          "required": false
+        }
+      ],
+      "returns": "Map \u2014 full record data with all field API names as keys",
+      "errors": [
+        "INVALID_MODULE",
+        "INVALID_DATA"
+      ],
+      "example": "deal = zoho.crm.getRecordById(\"Deals\", dealId);\ninfo deal.get(\"Deal_Name\");"
+    },
+    {
+      "service": "zoho.crm",
+      "name": "getRecords",
+      "signature": "zoho.crm.getRecords(module, page?, perPage?)",
+      "description": "Fetch a page of records from a module.",
+      "params": [
+        {
+          "name": "module",
+          "type": "String",
+          "description": "Module API name",
+          "required": true
+        },
+        {
+          "name": "page",
+          "type": "Int",
+          "description": "Page number (1-indexed, default 1)",
+          "required": false
+        },
+        {
+          "name": "perPage",
+          "type": "Int",
+          "description": "Records per page (max 200, default 200)",
+          "required": false
+        }
+      ],
+      "returns": "List \u2014 list of record Maps",
+      "errors": [
+        "INVALID_MODULE"
+      ],
+      "example": "records = zoho.crm.getRecords(\"Contacts\", 1, 200);\nfor each rec in records\n{\n  info rec.get(\"Email\");\n}"
+    },
+    {
+      "service": "zoho.crm",
+      "name": "searchRecords",
+      "signature": "zoho.crm.searchRecords(module, criteria, page?, perPage?)",
+      "description": "Search records using criteria expressions.",
+      "params": [
+        {
+          "name": "module",
+          "type": "String",
+          "description": "Module API name",
+          "required": true
+        },
+        {
+          "name": "criteria",
+          "type": "String",
+          "description": "Criteria string, e.g. \"(Email:equals:test@example.com)\"",
+          "required": true
+        },
+        {
+          "name": "page",
+          "type": "Int",
+          "description": "Page number (1-indexed)",
+          "required": false
+        },
+        {
+          "name": "perPage",
+          "type": "Int",
+          "description": "Records per page (max 200)",
+          "required": false
+        }
+      ],
+      "returns": "List \u2014 matching records. Returns null if no matches.",
+      "errors": [
+        "INVALID_MODULE",
+        "INVALID_QUERY"
+      ],
+      "example": "results = zoho.crm.searchRecords(\"Contacts\", \"(Email:equals:\" + email + \")\");\nif(results != null && results.size() > 0)\n{\n  contact = results.get(0);\n}",
+      "gotchas": "Returns null (not empty list) when no records match. Always null-check before .size()."
+    },
+    {
+      "service": "zoho.crm",
+      "name": "createRecord",
+      "signature": "zoho.crm.createRecord(module, dataMap, triggers?)",
+      "description": "Create a new record in a CRM module.",
+      "params": [
+        {
+          "name": "module",
+          "type": "String",
+          "description": "Module API name",
+          "required": true
+        },
+        {
+          "name": "dataMap",
+          "type": "Map",
+          "description": "Map of field API names to values",
+          "required": true
+        },
+        {
+          "name": "triggers",
+          "type": "List",
+          "description": "Triggers to fire: [\"workflow\",\"approval\",\"blueprint\"]. Pass [] to suppress all.",
+          "required": false
+        }
+      ],
+      "returns": "Map \u2014 {\"data\":[{\"code\":\"SUCCESS\",\"details\":{\"id\":\"...\",\"Created_Time\":\"...\"}}]}",
+      "errors": [
+        "MANDATORY_NOT_FOUND",
+        "INVALID_DATA",
+        "DUPLICATE_DATA"
+      ],
+      "example": "dataMap = Map();\ndataMap.put(\"Last_Name\", \"Smith\");\ndataMap.put(\"Email\", \"smith@example.com\");\nresp = zoho.crm.createRecord(\"Contacts\", dataMap, []);\ninfo resp;",
+      "gotchas": "Omitting triggers (3rd param) fires ALL triggers. Always pass [] to suppress in automation."
+    },
+    {
+      "service": "zoho.crm",
+      "name": "updateRecord",
+      "signature": "zoho.crm.updateRecord(module, recordId, dataMap, triggers?)",
+      "description": "Update fields on an existing CRM record.",
+      "params": [
+        {
+          "name": "module",
+          "type": "String",
+          "description": "Module API name",
+          "required": true
+        },
+        {
+          "name": "recordId",
+          "type": "Long",
+          "description": "Record ID to update",
+          "required": true
+        },
+        {
+          "name": "dataMap",
+          "type": "Map",
+          "description": "Map of field API names to new values",
+          "required": true
+        },
+        {
+          "name": "triggers",
+          "type": "List",
+          "description": "Triggers to fire: [\"workflow\",\"approval\",\"blueprint\"]. Pass [] to suppress all.",
+          "required": false
+        }
+      ],
+      "returns": "Map \u2014 {\"data\":[{\"code\":\"SUCCESS\",\"details\":{\"id\":\"...\",\"Modified_Time\":\"...\"}}]}",
+      "errors": [
+        "MANDATORY_NOT_FOUND",
+        "INVALID_DATA",
+        "DUPLICATE_DATA"
+      ],
+      "example": "dataMap = Map();\ndataMap.put(\"Stage\", \"Job Created\");\nresp = zoho.crm.updateRecord(\"Deals\", dealId, dataMap, []);\ninfo resp;",
+      "gotchas": "CRITICAL: Omitting the 4th parameter fires ALL triggers (workflow, approval, blueprint). Always pass [] explicitly to suppress re-firing in automation functions."
+    },
+    {
+      "service": "zoho.crm",
+      "name": "deleteRecord",
+      "signature": "zoho.crm.deleteRecord(module, recordId)",
+      "description": "Move a record to the recycle bin.",
+      "params": [
+        {
+          "name": "module",
+          "type": "String",
+          "description": "Module API name",
+          "required": true
+        },
+        {
+          "name": "recordId",
+          "type": "Long",
+          "description": "Record ID to delete",
+          "required": true
+        }
+      ],
+      "returns": "Map \u2014 {\"data\":[{\"code\":\"SUCCESS\",\"details\":{\"id\":\"...\"}}]}",
+      "errors": [
+        "INVALID_DATA"
+      ],
+      "example": "resp = zoho.crm.deleteRecord(\"Tasks\", taskId);\ninfo resp;"
+    },
+    {
+      "service": "zoho.crm",
+      "name": "getRelatedRecords",
+      "signature": "zoho.crm.getRelatedRecords(module, relatedModule, recordId)",
+      "description": "Get records related to a parent record.",
+      "params": [
+        {
+          "name": "module",
+          "type": "String",
+          "description": "Parent module API name",
+          "required": true
+        },
+        {
+          "name": "relatedModule",
+          "type": "String",
+          "description": "Related module API name",
+          "required": true
+        },
+        {
+          "name": "recordId",
+          "type": "Long",
+          "description": "Parent record ID",
+          "required": true
+        }
+      ],
+      "returns": "List \u2014 related record Maps. May return inconsistent format vs REST API.",
+      "errors": [
+        "INVALID_MODULE",
+        "INVALID_DATA"
+      ],
+      "example": "notes = zoho.crm.getRelatedRecords(\"Deals\", \"Notes\", dealId);\nfor each n in notes\n{\n  info n.get(\"Note_Content\");\n}",
+      "gotchas": "Return format can be inconsistent. For reliable JSON, use REST API: GET /crm/v2/{Module}/{id}/Notes instead."
+    },
+    {
+      "service": "zoho.crm",
+      "name": "updateRelatedRecord",
+      "signature": "zoho.crm.updateRelatedRecord(module, recordId, relatedModule, relatedRecordId, dataMap)",
+      "description": "Update a related record.",
+      "params": [
+        {
+          "name": "module",
+          "type": "String",
+          "description": "Parent module API name",
+          "required": true
+        },
+        {
+          "name": "recordId",
+          "type": "Long",
+          "description": "Parent record ID",
+          "required": true
+        },
+        {
+          "name": "relatedModule",
+          "type": "String",
+          "description": "Related module API name",
+          "required": true
+        },
+        {
+          "name": "relatedRecordId",
+          "type": "Long",
+          "description": "Related record ID",
+          "required": true
+        },
+        {
+          "name": "dataMap",
+          "type": "Map",
+          "description": "Map of fields to update",
+          "required": true
+        }
+      ],
+      "returns": "Map",
+      "errors": [
+        "INVALID_DATA"
+      ],
+      "example": "dataMap = Map();\ndataMap.put(\"Note_Content\", \"Updated note\");\nresp = zoho.crm.updateRelatedRecord(\"Deals\", dealId, \"Notes\", noteId, dataMap);"
+    },
+    {
+      "service": "zoho.crm",
+      "name": "bulkUpdate",
+      "signature": "zoho.crm.bulkUpdate(module, recordIds, dataMap)",
+      "description": "Update the same field values on multiple records at once.",
+      "params": [
+        {
+          "name": "module",
+          "type": "String",
+          "description": "Module API name",
+          "required": true
+        },
+        {
+          "name": "recordIds",
+          "type": "List",
+          "description": "List of record IDs to update",
+          "required": true
+        },
+        {
+          "name": "dataMap",
+          "type": "Map",
+          "description": "Map of field values to set on all records",
+          "required": true
+        }
+      ],
+      "returns": "Map \u2014 {\"data\":[{\"code\":\"SUCCESS\",...}, ...]}",
+      "errors": [
+        "INVALID_DATA",
+        "RECORD_LOCKED"
+      ],
+      "example": "ids = List();\nids.add(id1);\nids.add(id2);\ndataMap = Map();\ndataMap.put(\"Tag\", \"Processed\");\nresp = zoho.crm.bulkUpdate(\"Contacts\", ids, dataMap);"
+    },
+    {
+      "service": "zoho.crm",
+      "name": "upsertRecord",
+      "signature": "zoho.crm.upsertRecord(module, dataMap)",
+      "description": "Insert or update a record based on duplicate check fields.",
+      "params": [
+        {
+          "name": "module",
+          "type": "String",
+          "description": "Module API name",
+          "required": true
+        },
+        {
+          "name": "dataMap",
+          "type": "Map",
+          "description": "Map of field values. Must include the duplicate-check field.",
+          "required": true
+        }
+      ],
+      "returns": "Map \u2014 includes action (insert/update) in response",
+      "errors": [
+        "MANDATORY_NOT_FOUND",
+        "INVALID_DATA",
+        "DUPLICATE_DATA"
+      ],
+      "example": "dataMap = Map();\ndataMap.put(\"Email\", \"smith@example.com\");\ndataMap.put(\"Last_Name\", \"Smith\");\nresp = zoho.crm.upsertRecord(\"Contacts\", dataMap);"
+    }
+  ],
+  "diagnosticRules": [
+    {
+      "id": "missing-trigger-suppress",
+      "severity": "warning",
+      "description": "zoho.crm.updateRecord/createRecord without explicit trigger parameter fires ALL workflows",
+      "message": "Missing trigger parameter \u2014 all workflows will fire. Add [] as last param to suppress.",
+      "appliesTo": [
+        "zoho.crm.updateRecord",
+        "zoho.crm.createRecord"
+      ],
+      "check": "param_count",
+      "expectedMinParams": {
+        "zoho.crm.updateRecord": 4,
+        "zoho.crm.createRecord": 3
+      }
+    },
+    {
+      "id": "coql-limit-over-200",
+      "severity": "error",
+      "description": "COQL LIMIT cannot exceed 200",
+      "message": "COQL LIMIT exceeds 200 \u2014 API will return LIMIT_EXCEEDED error. Use OFFSET for pagination.",
+      "check": "coql_limit",
+      "maxLimit": 200
+    },
+    {
+      "id": "integer-field-decimal",
+      "severity": "warning",
+      "description": "CRM integer fields reject decimal values",
+      "message": "If writing to an integer field, use .round(0).toLong() to avoid INVALID_DATA errors.",
+      "check": "info_only"
+    }
+  ]
+}
