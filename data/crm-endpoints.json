@@ -1,7 +1,7 @@
 {
   "metadata": {
     "source": "Zoho CRM REST APIs.postman_collection.json",
-    "extractedAt": "2026-04-12",
+    "extractedAt": "2026-06-23",
     "endpointCount": 14,
     "enrichedMethodCount": 10,
     "urlPatternCount": 26
@@ -1181,7 +1181,7 @@
     {
       "service": "zoho.crm",
       "name": "createRecord",
-      "signature": "zoho.crm.createRecord(module, dataMap, triggers?)",
+      "signature": "zoho.crm.createRecord(module, dataMap, optionsMap?)",
       "description": "Create a new record in a CRM module.",
       "params": [
         {
@@ -1197,9 +1197,9 @@
           "required": true
         },
         {
-          "name": "triggers",
-          "type": "List",
-          "description": "Triggers to fire: [\"workflow\",\"approval\",\"blueprint\"]. Pass [] to suppress all.",
+          "name": "optionsMap",
+          "type": "Map",
+          "description": "Options map. Set \"trigger\" to a List of allowed triggers [\"workflow\",\"approval\",\"blueprint\",\"orchestration\"], or an empty List to suppress all.",
           "required": false
         }
       ],
@@ -1209,13 +1209,13 @@
         "INVALID_DATA",
         "DUPLICATE_DATA"
       ],
-      "example": "dataMap = Map();\ndataMap.put(\"Last_Name\", \"Smith\");\ndataMap.put(\"Email\", \"smith@example.com\");\nresp = zoho.crm.createRecord(\"Contacts\", dataMap, []);\ninfo resp;",
-      "gotchas": "Omitting triggers (3rd param) fires ALL triggers. Always pass [] to suppress in automation."
+      "example": "dataMap = Map();\ndataMap.put(\"Last_Name\", \"Smith\");\ndataMap.put(\"Email\", \"smith@example.com\");\ntriggerList = List();\noptionsMap = Map();\noptionsMap.put(\"trigger\", triggerList);\nresp = zoho.crm.createRecord(\"Contacts\", dataMap, optionsMap);\ninfo resp;",
+      "gotchas": "Omitting optionsMap lets Zoho run default triggers: approval, blueprint, and orchestration. Pass optionsMap with trigger set to an empty List to suppress trigger scripts."
     },
     {
       "service": "zoho.crm",
       "name": "updateRecord",
-      "signature": "zoho.crm.updateRecord(module, recordId, dataMap, triggers?)",
+      "signature": "zoho.crm.updateRecord(module, recordId, dataMap, optionsMap?)",
       "description": "Update fields on an existing CRM record.",
       "params": [
         {
@@ -1237,9 +1237,9 @@
           "required": true
         },
         {
-          "name": "triggers",
-          "type": "List",
-          "description": "Triggers to fire: [\"workflow\",\"approval\",\"blueprint\"]. Pass [] to suppress all.",
+          "name": "optionsMap",
+          "type": "Map",
+          "description": "Options map. Set \"trigger\" to a List of allowed triggers [\"workflow\",\"approval\",\"blueprint\",\"orchestration\"], or an empty List to suppress all.",
           "required": false
         }
       ],
@@ -1249,8 +1249,8 @@
         "INVALID_DATA",
         "DUPLICATE_DATA"
       ],
-      "example": "dataMap = Map();\ndataMap.put(\"Stage\", \"Job Created\");\nresp = zoho.crm.updateRecord(\"Deals\", dealId, dataMap, []);\ninfo resp;",
-      "gotchas": "CRITICAL: Omitting the 4th parameter fires ALL triggers (workflow, approval, blueprint). Always pass [] explicitly to suppress re-firing in automation functions."
+      "example": "dataMap = Map();\ndataMap.put(\"Stage\", \"Job Created\");\ntriggerList = List();\noptionsMap = Map();\noptionsMap.put(\"trigger\", triggerList);\nresp = zoho.crm.updateRecord(\"Deals\", dealId, dataMap, optionsMap);\ninfo resp;",
+      "gotchas": "Omitting optionsMap lets Zoho run default triggers: approval, blueprint, and orchestration. Pass optionsMap with trigger set to an empty List to suppress trigger scripts."
     },
     {
       "service": "zoho.crm",
@@ -1417,8 +1417,8 @@
     {
       "id": "missing-trigger-suppress",
       "severity": "warning",
-      "description": "zoho.crm.updateRecord/createRecord without explicit trigger parameter fires ALL workflows",
-      "message": "Missing trigger parameter \u2014 all workflows will fire. Add [] as last param to suppress.",
+      "description": "zoho.crm.updateRecord/createRecord without explicit options map uses Zoho default trigger behavior",
+      "message": "Missing options map - Zoho default triggers may run. Pass an options map with trigger set to an empty List to suppress.",
       "appliesTo": [
         "zoho.crm.updateRecord",
         "zoho.crm.createRecord"

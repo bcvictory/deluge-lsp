@@ -58,12 +58,12 @@ Hovering on a `"https://www.zohoapis.com/crm/..."` URL string shows:
 - Return type shapes (actual JSON structure)
 - Common error codes per method
 - Working Deluge code examples
-- Gotcha warnings (e.g., missing trigger param)
+- Gotcha warnings (e.g., missing options map)
 - Includes `upsertRecord` (not in base set)
 
 ### API diagnostics
 Two new diagnostic checks (source: `deluge-api`):
-1. **Missing trigger param** (warning): Flags `zoho.crm.updateRecord` with <4 params and `createRecord` with <3 params — omitting triggers fires ALL workflows
+1. **Missing options map** (warning): Flags `zoho.crm.updateRecord` with <4 params and `createRecord` with <3 params. Omitting `optionsMap` uses Zoho default triggers: approval, blueprint, and orchestration. Pass an options map with `trigger` set to an empty List to suppress.
 2. **COQL LIMIT exceeded** (error): Flags `limit NNN` where NNN > 200 — API returns LIMIT_EXCEEDED
 
 ### Regenerating endpoint data

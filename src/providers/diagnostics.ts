@@ -10,7 +10,7 @@ export function validateDocument(document: TextDocument): Diagnostic[] {
     checkMissingSemicolons(lines, diagnostics);
     checkMultipleStatementsPerLine(lines, diagnostics);
     checkSmartQuotes(lines, diagnostics);
-    checkMissingTriggerParam(lines, diagnostics);
+    checkMissingOptionsMap(lines, diagnostics);
     checkCoqlLimitExceeded(lines, diagnostics);
 
     return diagnostics;
@@ -318,13 +318,15 @@ function checkSmartQuotes(lines: string[], diagnostics: Diagnostic[]): void {
 
 /**
  * Warn when zoho.crm.updateRecord or zoho.crm.createRecord is called
- * without the trigger-suppression parameter.
+ * without the options Map that controls CRM trigger behavior.
  *
- * updateRecord needs 4 params (module, id, map, triggers).
- * createRecord needs 3 params (module, map, triggers).
- * Omitting triggers fires ALL workflows — a well-known gotcha.
+ * updateRecord needs 4 params (module, id, map, optionsMap).
+ * createRecord needs 3 params (module, map, optionsMap).
+ * Omitting optionsMap uses Zoho default triggers: approval, blueprint,
+ * and orchestration. Pass optionsMap with trigger set to an empty List
+ * to suppress trigger scripts.
  */
-function checkMissingTriggerParam(lines: string[], diagnostics: Diagnostic[]): void {
+function checkMissingOptionsMap(lines: string[], diagnostics: Diagnostic[]): void {
     const callPattern = /zoho\.crm\.(updateRecord|createRecord)\s*\(/g;
 
     for (let i = 0; i < lines.length; i++) {
@@ -345,7 +347,7 @@ function checkMissingTriggerParam(lines: string[], diagnostics: Diagnostic[]): v
                 diagnostics.push({
                     severity: DiagnosticSeverity.Warning,
                     range: Range.create(i, match.index, i, match.index + match[0].length),
-                    message: `zoho.crm.${funcName} without triggers param fires ALL workflows. Add [] as param ${expectedMin} to suppress.`,
+                    message: `zoho.crm.${funcName} without options map uses Zoho default triggers (approval, blueprint, orchestration). Pass an options map with trigger set to an empty List as param ${expectedMin} to suppress.`,
                     source: 'deluge-api',
                 });
             }
