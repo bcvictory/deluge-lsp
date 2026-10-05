@@ -54,4 +54,4 @@ const result = {
 };
 
 console.log(JSON.stringify(result, null, 2));
-process.exit(errors.length > 0 ? 1 : 0);
+process.exitCode = errors.length > 0 ? 1 : 0;
