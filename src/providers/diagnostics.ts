@@ -7,6 +7,7 @@ export function validateDocument(document: TextDocument): Diagnostic[] {
     const diagnostics: Diagnostic[] = [];
 
     checkBracketBalance(text, lines, diagnostics);
+    checkForEachChainedCalls(document, diagnostics);
     checkMissingSemicolons(lines, diagnostics);
     checkMultipleStatementsPerLine(lines, diagnostics);
     checkSmartQuotes(lines, diagnostics);
@@ -14,6 +15,37 @@ export function validateDocument(document: TextDocument): Diagnostic[] {
     checkCoqlLimitExceeded(lines, diagnostics);
 
     return diagnostics;
+}
+
+function checkForEachChainedCalls(document: TextDocument, diagnostics: Diagnostic[]): void {
+    const code = document.getText().replace(
+        /"(?:\\[\s\S]|[^"\\])*"|'(?:\\[\s\S]|[^'\\])*'|\/\/[^\r\n]*|\/\*[\s\S]*?(?:\*\/|$)/g,
+        literal => literal.replace(/[^\r\n]/g, ' '),
+    );
+    const headers = /\bfor\s+each\s+(?:index\s+)?[A-Za-z_]\w*\s+in\s+/g;
+    let match: RegExpExecArray | null;
+    while ((match = headers.exec(code)) !== null) {
+        let depth = 0;
+        for (let i = headers.lastIndex; i < code.length; i++) {
+            if (depth === 0 && /[;{}]/.test(code[i])) {
+                break;
+            }
+            if (code[i] === '(') {
+                depth++;
+            } else if (code[i] === ')') {
+                depth--;
+                if (depth === 0 && /^\s*\.\s*[A-Za-z_]\w*\s*\(/.test(code.slice(i + 1))) {
+                    diagnostics.push({
+                        severity: DiagnosticSeverity.Error,
+                        range: Range.create(document.positionAt(match.index), document.positionAt(match.index + 3)),
+                        message: 'Chained calls in a for each iterable are rejected by Deluge. Assign the expression to a variable before for each.',
+                        source: 'deluge',
+                    });
+                    break;
+                }
+            }
+        }
+    }
 }
 
 function checkBracketBalance(text: string, lines: string[], diagnostics: Diagnostic[]): void {
