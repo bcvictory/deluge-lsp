@@ -22,17 +22,19 @@ function checkForEachChainedCalls(document: TextDocument, diagnostics: Diagnosti
         /"(?:\\[\s\S]|[^"\\])*"|'(?:\\[\s\S]|[^'\\])*'|\/\/[^\r\n]*|\/\*[\s\S]*?(?:\*\/|$)/g,
         literal => literal.replace(/[^\r\n]/g, ' '),
     );
-    const headers = /\bfor\s+each\s+(?:index\s+)?[A-Za-z_]\w*\s+in\s+([^;{}]+)/g;
+    const headers = /\bfor\s+each\s+(?:index\s+)?[A-Za-z_]\w*\s+in\s+/g;
     let match: RegExpExecArray | null;
     while ((match = headers.exec(code)) !== null) {
-        const expression = match[1];
         let depth = 0;
-        for (let i = 0; i < expression.length; i++) {
-            if (expression[i] === '(') {
+        for (let i = headers.lastIndex; i < code.length; i++) {
+            if (depth === 0 && /[;{}]/.test(code[i])) {
+                break;
+            }
+            if (code[i] === '(') {
                 depth++;
-            } else if (expression[i] === ')') {
+            } else if (code[i] === ')') {
                 depth--;
-                if (depth === 0 && /^\s*\.\s*[A-Za-z_]\w*\s*\(/.test(expression.slice(i + 1))) {
+                if (depth === 0 && /^\s*\.\s*[A-Za-z_]\w*\s*\(/.test(code.slice(i + 1))) {
                     diagnostics.push({
                         severity: DiagnosticSeverity.Error,
                         range: Range.create(document.positionAt(match.index), document.positionAt(match.index + 3)),
